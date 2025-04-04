@@ -1,19 +1,11 @@
 // nuxt.config.ts
 
+import { defineNuxtConfig } from "nuxt/config";
 import { resolve } from "path";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  extends: ["@nuxt/ui-pro"],
-
-  buildModules: [
-    [
-      "@nuxtjs/date-fns",
-      {
-        /* module options */
-      },
-    ],
-  ],
+  extends: [],
 
   modules: [
     "@nuxt/content",
@@ -47,7 +39,7 @@ export default defineNuxtConfig({
     ],
   },
   content: {
-    // or you might have 'mdc' instead of 'content' depending on your setup
+    documentDriven: true,
     highlight: {
       theme: "one-dark-pro",
       themes: ["houston", "aurora-x"],
@@ -98,7 +90,11 @@ export default defineNuxtConfig({
   },
   postcss: {
     plugins: {
-      tailwindcss: {},
+      tailwindcss: {
+        exposeConfig: true,
+        configPath: "tailwind.config.ts",
+        viewer: false,
+      },
       autoprefixer: {},
     },
   },
