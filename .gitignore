@@ -20,6 +20,8 @@ logs
 .idea
 .prompts
 .crossnote
+.qodo
+CLAUDE.md
 tmp
 
 # Local env files
