@@ -4,8 +4,6 @@ import type { BlogPost } from '~/types';
 import { format } from 'date-fns'
 import { enUS } from 'date-fns/locale'
 
-
-
 const route = useRoute()
 
 const { data: post } = await useAsyncData(route.path, () => queryContent<BlogPost>(route.path).findOne())
@@ -82,8 +80,19 @@ if (post.value.image?.src) {
         Back to Blog
       </NuxtLink>
     </div>
-    <article class="max-w-3xl mx-auto">
+
+    <article class="max-w-3xl mx-auto prose">
       <header class="mb-12">
+
+          <div v-if="post.image?.src" class="mb-6">
+            <img
+              :src="post.image.src"
+              :alt="post.title"
+              class="w-full rounded-lg shadow-sm object-cover max-h-80 mx-auto"
+              loading="lazy"
+            />
+          </div>
+
         <UBadge
           v-bind="post.badge"
           variant="subtle"
@@ -137,5 +146,6 @@ if (post.value.image?.src) {
         </aside>
       </UPage>
     </article>
+
   </UContainer>
 </template>
