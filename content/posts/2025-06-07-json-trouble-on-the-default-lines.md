@@ -14,35 +14,31 @@ badge:
 readingTime: 7
 ---
 
-_Note: I leaned heavily on Google Gemini for this investigation, blog post, and of course the necessary blog post illustration._
+_Note: I leaned heavily on Google Gemini for this investigation, blog post, and the necessary blog post illustration._
 
-<br>
-  
-Here at Onetime Secret, we've been refining our configuration system using JSON schemas as the source of truth. The goal was simple: let users provide a sparse config.yaml and have our application fill in all the defaults automatically. What we discovered about how different languages handle JSON Schema defaults was... illuminating.
+We've been refining our configuration system using JSON schemas as the source of truth. The goal: let users provide a sparse `config.yaml` and have our application fill in all the defaults automatically. What we discovered about how different languages handle JSON Schema defaults was illuminating.
 
-## The Expectation: Defaults All The Way Down
+## The Expectation
 
-Our main tool for this in Ruby is the `json_schemer` gem. It has a handy option, `insert_property_defaults: true`, which we expected would take our JSON schema (complete with `default` keywords at various levels) and our minimal user-provided config, and automagically produce a fully populated configuration hash.
+The main library we're using is the `json_schemer` gem with its `insert_property_defaults: true` option. We considered the more popular `json-schema` gem (500+ million downloads vs `json_schemer`'s 80 million), but it's stuck on JSON Schema draft-05 and [no longer actively maintained](https://github.com/voxpupuli/json-schema/issues/423). Multiple GitHub issues confirm draft-06+ support remains incomplete despite years of requests.
 
-For instance, if our schema said the `site` section should exist, and within `site`, `host` should default to `"localhost:3000"`, we hoped that even an empty user config would result in `site: { host: "localhost:3000", ... }`.
+We expected `json_schemer` would take our JSON schema (complete with `default` keywords) and minimal user config, then produce a fully populated configuration hash. e.g. if our schema defined a `site` section with `host` defaulting to `"localhost:3000"`, even an empty user config should result in `site: { host: "localhost:3000", ... }`.
 
-## The Initial Puzzle: Defaults Playing Hide and Seek
+## The Problem
 
-What we observed was a bit more nuanced. While simple top-level defaults were applied, and defaults within *already existing and valid* sections of the config were filled, the deeper "scaffolding" – creating missing nested objects and then filling *their* defaults – wasn't happening as comprehensively as we'd hoped.
+Simple top-level defaults worked. Defaults within existing, valid config sections worked. But the deeper "scaffolding" – creating missing nested objects and filling their defaults – didn't happen comprehensively.
 
-The issue was the interaction between the `default: {}` keyword (which we used to indicate an object should be created if missing) and the `required` keyword. If an object was created (e.g., `site: {}`) but immediately failed validation because it was missing its own `required` properties (like `site` requiring an `authentication` object), `json_schemer` appeared to halt the default-filling process for any properties *within* that now-invalid `site` object. No `site.host` default, no creation of `site.authentication` from its own `default: {}` definition, and so on.
+The issue: interaction between `default: {}` (indicating an object should be created if missing) and the `required` keyword. If an object was created (e.g., `site: {}`) but immediately failed validation due to missing required properties, `json_schemer` halted default-filling for properties within that invalid object.
 
-## The Experiment: A Tri-Language Default Showdown
+## The Experiment
 
-To understand if this behavior was specific to `json_schemer` or a more general characteristic of JSON Schema validation, we decided to set up a minimal test case and run it across three different environments:
+To determine if this was `json_schemer`-specific, we tested across three environments:
 
-1.  **Ruby** with `json_schemer`
-2.  **Node.js** with `ajv` (a popular and often reference JSON Schema validator)
-3.  **Python** with the `jsonschema` library
+1. **Ruby** with `json_schemer`
+2. **Node.js** with `ajv`
+3. **Python** with `jsonschema`
 
-The minimal schema was designed to mimic our problematic structure: a top-level object with a nested `config_section` (itself having a `default: {}` and `required` fields), which in turn contained a `nested_object` (also with `default: {}` and `required` fields).
-
-Here's the core of the schema (full scripts below):
+Test schema structure: nested objects with `default: {}` and `required` fields at multiple levels.
 
 ```json
 {
@@ -50,13 +46,13 @@ Here's the core of the schema (full scripts below):
   "properties": {
     "config_section": {
       "type": "object",
-      "default": {}, // Should create config_section = {} if missing
+      "default": {},
       "properties": {
         "setting1_with_default": { "type": "string", "default": "default_for_setting1" },
         "setting2_required_no_default": { "type": "boolean" },
         "nested_object": {
           "type": "object",
-          "default": {}, // Should create nested_object = {} if missing
+          "default": {},
           "properties": {
             "deep_setting_with_default": { "type": "integer", "default": 42 },
             "deep_setting_required_no_default": { "type": "string" }
@@ -74,28 +70,25 @@ Here's the core of the schema (full scripts below):
 }
 ```
 
-We then threw four scenarios at it, ranging from a completely empty input `{}` to more complete inputs.
+### Ruby Results
 
-### Ruby (`json_schemer`) Results
-
-The Ruby script confirmed our initial observations. When the input was empty (Scenario 1):
+With empty input:
 
 ```
-# Scenario 1: Completely empty input data (Ruby)
 Data AFTER validation:
 {"config_section" => {}, "top_level_prop_with_default" => "default_for_top_level"}
 
 Validation FAILED. Errors:
   1. Path: /config_section, Error: required, Details: {"missing_keys" => ["setting2_required_no_default", "nested_object"]}
 ```
-Notice how `config_section` was created as `{}`, but `setting1_with_default` (inside `config_section`) and `deep_setting_with_default` (inside `config_section.nested_object`) were *not* applied. The `required` failure on `config_section` stopped the cascade.
 
-### Node.js (`ajv`) Results
+`config_section` was created as `{}`, but `setting1_with_default` and `deep_setting_with_default` were not applied. The `required` failure stopped the cascade.
 
-`ajv` (with `useDefaults: true`) behaved differently. For the same empty input (Scenario 1):
+### Node.js Results
+
+`ajv` with `useDefaults: true` behaved differently:
 
 ```javascript
-// Scenario 1: Completely empty input data (Node.js with ajv)
 Data AFTER validation:
 {
   config_section: {
@@ -105,60 +98,40 @@ Data AFTER validation:
   top_level_prop_with_default: 'default_for_top_level'
 }
 
-Validation FAILED. Errors:
-  1. Path: /config_section, Keyword: required, Message: must have required property 'setting2_required_no_default', ...
-  2. Path: /config_section/nested_object, Keyword: required, Message: must have required property 'deep_setting_required_no_default', ...
-```
-`ajv` was more "eager." It scaffolded out the nested structure with defaults *first*, and *then* reported the `required` validation errors. This is often the behavior one might intuitively expect.
-
-### Python (`jsonschema`) Results
-
-The Python `jsonschema` library requires a bit more manual setup for default filling. With a custom validator extension, its behavior mirrored `ajv`'s: defaults were applied more deeply before `required` errors were flagged.
-
-```python
-# Scenario 1: Completely empty input data (Python with custom default filler)
-Data AFTER validation (and default filling attempt):
-{
-  "config_section": {
-    "setting1_with_default": "default_for_setting1", # Applied!
-    "nested_object": {
-      "deep_setting_with_default": 42                # Applied!
-    }
-  },
-  "top_level_prop_with_default": "default_for_top_level"
-}
-
-Validation FAILED ... Errors: ...
+Validation FAILED. Errors: [required field errors]
 ```
 
-## Understanding the Divergence
+`ajv` scaffolded the nested structure with defaults first, then reported validation errors.
 
-The key difference seems to be the operational order:
-*   **`json_schemer` (Ruby):** Appears to validate `required` constraints on an object more strictly *before* attempting to fill defaults for properties within that object if the object itself is initially invalid due to missing required children.
-*   **`ajv` (Node.js) / Python (with custom handling):** Tend to apply defaults more globally throughout the structure first, and then perform validation checks like `required`.
+### Python Results
 
-The JSON Schema specification allows for some flexibility in implementation details, so neither approach is necessarily "wrong." However, `json_schemer`'s behavior, while valid, meant our initial strategy of relying solely on `insert_property_defaults: true` for full scaffolding from a sparse config wouldn't work as desired in our Ruby environment.
+With custom validator extension, Python mirrored `ajv`'s behavior: defaults applied before `required` errors were flagged.
 
-The GitHub issue [`insert_property_defaults` does not work for nested schemas (eg. oneOf) #94](https://github.com/davishmcclurg/json_schemer/issues/94) and the subsequent commit [aaafab1](https://github.com/davishmcclurg/json_schemer/commit/aaafab1b02e6017d3048ad62cfc125a33a5c217f) for `json_schemer` version 2.0.0 aimed to improve this, but the core issue seems to be that if a parent object is invalid due to its own `required` constraints, its subtree might not be considered "valid" for its children's default insertion.
+## The Difference
 
-## The Path Forward for OnetimeSecret
+**`json_schemer`:** Validates `required` constraints before filling defaults within invalid objects.
 
-Given these findings, we're adopting a more explicit "Deep Merge" strategy in our Ruby configuration loading:
+**`ajv` / Python:** Apply defaults globally first, then validate.
 
-1.  **Programmatically Generate Full Defaults:** We'll traverse our `static-config.json` (generated from our Zod type definitions) to build a complete Ruby hash representing the entire configuration with all default values applied at every level.
-2.  **Load User's Sparse Config:** Read the `config.yaml` provided by the user.
-3.  **Deep Merge:** Merge the user's sparse configuration onto the full default hash. This ensures user settings override defaults, but all other defaults are present.
-4.  **Validate the Merged Result:** Finally, pass this fully populated, merged hash to `json_schemer` for validation. At this stage, `json_schemer` primarily checks types, formats, and `required` constraints on a complete data structure.
+Both approaches are valid per the JSON Schema specification, but `json_schemer`'s behavior meant our strategy wouldn't work.
 
-This approach gives us precise control and ensures that our application always operates with a predictable, fully defaulted configuration, regardless of how sparse the user's `config.yaml` might be.
+## Our Solution
 
-It's a reminder that even seemingly straightforward tasks can have hidden complexities, and understanding the nuances of our tools is key!
+We're adopting a "Deep Merge" strategy:
+
+1. **Generate Full Defaults:** Traverse our schema to build a complete Ruby hash with all defaults applied
+2. **Load User Config:** Read the sparse `config.yaml`
+3. **Deep Merge:** User settings override defaults, but all defaults are present
+4. **Validate:** Pass the complete hash to `json_schemer` for type/format/constraint validation
+
+This ensures predictable, fully defaulted configuration regardless of how sparse the user's input is.
 
 ---
 
 ### Appendix: Test Scripts
 
-REDACTED FOR BREVITY
+
+
 For those interested in replicating these tests, here are the test scripts.
 
 **Ruby (`json_schemer_test.rb`):**
