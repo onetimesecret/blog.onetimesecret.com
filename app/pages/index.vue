@@ -68,9 +68,9 @@ const formatDate = (date) => {
                   ]"
                    :ui="{
                     description: 'line-clamp-2 text-gray-600 dark:text-gray-300',
-                    wrapper: index === 0 ? 'md:flex-row md:items-center' : '',
+                    wrapper: index === 0 ? 'md:flex-row md:items-center md:gap-6' : '',
                     image: index === 0 ? 'md:w-1/2 h-64 md:h-auto object-cover' : 'h-48 object-cover',
-                    content: index === 0 ? 'md:w-1/2 md:pl-10 p-6' : 'p-6',
+                    content: index === 0 ? 'md:w-1/2 p-6' : 'p-6',
                     title: 'text-xl font-semibold text-gray-900 dark:text-white mb-2',
                     date: 'text-sm text-gray-500 dark:text-gray-400'
                   }" />

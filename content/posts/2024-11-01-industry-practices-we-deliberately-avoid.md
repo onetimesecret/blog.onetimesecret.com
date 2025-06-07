@@ -5,7 +5,7 @@ authors:
   - name: Delano
     to: https://blog.onetimesecret.com/about
     avatar:
-      src: /img/portrait-profile-pic-delano-2024.jpeg
+      src: /img/portrait-profile-pic-delano-2025-m.png
 image:
   src: /img/blog/2024/20241101-industry-practices.svg
 badge:

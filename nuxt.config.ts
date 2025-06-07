@@ -52,8 +52,11 @@ export default defineNuxtConfig({
   content: {
     // or you might have 'mdc' instead of 'content' depending on your setup
     highlight: {
-      theme: "one-dark-pro",
-      themes: ["houston", "aurora-x"],
+      theme: {
+        default: "houston", // Light theme
+        dark: "one-dark-pro", // Dark theme
+      },
+      themes: ["houston", "aurora-x"], // This lists available themes for Shiki
       langs: [
         "javascript",
         "typescript",
