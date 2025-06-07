@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Curious Case of JSON Schema Defaults: A Multi-Language Adventure"
+title: "JSON Trouble on the Default-lines"
 date: 2026-06-07
 authors:
   - name: Delano
@@ -158,6 +158,7 @@ It's a reminder that even seemingly straightforward tasks can have hidden comple
 
 ### Appendix: Test Scripts
 
+REDACTED FOR BREVITY
 For those interested in replicating these tests, here are the test scripts.
 
 **Ruby (`json_schemer_test.rb`):**
