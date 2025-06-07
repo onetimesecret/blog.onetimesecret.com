@@ -1,0 +1,213 @@
+
+<svg width="1000" height="950" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gemini 2.5 Pro Preview (1m) -->
+  <!-- Definitions -->
+  <defs>
+    <style>
+      .blueprint-text { font-family: 'Courier New', Courier, monospace; font-size: 14px; fill: white; }
+      .node-text { font-family: 'Arial', sans-serif; font-size: 12px; fill: black; text-anchor: middle; }
+      .path-label { font-family: 'Arial', sans-serif; font-size: 12px; fill: white; }
+      .icon-text { font-family: 'Arial', sans-serif; font-weight: bold; text-anchor: middle;}
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="white"/>
+    </marker>
+    <marker id="arrowhead-ruby" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#E74C3C"/>
+    </marker>
+    <marker id="arrowhead-node" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2ECC71"/>
+    </marker>
+    <marker id="arrowhead-python" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#F39C12"/>
+    </marker>
+
+    <!-- Stop Icon (Red X) -->
+    <g id="stop-icon">
+      <circle cx="0" cy="0" r="12" fill="#E74C3C"/>
+      <line x1="-6" y1="-6" x2="6" y2="6" stroke="white" stroke-width="3"/>
+      <line x1="-6" y1="6" x2="6" y2="-6" stroke="white" stroke-width="3"/>
+    </g>
+
+    <!-- Warning Icon (Yellow Triangle) -->
+    <g id="warning-icon">
+      <polygon points="0,-12 12,9 -12,9" fill="#F39C12"/>
+      <text x="0" y="3" fill="black" font-size="16" text-anchor="middle" font-family="Arial Black, Arial, sans-serif">!</text>
+    </g>
+
+    <!-- Gear Icon (Wrench/Custom) -->
+    <g id="gear-icon" transform="scale(0.04)"> <!-- Scaled down -->
+        <path fill="white" d="M971.921,427.989l-81.849-47.246c5.558-20.739,8.498-42.378,8.498-64.743c0-22.365-2.94-44.004-8.498-64.743l81.849-47.246c12.928-7.462,17.491-24.088,9.979-37.079l-49.12-85.087c-7.511-12.991-24.088-17.491-37.079-9.979l-81.813,47.23c-25.042-17.065-52.883-30.403-82.636-39.043L607.348,3.161c-3.796-14.288-17.528-24.111-32.321-24.111h-98.05c-14.793,0-28.525,9.823-32.321,24.111l-23.896,89.658c-29.753,8.64-57.594,21.978-82.636,39.043l-81.813-47.23c-12.991-7.511-29.568-3.01-37.079,9.979l-49.12,85.087c-7.511,12.991-3.01,29.617,9.979,37.079l81.849,47.246c-5.558,20.739-8.498,42.378-8.498,64.743c0,22.365,2.94,44.004,8.498,64.743l-81.849,47.246c-12.928,7.462-17.491,24.088-9.979,37.079l49.12,85.087c7.511,12.991,24.088,17.491,37.079,9.979l81.813-47.23c25.042,17.065,52.883,30.403,82.636,39.043l23.896,89.658c3.796,14.288,17.528,24.111,32.321,24.111h98.05c14.793,0,28.525-9.823,32.321-24.111l23.896-89.658c29.753-8.64,57.594-21.978,82.636-39.043l81.813,47.23c12.991,7.511,29.568,3.01,37.079-9.979l49.12-85.087C989.412,452.077,984.911,435.452,971.921,427.989zM526.028,622.328c-98.867,0-179.034-80.167-179.034-179.034c0-98.867,80.167-179.034,179.034-179.034s179.034,80.167,179.034,179.034C705.062,542.161,624.895,622.328,526.028,622.328z"/>
+    </g>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#345B9A" />
+
+  <!-- Title -->
+  <text x="500" y="40" class="blueprint-text" text-anchor="middle" font-size="20px" font-weight="bold">JSON Schema Validators - Default Application Paths</text>
+
+  <!-- Input Point -->
+  <text x="70" y="100" class="blueprint-text" text-anchor="middle">Sparse Data In</text>
+  <line x1="150" y1="100" x2="230" y2="200" stroke="white" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Central Schema Nodes -->
+  <!-- Node: site -->
+  <g id="node-site">
+    <rect x="200" y="200" width="120" height="70" rx="5" ry="5" fill="#7F8C8D" stroke="white" stroke-width="1"/>
+    <text x="260" y="230" class="node-text">site</text>
+    <circle cx="220" cy="250" r="5" fill="white" stroke="black"/> <!-- Default slot indicator -->
+    <text x="245" y="255" class="node-text" font-size="10px">default</text>
+  </g>
+
+  <!-- Node: authentication (conceptually nested) -->
+  <g id="node-authentication">
+    <rect x="250" y="300" width="120" height="70" rx="5" ry="5" fill="#7F8C8D" stroke="white" stroke-width="1"/>
+    <text x="310" y="330" class="node-text">authentication</text>
+    <circle cx="270" cy="350" r="5" fill="white" stroke="black"/>
+    <text x="295" y="355" class="node-text" font-size="10px">default</text>
+  </g>
+  <line x1="260" y1="270" x2="310" y2="300" stroke="white" stroke-dasharray="4 2" stroke-width="1"/> <!-- Connection line -->
+
+
+  <!-- Node: host (conceptually nested) -->
+  <g id="node-host">
+    <rect x="400" y="300" width="140" height="70" rx="5" ry="5" fill="#7F8C8D" stroke="white" stroke-width="1"/>
+    <text x="470" y="330" class="node-text">host</text>
+    <circle cx="420" cy="350" r="5" fill="white" stroke="black"/>
+    <text x="445" y="355" class="node-text" font-size="10px">default</text>
+  </g>
+  <line x1="260" y1="270" x2="470" y2="300" stroke="white" stroke-dasharray="4 2" stroke-width="1"/> <!-- Connection line -->
+
+
+  <!-- Path 1: Ruby/json_schemer -->
+  <g id="path-ruby">
+    <text x="80" y="160" class="path-label" fill="#E74C3C" font-weight="bold">Path 1: Ruby (json_schemer)</text>
+    <!-- Line to site -->
+    <path d="M 260 180 Q 260 160 260 200" stroke="#E74C3C" stroke-width="3" fill="none" marker-end="url(#arrowhead-ruby)"/>
+    <!-- Site node activation for Ruby path -->
+    <rect x="205" y="205" width="110" height="60" rx="3" ry="3" fill="#FF7979" opacity="0.7"/> <!-- Light Red fill for site -->
+     <text x="260" y="240" class="node-text" fill="black">site: {}</text>
+
+    <!-- Stop icon and label -->
+    <use href="#stop-icon" x="350" y="235"/>
+    <text x="350" y="265" class="blueprint-text" fill="#E74C3C" text-anchor="middle" font-size="10px">'site' MISSING 'REQUIRED'</text>
+
+    <!-- Output Box Ruby -->
+    <rect x="450" y="210" width="180" height="70" rx="5" ry="5" fill="#5C5C5C" stroke="#E74C3C" stroke-width="2"/>
+    <text x="540" y="235" class="blueprint-text" text-anchor="middle">Final Config (Ruby):</text>
+    <text x="540" y="255" class="blueprint-text" text-anchor="middle" font-size="10px">site: {}</text>
+    <text x="540" y="270" class="blueprint-text" text-anchor="middle" font-size="10px">(auth, host not defaulted)</text>
+  </g>
+
+  <!-- Path 2: Node.js/ajv -->
+  <g id="path-node">
+    <text x="80" y="430" class="path-label" fill="#2ECC71" font-weight="bold">Path 2: Node.js (ajv)</text>
+    <!-- Line to site -->
+    <path d="M 180 370 Q 180 300 240 270" stroke="#2ECC71" stroke-width="3" fill="none"/>
+    <!-- Site node activation for Node path -->
+    <rect x="205" y="205" width="110" height="60" rx="3" ry="3" fill="#79FF79" opacity="0.5" transform="translate(2,2)"/> <!-- Light Green fill for site -->
+    <text x="260" y="225" class="node-text" fill="black" font-size="10px">site: {} (Node)</text>
+
+    <!-- Line from site to authentication -->
+    <path d="M 260 270 Q 260 280 290 300" stroke="#2ECC71" stroke-width="3" fill="none"/>
+    <!-- Auth node activation -->
+    <rect x="255" y="305" width="110" height="60" rx="3" ry="3" fill="#79FF79" opacity="0.7"/>
+    <text x="310" y="340" class="node-text" fill="black">auth: {}</text>
+
+    <!-- Line from authentication to host -->
+    <path d="M 310 370 Q 350 380 440 370" stroke="#2ECC71" stroke-width="3" fill="none"/>
+    <!-- Host node activation -->
+    <rect x="405" y="305" width="130" height="60" rx="3" ry="3" fill="#79FF79" opacity="0.7"/>
+    <text x="470" y="330" class="node-text" fill="black">host:</text>
+    <text x="470" y="345" class="node-text" fill="black" font-size="9px">"localhost:3000"</text>
+
+    <!-- Path end and Warning icon -->
+    <line x1="470" y1="370" x2="550" y2="450" stroke="#2ECC71" stroke-width="3" marker-end="url(#arrowhead-node)"/>
+    <use href="#warning-icon" x="550" y="480"/>
+    <text x="550" y="510" class="blueprint-text" fill="#FFFF00" text-anchor="middle" font-size="10px">'required' violations found</text>
+
+    <!-- Output Box Node.js -->
+    <rect x="650" y="450" width="220" height="90" rx="5" ry="5" fill="#5C5C5C" stroke="#2ECC71" stroke-width="2"/>
+    <text x="760" y="475" class="blueprint-text" text-anchor="middle">Final Config (Node.js):</text>
+    <text x="760" y="495" class="blueprint-text" text-anchor="middle" font-size="10px">site: {}, auth: {},</text>
+    <text x="760" y="510" class="blueprint-text" text-anchor="middle" font-size="10px">host: "localhost:3000"</text>
+    <text x="760" y="525" class="blueprint-text" text-anchor="middle" font-size="10px">(+ warnings)</text>
+  </g>
+
+  <!-- Path 3: Python/jsonschema + custom -->
+   <g id="path-python">
+    <text x="80" y="600" class="path-label" fill="#F39C12" font-weight="bold">Path 3: Python (jsonschema + custom)</text>
+    <!-- Line to site -->
+    <path d="M 180 430 Q 180 350 240 275" stroke="#F39C12" stroke-width="3" fill="none" stroke-dasharray="5,3"/>
+    <!-- Site node activation for Python path -->
+    <rect x="205" y="205" width="110" height="60" rx="3" ry="3" fill="#FFBF65" opacity="0.5"  transform="translate(4,4)"/> <!-- Light Orange fill for site -->
+    <text x="260" y="250" class="node-text" fill="black" font-size="10px">site: {} (Py)</text>
+
+    <!-- Line from site to authentication -->
+    <path d="M 260 275 Q 260 300 290 305 " stroke="#F39C12" stroke-width="3" fill="none" stroke-dasharray="5,3"/>
+     <!-- Gear Icon on path -->
+    <use href="#gear-icon" x="270" y="290" />
+    <!-- Auth node activation -->
+    <rect x="255" y="305" width="110" height="60" rx="3" ry="3" fill="#FFBF65" opacity="0.7" transform="translate(2,2)"/>
+    <text x="310" y="340" class="node-text" fill="black">auth: {}</text>
+
+
+    <!-- Line from authentication to host -->
+    <path d="M 310 375 Q 350 390 440 375" stroke="#F39C12" stroke-width="3" fill="none" stroke-dasharray="5,3"/>
+    <!-- Host node activation -->
+    <rect x="405" y="305" width="130" height="60" rx="3" ry="3" fill="#FFBF65" opacity="0.7" transform="translate(2,2)"/>
+    <text x="470" y="330" class="node-text" fill="black">host:</text>
+    <text x="470" y="345" class="node-text" fill="black" font-size="9px">"localhost:3000"</text>
+
+    <!-- Path end and Warning icon -->
+    <line x1="470" y1="375" x2="550" y2="620" stroke="#F39C12" stroke-width="3" marker-end="url(#arrowhead-python)" stroke-dasharray="5,3"/>
+    <use href="#warning-icon" x="550" y="650"/>
+    <text x="550" y="680" class="blueprint-text" fill="#F39C12" text-anchor="middle" font-size="10px">'required' violations found</text>
+    <use href="#gear-icon" x="510" y="495" />
+
+
+    <!-- Output Box Python -->
+    <rect x="650" y="620" width="220" height="90" rx="5" ry="5" fill="#5C5C5C" stroke="#F39C12" stroke-width="2"/>
+    <text x="760" y="645" class="blueprint-text" text-anchor="middle">Final Config (Python):</text>
+    <text x="760" y="665" class="blueprint-text" text-anchor="middle" font-size="10px">site: {}, auth: {},</text>
+    <text x="760" y="680" class="blueprint-text" text-anchor="middle" font-size="10px">host: "localhost:3000"</text>
+    <text x="760" y="695" class="blueprint-text" text-anchor="middle" font-size="10px">(+ warnings, custom handling)</text>
+  </g>
+
+  <!-- Legend for Node States (Optional, if space allows and adds clarity) -->
+  <g id="legend" transform="translate(750, 50)">
+      <text x="0" y="0" class="blueprint-text" font-size="14px" font-weight="bold">Legend:</text>
+      <rect x="0" y="20" width="20" height="20" fill="#7F8C8D" stroke="white"/>
+      <text x="30" y="35" class="blueprint-text">Inactive Node</text>
+
+      <rect x="0" y="50" width="20" height="20" fill="#FF7979" />
+      <text x="30" y="65" class="blueprint-text">Ruby Default Applied</text>
+
+      <rect x="0" y="80" width="20" height="20" fill="#79FF79" />
+      <text x="30" y="95" class="blueprint-text">Node.js Default Applied</text>
+
+      <rect x="0" y="110" width="20" height="20" fill="#FFBF65" />
+      <text x="30" y="125" class="blueprint-text">Python Default Applied</text>
+
+      <use href="#stop-icon" x="10" y="160" transform="scale(0.8)"/>
+      <text x="30" y="160" class="blueprint-text">Stop (Required Missing)</text>
+
+      <use href="#warning-icon" x="10" y="190" transform="scale(0.8)"/>
+      <text x="30" y="190" class="blueprint-text">Warning (Required Violation)</text>
+
+      <use href="#gear-icon" x="10" y="220" transform="scale(0.8)"/>
+      <text x="30" y="220" class="blueprint-text">Custom Logic</text>
+  </g>
+
+  <!-- Overall Message (Briefly at the bottom) -->
+  <text x="500" y="900" class="blueprint-text" text-anchor="middle" font-size="12px">
+    Illustrates how 'required' validation timing affects default application across different validators.
+  </text>
+  <text x="500" y="920" class="blueprint-text" text-anchor="middle" font-size="12px">
+    json_schemer (Ruby) stops on missing required fields before further defaulting.
+  </text>
+  <text x="500" y="940" class="blueprint-text" text-anchor="middle" font-size="12px">
+    ajv (Node.js) and jsonschema (Python) apply defaults then report required violations.
+  </text>
+</svg>

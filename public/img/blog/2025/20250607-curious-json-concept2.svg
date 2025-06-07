@@ -1,0 +1,139 @@
+<svg width="1000" height="700" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gemini 2.5 Pro Preview (1m) -->
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#FDF5E6" />
+
+  <!-- Shared Recipe Book -->
+  <rect x="350" y="50" width="300" height="150" fill="#F5EFE6" stroke="#A0522D" stroke-width="2" rx="10" ry="10"/>
+  <text x="500" y="90" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" fill="#333">JSON Schema</text>
+  <line x1="500" y1="50" x2="500" y2="200" stroke="#A0522D" stroke-width="1"/>
+  <text x="420" y="140" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#555">default: {}</text>
+  <text x="580" y="160" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#555">required: [...]</text>
+
+  <!-- Input Ingredients Basket -->
+  <rect x="425" y="220" width="150" height="70" fill="#DEB887" stroke="#8B4513" stroke-width="2" rx="5" ry="5"/>
+  <text x="500" y="240" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">Sparse</text>
+  <text x="500" y="260" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">config.yaml</text>
+  <!-- Minimal ingredients visual cue -->
+  <circle cx="450" cy="270" r="5" fill="#D2691E"/>
+  <circle cx="465" cy="270" r="3" fill="#A0522D"/>
+
+  <!-- Chef Stations Area -->
+  <!-- Chef 1 (Ruby/json_schemer) -->
+  <g id="chef1_station">
+    <rect x="50" y="300" width="280" height="350" fill="#FFF0E1" rx="10" ry="10" stroke="#D2B48C" stroke-width="1"/>
+    <!-- Chef Character -->
+    <circle cx="190" cy="380" r="30" fill="#F0E68C"/> <!-- Head -->
+    <rect x="160" y="410" width="60" height="80" fill="#C0392B" rx="5" ry="5"/> <!-- Apron -->
+    <text x="190" y="345" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">Ruby</text>
+    <path d="M170 370 Q190 390 210 370" stroke="black" fill="none" stroke-width="2"/> <!-- Puzzled mouth -->
+    <circle cx="180" cy="375" r="3" fill="black"/> <circle cx="200" cy="375" r="3" fill="black"/> <!-- Eyes -->
+
+
+    <!-- Mixing Bowl -->
+    <ellipse cx="190" cy="550" rx="50" ry="25" fill="#B0C4DE"/>
+    <ellipse cx="190" cy="550" rx="45" ry="20" fill="#ADD8E6"/> <!-- Contents (partially filled) -->
+    <rect x="165" y="530" width="50" height="10" fill="#ADD8E6"/>
+    <text x="190" y="585" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">Config in Progress</text>
+
+    <!-- Stop Note -->
+    <rect x="230" y="480" width="90" height="60" fill="#FF4136" rx="5" ry="5" transform="rotate(5 230 480)"/>
+    <text x="275" y="500" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="white">STOP!</text>
+    <text x="275" y="515" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="white">Missing REQUIRED</text>
+    <text x="275" y="527" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="white">items for 'site'</text>
+
+    <!-- Ingredient Jars (Shelf 1) -->
+    <rect x="70" y="420" width="50" height="15" fill="#SADDLEBROWN"/> <!-- Jar 1: Nested Defaults (full) -->
+    <rect x="70" y="435" width="50" height="30" fill="#A9A9A9" stroke="#696969"/>
+    <rect x="70" y="435" width="50" height="30" fill="#87CEEB" opacity="0.7"/> <!-- Full -->
+    <text x="95" y="415" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">Nested Defaults</text>
+
+    <rect x="130" y="420" width="50" height="15" fill="#SADDLEBROWN"/> <!-- Jar 2: Host Default (full) -->
+    <rect x="130" y="435" width="50" height="30" fill="#A9A9A9" stroke="#696969"/>
+    <rect x="130" y="435" width="50" height="30" fill="#90EE90" opacity="0.7"/> <!-- Full -->
+    <text x="155" y="415" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">Host Default</text>
+  </g>
+
+  <!-- Chef 2 (Node.js/ajv) -->
+  <g id="chef2_station">
+    <rect x="360" y="300" width="280" height="350" fill="#E6FFE6" rx="10" ry="10" stroke="#B4D2B4" stroke-width="1"/>
+    <!-- Chef Character -->
+    <circle cx="500" cy="380" r="30" fill="#F0E68C"/> <!-- Head -->
+    <rect x="470" y="410" width="60" height="80" fill="#27AE60" rx="5" ry="5"/> <!-- Apron -->
+    <text x="500" y="345" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">Node.js</text>
+    <path d="M480 385 Q500 395 520 385" stroke="black" fill="none" stroke-width="2"/> <!-- Confident smile -->
+    <circle cx="490" cy="375" r="3" fill="black"/> <circle cx="510" cy="375" r="3" fill="black"/> <!-- Eyes -->
+
+    <!-- Mixing Bowl -->
+    <ellipse cx="500" cy="550" rx="50" ry="25" fill="#B0C4DE"/>
+    <ellipse cx="500" cy="550" rx="45" ry="20" fill="#ADD8E6"/> <!-- Contents (full) -->
+    <text x="500" y="585" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">Full Config</text>
+
+    <!-- Warning Note -->
+    <rect x="545" y="530" width="70" height="45" fill="#FFEB3B" rx="3" ry="3" transform="rotate(-3 545 530)"/>
+    <text x="580" y="542" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="#333">Note: 'site' &amp;</text>
+    <text x="580" y="552" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="#333">'nested_object'</text>
+    <text x="580" y="562" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="#333">missing required.</text>
+
+    <!-- Ingredient Jars (Shelf 2) - nearly empty -->
+    <rect x="380" y="420" width="50" height="15" fill="#SADDLEBROWN"/> <!-- Jar 1: Nested Defaults (nearly empty) -->
+    <rect x="380" y="435" width="50" height="30" fill="#A9A9A9" stroke="#696969"/>
+    <rect x="380" y="460" width="50" height="5" fill="#87CEEB" opacity="0.7"/> <!-- Nearly empty -->
+    <text x="405" y="415" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">Nested Defaults</text>
+
+    <rect x="440" y="420" width="50" height="15" fill="#SADDLEBROWN"/> <!-- Jar 2: Enabled Default (pouring/empty) -->
+    <rect x="440" y="435" width="50" height="30" fill="#A9A9A9" stroke="#696969"/>
+    <!-- <rect x="440" y="463" width="50" height="2" fill="#FFB6C1" opacity="0.7"/> Empty -->
+    <text x="465" y="415" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">Enabled Default</text>
+    <path d="M480 465 Q490 490 500 520" stroke="#FFB6C1" stroke-width="3" fill="none" opacity="0.5"/> <!-- Pouring -->
+
+  </g>
+
+  <!-- Chef 3 (Python/jsonschema + custom) -->
+  <g id="chef3_station">
+    <rect x="670" y="300" width="280" height="350" fill="#E1F0FF" rx="10" ry="10" stroke="#B4C4D2" stroke-width="1"/>
+    <!-- Chef Character -->
+    <circle cx="810" cy="380" r="30" fill="#F0E68C"/> <!-- Head -->
+    <rect x="780" y="410" width="60" height="80" fill="#2980B9" rx="5" ry="5"/> <!-- Apron Base -->
+    <rect x="780" y="475" width="60" height="15" fill="#F1C40F"/> <!-- Apron Trim -->
+    <text x="810" y="345" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">Python</text>
+    <path d="M790 385 Q810 393 830 385" stroke="black" fill="none" stroke-width="2"/> <!-- Neutral/Slight smile -->
+    <circle cx="800" cy="375" r="3" fill="black"/> <circle cx="820" cy="375" r="3" fill="black"/> <!-- Eyes -->
+
+    <!-- Special Whisk (helper tool) -->
+    <line x1="770" y1="450" x2="750" y2="430" stroke="#777" stroke-width="3"/>
+    <ellipse cx="745" cy="425" rx="10" ry="5" fill="none" stroke="#777" stroke-width="2"/>
+    <ellipse cx="745" cy="425" rx="5" ry="10" fill="none" stroke="#777" stroke-width="2" transform="rotate(45 745 425)"/>
+
+
+    <!-- Mixing Bowl -->
+    <ellipse cx="810" cy="550" rx="50" ry="25" fill="#B0C4DE"/>
+    <ellipse cx="810" cy="550" rx="45" ry="20" fill="#ADD8E6"/> <!-- Contents (full) -->
+    <text x="810" y="585" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">Full Config</text>
+
+    <!-- Warning Note -->
+    <rect x="700" y="530" width="90" height="40" fill="#FFEB3B" rx="3" ry="3" transform="rotate(4 700 530)"/>
+    <text x="745" y="542" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="#333">Note: 'required'</text>
+    <text x="745" y="552" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="#333">items missing, but</text>
+    <text x="745" y="562" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="#333">defaults added.</text>
+
+    <!-- Ingredient Jars (Shelf 3) - some used -->
+    <rect x="690" y="420" width="50" height="15" fill="#SADDLEBROWN"/> <!-- Jar 1: Host Default (partially used) -->
+    <rect x="690" y="435" width="50" height="30" fill="#A9A9A9" stroke="#696969"/>
+    <rect x="690" y="450" width="50" height="15" fill="#90EE90" opacity="0.7"/> <!-- Partially used -->
+    <text x="715" y="415" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">Host Default</text>
+
+    <rect x="750" y="420" width="50" height="15" fill="#SADDLEBROWN"/> <!-- Jar 2: Nested Default (partially used) -->
+    <rect x="750" y="435" width="50" height="30" fill="#A9A9A9" stroke="#696969"/>
+    <rect x="750" y="455" width="50" height="10" fill="#87CEEB" opacity="0.7"/> <!-- Partially used -->
+    <text x="775" y="415" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">Nested Default</text>
+
+  </g>
+
+  <!-- Overall Message (optional, can be outside SVG or as a caption) -->
+  <!--
+  <text x="500" y="680" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+    Different validators (chefs) follow the same schema (recipe) but prioritize steps differently, leading to varied config states.
+  </text>
+  -->
+</svg>
