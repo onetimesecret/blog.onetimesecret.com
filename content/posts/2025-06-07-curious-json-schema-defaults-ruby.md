@@ -8,13 +8,17 @@ authors:
     avatar:
       src: /img/portrait-profile-pic-delano-2025-m.png
 image:
-  src: /img/blog/2025/20250607-curious-json-concept1.svg
+  src: /img/blog/2025/20250607-curious-json-concept4.svg
 badge:
   label: Engineering
 readingTime: 7
 ---
 
-Here at the Onetime Secret Compound, we're always tinkering under the hood, refining our systems, and occasionally, diving headfirst into rabbit holes that are deeper than they first appear. We've been spending time on our configuration system, aiming for a more robust and maintainable setup using JSON schemas as the source of truth. The goal? Allow for a sparse `config.yaml` from the user, and have our application intelligently fill in all the blanks with predefined defaults. Sounds simple, right? Well, as is often the case, the devil was in the details, specifically with how the Ruby JSON Schema validator, `json_schemer`, handles default values.
+_Note: I leaned heavily on Google Gemini for this investigation, blog post, and of course the necessary blog post illustration._
+
+<br>
+  
+Here at Onetime Secret, we've been refining our configuration system using JSON schemas as the source of truth. The goal was simple: let users provide a sparse config.yaml and have our application fill in all the defaults automatically. What we discovered about how different languages handle JSON Schema defaults was... illuminating.
 
 ## The Expectation: Defaults All The Way Down
 
@@ -26,7 +30,7 @@ For instance, if our schema said the `site` section should exist, and within `si
 
 What we observed was a bit more nuanced. While simple top-level defaults were applied, and defaults within *already existing and valid* sections of the config were filled, the deeper "scaffolding" – creating missing nested objects and then filling *their* defaults – wasn't happening as comprehensively as we'd hoped.
 
-The main culprit seemed to be the interaction between the `default: {}` keyword (which we used to indicate an object should be created if missing) and the `required` keyword. If an object was created (e.g., `site: {}`) but immediately failed validation because it was missing its own `required` properties (like `site` requiring an `authentication` object), `json_schemer` appeared to halt the default-filling process for any properties *within* that now-invalid `site` object. No `site.host` default, no creation of `site.authentication` from its own `default: {}` definition, and so on.
+The issue was the interaction between the `default: {}` keyword (which we used to indicate an object should be created if missing) and the `required` keyword. If an object was created (e.g., `site: {}`) but immediately failed validation because it was missing its own `required` properties (like `site` requiring an `authentication` object), `json_schemer` appeared to halt the default-filling process for any properties *within* that now-invalid `site` object. No `site.host` default, no creation of `site.authentication` from its own `default: {}` definition, and so on.
 
 ## The Experiment: A Tri-Language Default Showdown
 
@@ -133,7 +137,7 @@ The key difference seems to be the operational order:
 *   **`json_schemer` (Ruby):** Appears to validate `required` constraints on an object more strictly *before* attempting to fill defaults for properties within that object if the object itself is initially invalid due to missing required children.
 *   **`ajv` (Node.js) / Python (with custom handling):** Tend to apply defaults more globally throughout the structure first, and then perform validation checks like `required`.
 
-It's worth noting that the JSON Schema specification allows for some flexibility in implementation details, so neither approach is necessarily "wrong." However, `json_schemer`'s behavior, while valid, meant our initial strategy of relying solely on `insert_property_defaults: true` for full scaffolding from a sparse config wouldn't work as desired in our Ruby environment.
+The JSON Schema specification allows for some flexibility in implementation details, so neither approach is necessarily "wrong." However, `json_schemer`'s behavior, while valid, meant our initial strategy of relying solely on `insert_property_defaults: true` for full scaffolding from a sparse config wouldn't work as desired in our Ruby environment.
 
 The GitHub issue [`insert_property_defaults` does not work for nested schemas (eg. oneOf) #94](https://github.com/davishmcclurg/json_schemer/issues/94) and the subsequent commit [aaafab1](https://github.com/davishmcclurg/json_schemer/commit/aaafab1b02e6017d3048ad62cfc125a33a5c217f) for `json_schemer` version 2.0.0 aimed to improve this, but the core issue seems to be that if a parent object is invalid due to its own `required` constraints, its subtree might not be considered "valid" for its children's default insertion.
 
@@ -154,7 +158,7 @@ It's a reminder that even seemingly straightforward tasks can have hidden comple
 
 ### Appendix: Test Scripts
 
-For those interested in replicating these tests, here are the core scripts.
+For those interested in replicating these tests, here are the test scripts.
 
 **Ruby (`json_schemer_test.rb`):**
 ```ruby
