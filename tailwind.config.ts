@@ -65,7 +65,7 @@ export default <Partial<Config>>{
       brand: ["Zilla Slab", ...defaultTheme.fontFamily.serif],
       mono: defaultTheme.fontFamily.mono,
     },
-    typography: {
+    typography: ({ theme }) => ({
       DEFAULT: {
         css: {
           "h1, h2, h3, h4, h5, h6": {
@@ -107,9 +107,36 @@ export default <Partial<Config>>{
             marginTop: "1rem",
             marginBottom: "0.5rem",
           },
+          p: {
+            marginTop: "1.25em",
+            marginBottom: "1.25em",
+            lineHeight: "1.7",
+          },
+          code: {
+            fontSize: "0.9em",
+            padding: "0.2em 0.4em",
+            margin: "0 0.1em",
+            backgroundColor: theme("colors.gray.100"),
+            borderRadius: theme("borderRadius.DEFAULT"),
+          },
+          "code::before": {
+            content: '""',
+          },
+          "code::after": {
+            content: '""',
+          },
+          pre: {
+            fontSize: "0.9em",
+            lineHeight: "1.6",
+            padding: "0", // Let Shiki control padding
+            marginTop: "1.5em",
+            marginBottom: "1.5em",
+            backgroundColor: "transparent", // Let Shiki control background
+            borderRadius: "0", // Let Shiki control border-radius
+          },
         },
       },
-    },
+    }),
     extend: {
       colors: {
         // https://javisperez.github.io/tailwindcolorshades/?flamingo=dc4a22&guardsman-red=23b5dd
