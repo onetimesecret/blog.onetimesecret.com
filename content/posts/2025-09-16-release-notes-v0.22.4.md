@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "OneTimeSecret v0.22.4: Enhanced Security & Configuration"
+title: "OneTimeSecret v0.22.4: Password Settings & Disabling Homepage"
 date: 2025-09-16
 authors:
   - name: Delano
