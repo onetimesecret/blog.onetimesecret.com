@@ -6,6 +6,8 @@
 .cache
 dist
 data
+.claude
+.serena
 
 # Node dependencies
 node_modules
