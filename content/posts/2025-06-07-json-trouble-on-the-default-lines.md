@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "JSON Trouble on the Default-lines"
-date: 2026-06-07
+date: 2025-06-07
 authors:
   - name: Delano
     to: https://blog.onetimesecret.com/about
