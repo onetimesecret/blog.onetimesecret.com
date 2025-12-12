@@ -26,13 +26,15 @@ This works because:
 
 ## What We Look For
 
-**Terminology consistency.** "Secret" translates differently across languages. In Danish, the literal "Hemmeligheder" sounds childish—contributors use "Beskeder" (messages) instead. In Russian, "секрет" works perfectly; "тайна" carries unwanted emotional weight. Each language has its own decisions, documented in per-language glossaries.
+**Terminology consistency.** "Secret" translates differently across languages. In Danish, the literal "Hemmeligheder" sounds childish—[@jetdk](https://github.com/jetdk) [chose "Beskeder"](https://github.com/onetimesecret/onetimesecret/pull/956) (messages) instead, explaining that while technically correct, it carries the wrong connotation in everyday use. This insight revealed a pattern we hadn't documented: sometimes the literal translation undermines the professional security context. In Russian, "секрет" works perfectly; "тайна" carries unwanted emotional weight. Each language has its own decisions, now documented in per-language glossaries.
 
 **Technical accuracy.** "Burn" means permanent deletion. A literal translation ("сжечь" in Russian) sounds absurd in digital context. We use "уничтожить" (destroy). These decisions are captured once and applied consistently.
 
 **Regional neutrality.** Russian speakers span Russia, Belarus, Kazakhstan, the Baltics, and diaspora communities worldwide. We use standard literary Russian that works everywhere—no regional slang, no dialect markers.
 
 ## Documentation Over Tooling
+
+[@jetdk's Danish contribution](https://github.com/onetimesecret/onetimesecret/pull/956) showed us that translation decisions need rationale, not just mappings. We formalized this into a documentation pattern.
 
 Each language has two reference documents:
 - **Glossary**: Standard translations for key terms
