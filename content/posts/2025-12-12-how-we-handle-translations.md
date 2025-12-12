@@ -38,7 +38,7 @@ Each language has two reference documents:
 - **Glossary**: Standard translations for key terms
 - **Language notes**: Grammar rules, pitfalls, examples
 
-When a contributor from Minsk submitted a complete Russian translation, we reviewed it against these documents. The translation used neutral literary Russian appropriate for a global audience—exactly what the docs specify.
+When [@kh0mka](https://github.com/kh0mka) from Minsk submitted a [complete Russian translation](https://github.com/onetimesecret/onetimesecret/pull/2130), we reviewed it against these documents. The translation used neutral literary Russian appropriate for a global audience—exactly what the docs specify. We then [expanded the Russian glossary and language notes](https://github.com/onetimesecret/docs.onetimesecret.com/pull/254) to capture the terminology decisions and rationale for future contributors.
 
 ## Quality Signals
 
@@ -50,7 +50,7 @@ We check for:
 
 ## When We'd Change Approaches
 
-If we had 10+ active translators per language, we'd consider a TMS. For now, the overhead isn't worth it.
+If we had 10+ active translators per language, we'd consider a TMS. For now, the overhead isn't worth it. We've [documented this decision](https://github.com/onetimesecret/docs.onetimesecret.com/pull/253) with criteria for when to reconsider.
 
 ## Contributing
 
