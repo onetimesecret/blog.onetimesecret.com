@@ -1,3 +1,4 @@
+# content/posts/2025-12-12-how-we-handle-translations.md
 ---
 layout: post
 title: "How We Handle Translations"
@@ -57,3 +58,4 @@ If we had 10+ active translators per language, we'd consider a TMS. For now, the
 ## Contributing
 
 Fork the repo, update locale files in `src/locales/{lang}/`, submit a PR. Check the glossary and language notes first. We review every submission.
+
