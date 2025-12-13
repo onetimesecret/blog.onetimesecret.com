@@ -12,7 +12,6 @@ badge:
 image:
   src: /img/blog/2025/20251212-delano-translating.jpg
 readingTime: 3
-draft: true
 ---
 
 We support 12+ languages. I can only read 1. Here's how we do it without a dedicated localization team.
