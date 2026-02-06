@@ -14,11 +14,11 @@ badge:
 readingTime: 5
 ---
 
-We've expanded our data centre network with a new United Kingdom location. The UK region ([uk.onetimesecret.com](https://uk.onetimesecret.com)) follows our share-nothing architecture — ensuring data created in the UK stays in the UK.
+We've expanded our data center network with a new United Kingdom location. The UK region ([uk.onetimesecret.com](https://uk.onetimesecret.com)) follows our share-nothing architecture — ensuring data created in the UK stays in the UK.
 
 ## Now Serving UK Customers
 
-We're pleased to introduce our new UK region, hosted with [UpCloud](https://upcloud.com/) — a provider with a strong presence in the United Kingdom. The UK instance is now available at uk.onetimesecret.com, joining our existing regions in the EU, US, Canada, and Aotearoa New Zealand.
+We're pleased to introduce our new UK region, hosted with [UpCloud](https://upcloud.com/) in the United Kingdom. The UK instance is now available at uk.onetimesecret.com and follows our share-nothing architecture that ensures data created in the UK stays in the UK.
 
 <div class="flex justify-center items-center my-10">
   <a href="https://uk.onetimesecret.com/" class="text-center inline-block">
@@ -38,31 +38,27 @@ We're pleased to introduce our new UK region, hosted with [UpCloud](https://upcl
 
 ### A Soft Launch
 
-This is a soft launch. We're in the middle of rolling out v0.24.0, which involves data migrations and a configuration freeze across our existing regions. That means the UK region isn't yet listed in the region dropdowns on eu.onetimesecret.com and our other regional sites. Once the v0.24.0 rollout is complete, we'll add the UK to the region selectors across the board.
+This is a soft launch. Our existing regions are in a configuration freeze as we roll out v0.24.0. That means the UK region isn't yet listed in the region dropdowns on eu.onetimesecret.com and our other regional sites. Once the v0.24.0 rollout is complete, we'll add the UK to the region selectors across the board.
 
 In the meantime, you can access the UK region directly at [uk.onetimesecret.com](https://uk.onetimesecret.com).
 
 ### A Share-Nothing Architecture
 
-As with all our regions, the UK instance operates under our share-nothing architecture. Each data centre is fully independent:
+As with all our regions, the UK instance operates under our share-nothing architecture. Each data center is fully independent:
 
 - Data created in the UK region stays in the UK
-- Each region maintains its own separate database, mail server, and storage
-- No cross-region data sharing or synchronisation
+- Each region maintains its own separate database and storage
+- No cross-region data sharing or synchronization of any kind[^1]
 
-### Why the UK?
+[^1]: With the exception of error reporting via catch.onetimesecret.com, which receives error metadata from all regions (hosted in the EU). No secret content is included.
 
-The United Kingdom has a well-established data protection framework and is home to many organisations with specific data residency requirements. Adding a UK region allows these organisations — and individuals who prefer their data stored on UK soil — to use Onetime Secret with confidence that their secrets remain within UK jurisdiction.
+The UK is our fifth region, joining the EU, US, Canada, and Aotearoa New Zealand. We continue to evaluate additional regions based on user needs and regulatory requirements. For details on custom domain configuration, the UK regulatory environment, and infrastructure specifics, see the [UK region page](https://docs.onetimesecret.com/en/regions/united-kingdom) on our documentation site.
 
 ### How to Use
 
-Visit [uk.onetimesecret.com](https://uk.onetimesecret.com) directly. All the security features and functionality you expect from Onetime Secret are available in the UK region. Once the v0.24.0 rollout wraps up, you'll also be able to select "United Kingdom" from the region selector on our other regional sites.
+Visit [uk.onetimesecret.com](https://uk.onetimesecret.com) directly. All security features available in other regions are fully implemented in the UK instance. Once the v0.24.0 rollout is complete, you will also be able to select "United Kingdom" from the region selector on the main site.
 
-For organisations requiring dedicated instances or custom deployments within specific regions, [please contact us](https://onetimesecret.com/feedback) to discuss your requirements.
-
-## Looking Forward
-
-The UK is our fifth region, joining the EU, US, Canada, and Aotearoa New Zealand. We continue to evaluate additional regions based on user needs and regulatory requirements.
+For organizations requiring dedicated instances or custom deployments within specific regions, [please contact us](https://onetimesecret.com/feedback) to discuss your requirements.
 
 ## Meta content: About the post image
 
