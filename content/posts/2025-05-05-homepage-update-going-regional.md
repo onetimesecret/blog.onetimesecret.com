@@ -14,7 +14,6 @@ badge:
 readingTime: 7
 ---
 
-
 OnetimeSecret.com has been around for quite a while – long enough to attract several impostor sites ranging from confusingly similar to downright malicious. Thanks to our alert users and partners (like in this [recent GitHub issue](https://github.com/onetimesecret/onetimesecret/issues/1233)), we can spot and address these problems.
 
 ## The Challenge

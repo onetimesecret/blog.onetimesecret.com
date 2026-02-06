@@ -14,7 +14,6 @@ badge:
 readingTime: 15
 ---
 
-
 Welcome to our comprehensive series on setting up and installing Onetime Secret. In this first installment, we'll walk you through the process of installing Onetime Secret as a standalone web application using the latest methods and best practices. Whether you're a seasoned sysadmin or just getting started with self-hosting, this guide will help you get Onetime Secret up and running smoothly.
 
 ## Introduction
@@ -38,7 +37,6 @@ Onetime Secret is a secure, open-source solution for sharing sensitive informati
   * [For Production Environment](#for-production-environment)
   * [For Development with Live Reloading](#for-development-with-live-reloading)
 * [Conclusion](#conclusion)
-
 
 ### What This Guide Covers
 
@@ -67,13 +65,11 @@ To set clear expectations, it's important to note that this guide does not cover
 
 In future parts of this series, we'll explore more advanced topics and configurations to help you build a robust, production-ready Onetime Secret deployment. Whether you're a seasoned sysadmin or just getting started with self-hosting, this guide will help you understand the core installation process for Onetime Secret.
 
-
 But before we dive in, here's a quick teaser for what's coming in Part 2 of our series:
 
 > **Coming Soon: Onetime Secret Lite Edition**
 >
 > In our next post, we'll introduce a new docker installation method for Onetime Secret: Lite Edition. This streamlined Docker image combines both the webapp and Redis, leveraging the ephemeral nature of Docker containers as a security feature. By default, once the container is stopped or removed, all secrets disappear – providing an extra layer of protection for your sensitive data. Stay tuned for this exciting new option!
-
 
 ## Installation Steps
 
@@ -86,7 +82,6 @@ Before beginning the installation, ensure you have the following:
 - A Linux-based system (Debian recommended) or macOS
 - Root or sudo access
 - Basic familiarity with the command line
-
 
 ## System Requirements
 
@@ -209,14 +204,11 @@ pnpm run build
 
 This command triggers the built-in `Vite` server to optimize and bundle all JavaScript files into a static directory that can be served directly by any web server. Vite's advanced features such as Fast Refresh allow developers to instantly see changes made in their code, significantly reducing development cycles.
 
-
-
 **For more detailed documentation:**
 
 - [Vue CLI Documentation](https://vuejs.org/guide/cli.html)
 - [Vite Configuration Guide](https://vitejs.dev/config/)
 - [pnpm Documentation](https://pnpm.io/)
-
 
 ### Step 7: Configure Onetime Secret
 
@@ -237,7 +229,6 @@ openssl rand -hex 32
 
 To run the web application, use `thin` in either development or production mode.
 
-
 ### For Production Environment
 
 In this scenario where you're preparing for a live deployment (e.g., on Heroku), your command will look like so:
@@ -246,7 +237,6 @@ RACK_ENV=production bundle exec thin -R config.ru -p 3000 start
 ```
 
 This ensures that the environment is properly set to production mode, and `thin` begins serving requests via port 3000. The necessary configuration files (`config.ru`) are also sourced.
-
 
 ### For Development with Live Reloading
 
@@ -268,18 +258,14 @@ With live reload enabled:
 
 Note: You may need to update `:development:frontend_host` in your configuration depending on your IP and port settings.
 
-
-
 ## Conclusion
 
 Congratulations! You've successfully installed Onetime Secret. You can now access it by navigating to `http://localhost:3000` in your web browser.
 
 In our next post, we'll explore the streamlined Onetime Secret Lite Docker image, offering an even simpler installation process with built-in ephemerality for enhanced security. Stay tuned for Part 2 of our series!
 
-
 ::ImageModal{src="/img/blog/2024/install-guide/onetimesecret-installation-guide-1-of-5-homepage-light.jpeg" alt="Homepage (light)" width="320"}
 ::
-
 
 ::ImageModal{src="/img/blog/2024/install-guide/onetimesecret-installation-guide-1-of-5-homepage-dark.jpeg" alt="Homepage (light)" width="320"}
 ::

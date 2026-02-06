@@ -14,7 +14,6 @@ badge:
 readingTime: 6
 ---
 
-
 The current landscape of user interface design faces challenges similar to those of the late 1990s. Dial-up speeds, small screens (desktop included), and limited browser capabilities were the constraints of that era. Today's constraints, however, are not technical limitations but data privacy regulations like GDPR and CCPA. These regulations provide an opportunity to improve UI design.
 
 ## Constraints as Design Drivers

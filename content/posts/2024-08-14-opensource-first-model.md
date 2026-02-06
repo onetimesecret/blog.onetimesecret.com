@@ -12,7 +12,6 @@ badge:
 readingTime: 8
 ---
 
-
 At Onetime Secret, we believe in transparency and community-driven development. Our open-source first approach ensures that all new features and improvements benefit our entire user base, from individual developers to enterprise customers. This post outlines our development model, its benefits, and how it shapes our business strategy.
 
 ---
@@ -29,7 +28,6 @@ At Onetime Secret, we believe in transparency and community-driven development. 
     ::
   ::
 ::
-
 
 ## 1. About
 

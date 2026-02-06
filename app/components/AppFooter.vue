@@ -7,7 +7,7 @@ const links = [
       { label: 'Blog', to: '/' },
       { label: 'Issues', to: 'https://github.com/onetimesecret/onetimesecret/issues' },
       { label: 'Status', to: 'https://status.onetimesecret.com/' },
-    ]
+    ],
   },
   {
     label: 'Features',
@@ -16,7 +16,7 @@ const links = [
       { label: 'Single-use links', to: 'https://docs.onetimesecret.com//docs/secret-links' },
       { label: 'API', to: 'https://docs.onetimesecret.com//docs/rest-api' },
       { label: 'Docker', to: 'https://github.com/onetimesecret/onetimesecret/pkgs/container/onetimesecret' },
-    ]
+    ],
   },
   {
     label: 'Company',
@@ -25,16 +25,18 @@ const links = [
       { label: 'Pricing', to: 'https://onetimesecret.com/pricing' },
       { label: 'Sponsors', to: 'https://github.com/sponsors/onetimesecret' },
       { label: 'Careers', to: 'https://docs.onetimesecret.com/careers' },
-    ]
-  }
-]
+    ],
+  },
+];
 </script>
 
 <template>
   <UFooter class="bg-white dark:bg-gray-900">
     <template #top>
-      <UFooterColumns :links="links"
-                      class="dark:text-gray-300" />
+      <UFooterColumns
+        :links="links"
+        class="dark:text-gray-300"
+      />
     </template>
 
     <template #left>
@@ -51,25 +53,31 @@ const links = [
     </template>
 
     <template #right>
-      <UButton to="https://onetimesecret.com"
-               target="_blank"
-               aria-label="OnetimeSecret.com"
-               color="gray"
-               variant="ghost"
-               class="hover:bg-gray-100 dark:hover:bg-gray-800 mr-2 text-sm">
+      <UButton
+        to="https://onetimesecret.com"
+        target="_blank"
+        aria-label="OnetimeSecret.com"
+        color="gray"
+        variant="ghost"
+        class="hover:bg-gray-100 dark:hover:bg-gray-800 mr-2 text-sm"
+      >
         OnetimeSecret.com
       </UButton>
 
-      <UColorModeButton size="sm"
-                        class="mr-2" />
+      <UColorModeButton
+        size="sm"
+        class="mr-2"
+      />
 
-      <UButton to="https://github.com/onetimesecret/blog.onetimesecret.com"
-               target="_blank"
-               icon="i-simple-icons-github"
-               aria-label="GitHub"
-               color="gray"
-               variant="ghost"
-               class="hover:bg-gray-100 dark:hover:bg-gray-800" />
+      <UButton
+        to="https://github.com/onetimesecret/blog.onetimesecret.com"
+        target="_blank"
+        icon="i-simple-icons-github"
+        aria-label="GitHub"
+        color="gray"
+        variant="ghost"
+        class="hover:bg-gray-100 dark:hover:bg-gray-800"
+      />
     </template>
   </UFooter>
 </template>

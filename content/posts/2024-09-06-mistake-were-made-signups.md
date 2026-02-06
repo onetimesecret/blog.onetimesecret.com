@@ -553,8 +553,6 @@ Should there be tests for critical user flows like onboarding? Yes. Did I have t
 
 </InsetParagraph>
 
-
-
 ## There was abug afoot
 
 I didn't catch the issue until Thursday evening thanks to a helpful report from a user. By that point a few hundred accounts had been created. I [deployed a fix](https://github.com/onetimesecret/onetimesecret/releases/tag/v0.17.1-rc4) right away  and got to work documenting what happened and the list of accounts affected. Old compliance habits die hard. And also come in handy when you need to do a post-mortem.
@@ -564,7 +562,6 @@ I waited until Friday morning to follow-up on manually verifying the accounts an
 ## Hands-on support
 
 I wrote some code to get a rough idea of which accounts were affected based on date range. Then split that into two Redis sets: verified and not verified. The not verified group was ~650 accounts. From there I codifed the process of manually verifying the accounts and sending out an email to each one. I added a sleep of 1 second between each email to play nice with the email provider. Some choices you make simply to avoid obvious headaches and don't spend time optimizing for the sake of it.
-
 
 ::CollapsibleContent{summary="Click to expand the code snippet"}
 
@@ -630,7 +627,6 @@ end
 
 manually_verified_customers = Familia.redis(0).smembers 'manually_verified_customers'
 
-
 results = manually_verified_customers.map do |email|
   customer = OT::Customer.from_identifier(email)
   p [customer.rediskey, customer.updated, customer.verified]
@@ -655,7 +651,6 @@ end
 
 ::
 
-
 ### Email message
 
 <!-- https://www.mca-marines.org/gazette/cultivating-intuitive-decisionmaking/# -->
@@ -674,11 +669,9 @@ end
 >
 > P.S. Here's a special fortune for you: Distant connections bring valuable insights.
 
-
 ## Putting it into context
 
 The bug was introduced following a full refactor of the underlying storage code (specifically [release v0.17.0](https://github.com/onetimesecret/onetimesecret/releases/tag/v0.17.0)). It was the largest single update to the codebase in probably 10 years. The refactor was necessary to support new features and improve the overall capability of the platform. The issue with verification was minor in that context. Not ideal but also not heat death of the universe level of bad. And it turned out to be an opportunity to engage with users directly and provide a personal touch to the support experience.
-
 
 ## Meta content: About the title illustration
 
@@ -686,7 +679,6 @@ As is tradition, the main illustraion for this post was created by Anthropic Cla
 
 ::ImageModal{src="/img/blog/2024/20240906-signups-glitch.svg" alt="Older layout from June" width="320" height="320"}
 ::
-
 
 ::CollapsibleContent{summary="Click to expand the full AI conversation"}
 

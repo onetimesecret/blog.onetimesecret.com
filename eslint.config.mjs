@@ -30,26 +30,26 @@ import antfu from '@antfu/eslint-config';
 
 export default antfu({
   // Type of the project. 'lib' for libraries, the default is 'app'
-  type: 'app',
+  'type': 'app',
 
   'comma-dangle': ['error', 'always-multiline'],
-
 
   // Enable stylistic formatting rules
   // stylistic: true,
 
   // Or customize the stylistic rules
-  stylistic: {
+  'stylistic': {
     indent: 2, // 4, or 'tab'
     quotes: 'single', // or 'double',
     semi: true,
   },
 
-  // To enable UnoCSS support, you need to explicitly turn it on:
-  unocss: true,
+  // UnoCSS disabled — this project uses Tailwind CSS
+  'unocss': false,
 
   // `.eslintignore` is no longer supported in Flat config, use `ignores` instead
-  ignores: [
-    // Add your ignore patterns here
+  'ignores': [
+    'content/**',
+    'README.md',
   ],
 });

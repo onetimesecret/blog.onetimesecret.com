@@ -1,25 +1,24 @@
 <script setup lang="ts">
-import { joinURL, withoutTrailingSlash } from 'ufo';
 import type { BlogPost } from '~/types';
-import { format } from 'date-fns'
-import { enUS } from 'date-fns/locale'
+import { format } from 'date-fns';
+import { enUS } from 'date-fns/locale';
+import { joinURL, withoutTrailingSlash } from 'ufo';
 
-const route = useRoute()
+const route = useRoute();
 
-const { data: post } = await useAsyncData(route.path, () => queryContent<BlogPost>(route.path).findOne())
+const { data: post } = await useAsyncData(route.path, () => queryContent<BlogPost>(route.path).findOne());
 if (!post.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: true })
+  throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: true });
 }
 
 const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryContent('/posts')
   .where({ _extension: 'md' })
   .without(['body', 'excerpt'])
   .sort({ date: -1 })
-  .findSurround(withoutTrailingSlash(route.path))
-, { default: () => [] })
+  .findSurround(withoutTrailingSlash(route.path)), { default: () => [] });
 
-const title = post.value.head?.title || post.value.title
-const description = post.value.head?.description || post.value.description
+const title = post.value.head?.title || post.value.title;
+const description = post.value.head?.description || post.value.description;
 
 // Computed property for formatted date
 const formattedDate = computed(() => {
@@ -27,46 +26,47 @@ const formattedDate = computed(() => {
     return 'No date';
   }
   const dateParts = post.value.date.split('-');
-  const year = parseInt(dateParts[0], 10);
-  const month = parseInt(dateParts[1], 10) - 1; // Months are 0-based in JavaScript
-  const day = parseInt(dateParts[2], 10);
+  const year = Number.parseInt(dateParts[0], 10);
+  const month = Number.parseInt(dateParts[1], 10) - 1; // Months are 0-based in JavaScript
+  const day = Number.parseInt(dateParts[2], 10);
   const date = new Date(year, month, day);
 
-  //if (isNaN(date.getTime())) {
+  // if (isNaN(date.getTime())) {
   //  return 'Invalid date';
-  //}
+  // }
 
   return format(date, 'MMMM d, yyyy', { locale: enUS });
 });
 
 // Alternative formats
-//const dateFormats = computed(() => ({
+// const dateFormats = computed(() => ({
 //  short: format(parseISO(post.date), 'MMM d, yyyy'),
 //  iso: format(parseISO(post.date), 'yyyy-MM-dd'),
 //  full: format(parseISO(post.date), 'EEEE, MMMM d, yyyy')
-//}))
+// }))
 
 useSeoMeta({
   title,
   ogTitle: title,
   description,
-  ogDescription: description
-})
+  ogDescription: description,
+});
 
 if (post.value.image?.src) {
-  const site = useSiteConfig()
+  const site = useSiteConfig();
 
   useSeoMeta({
     ogImage: joinURL(site.url, post.value.image.src),
-    twitterImage: joinURL(site.url, post.value.image.src)
-  })
-} else {
+    twitterImage: joinURL(site.url, post.value.image.src),
+  });
+}
+else {
   defineOgImage({
     component: 'OgImageOnetimeSecretOg',
     title,
     description,
-    headline: 'Blog'
-  })
+    headline: 'Blog',
+  } as any);
 }
 </script>
 
@@ -75,7 +75,7 @@ if (post.value.image?.src) {
     <div class="mb-8">
       <NuxtLink to="/" class="text-sm font-medium text-primary-600 hover:text-primary-500">
         <svg class="inline-block w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
         Back to Blog
       </NuxtLink>
@@ -83,14 +83,13 @@ if (post.value.image?.src) {
 
     <article class="max-w-3xl mx-auto prose">
       <header class="mb-12">
-
         <div v-if="post.image?.src" class="mb-6">
           <img
             :src="post.image.src"
             :alt="post.title"
             class="w-full rounded-lg shadow-sm object-cover mx-auto"
             loading="lazy"
-          />
+          >
         </div>
 
         <UBadge
@@ -146,6 +145,5 @@ if (post.value.image?.src) {
         </aside>
       </UPage>
     </article>
-
   </UContainer>
 </template>

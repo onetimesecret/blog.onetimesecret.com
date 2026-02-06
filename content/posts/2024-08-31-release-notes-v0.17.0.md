@@ -40,5 +40,4 @@ This release focuses on foundational improvements and technical debt reduction. 
    - Enhanced email validation
    - Improved handling of custom domains and metadata
 
-
 For a complete list of changes and technical details, visit our [GitHub repository](https://github.com/onetimesecret/onetimesecret/releases/tag/v0.17.0).

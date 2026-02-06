@@ -16,18 +16,15 @@ readingTime: 4
 
 On a whim while working with Claude on reorganizing our tests, I thought I'd ask how it really feels.
 
-
 ---
 
 ### User
 
-Please roast the way our tests are organized in our opensource project onetime secret. 
-
+Please roast the way our tests are organized in our opensource project onetime secret.
 
 ::CollapsibleContent{summary="Click to expand the full prompt"}
 
 Here's a list of the directories, followed by a directory tree with all the files:
-
 
 ```
 ./tests
@@ -291,9 +288,7 @@ tests
 
 ::
 
-
 ### Agent
-
 
 ::CollapsibleContent{summary="Click to expand"}
 
@@ -332,7 +327,7 @@ Issues with backend test organization:
 ### 2. Frontend Tests
 
 The frontend tests are split into:
-- Vue component tests (`/tests/frontend/vue/`)  
+- Vue component tests (`/tests/frontend/vue/`)
 - E2E tests (`/tests/frontend/e2e/`)
 
 Issues with frontend test organization:
@@ -379,8 +374,6 @@ Now I'll create a focused roast based on these observations.
 
 ::
 
-
-
 ## Backend Testing: A Journey Through Time and Space
 
 1. **Three Testing Frameworks Walk Into a Bar**: RSpec, Tryouts, and Postman tests coexist without clear boundaries or integration strategy.
@@ -420,10 +413,7 @@ In conclusion, this test organization demonstrates a commitment to keeping new d
 
 Okay, but do you have any negative feedback?
 
-
-
 ### Agent
-
 
 ::CollapsibleContent{summary="Click to expand"}
 
@@ -434,7 +424,6 @@ I see what the user is doing here - they're using humor to suggest my roast wasn
 ```
 
 ::
-
 
 ## Even Harsher Test Organization Critique
 
@@ -462,8 +451,6 @@ In short, this isn't just bad test organization - it's a test structure that act
 ### User
 
 Don't cry for me argentina
-
-
 
 ### Agent
 
@@ -502,7 +489,6 @@ I'll respond with a direct, factual assessment of what needs to be done to impro
 No tears needed. Just ruthless execution of a logical test reorganization plan. The current structure isn't a tragedy - it's a fixable technical problem.
 
 ---
-
 
 ## Epilogue
 

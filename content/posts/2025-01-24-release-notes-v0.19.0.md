@@ -61,6 +61,5 @@ These foundational improvements strengthen our commitment to secure, one-time sh
 
 Thank you to everyone who contributed to making this release possible.
 
-
 ::ImageModal{src="/img/blog/2025/release-0.19-sparkle-enhanced.svg" alt="" width="600"}
 ::

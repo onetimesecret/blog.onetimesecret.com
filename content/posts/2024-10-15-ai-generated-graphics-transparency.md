@@ -69,14 +69,12 @@ At Onetime Secret, we're not just about providing a service; we're about fosteri
 
 How do you feel about our approach to AI-generated graphics? [Send us feedback](https://onetimesecret.com/feedback). Your feedback helps us continue to innovate and improve, not just in our graphics, but in everything we do at Onetime Secret.
 
-
 ## Meta content: About the post image
 
 ::ImageModal{src="img/blog/2024/ai-generated-graphics-transparency.svg" title="Claude AI's interpretation of Global Data Centers" alt="Claude AI's interpretation of Global Data Centers" width="600"}
 ::
 
 ::CollapsibleContent{summary="Click to expand the AI conversation"}
-
 
 Here's a behind-the-scenes look at the AI conversation that led to the creation of the image for this blog post:
 

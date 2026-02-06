@@ -20,13 +20,13 @@ We support 12+ languages. I can only read 1. Here's how we do it without a dedic
 
 I don't use a translation management platform. Just git, jq, a variety of LLM agents, and many many markdown files. I've tried a few platform tools this year with mixed results. I have a hard time changing my somewhat baroque working process but I enjoyed Lokalise the best. Big shout-out to [i18n-ally](https://github.com/lokalise/i18n-ally), it's the only reason I switch to VS Code from Zed.
 
-Updates are a combination of contributors submitting PRs against the JSON locale files and me using one or more tools to translate new keys added during development cycles. I work through the PRs and try to capture as much insight from the terms used and choices made. This works partly because our UI vocabulary is limited (~1000 not-at-all-optimized strings, lots of overlap). 
+Updates are a combination of contributors submitting PRs against the JSON locale files and me using one or more tools to translate new keys added during development cycles. I work through the PRs and try to capture as much insight from the terms used and choices made. This works partly because our UI vocabulary is limited (~1000 not-at-all-optimized strings, lots of overlap).
 
 ## Friggin Words, How Do They Work?
 
 **Terminology consistency.** "Secret" translates differently across languages. In Danish, the literal "Hemmeligheder" sounds childish. [@jetdk](https://github.com/jetdk) [chose "Beskeder"](https://github.com/onetimesecret/onetimesecret/pull/956) (messages) instead, explaining that while technically correct, the literal carries the wrong connotation in everyday use. This revealed a pattern we hadn't documented: sometimes the literal translation undermines the professional security context. In Russian, "секрет" works perfectly; "тайна" carries unwanted emotional weight. Each language has its own decisions, now documented in per-language glossaries.
 
-**Technical accuracy.** "Burn" means it's deleted permanently. A literal translation ("сжечь" in Russian) sounds absurd in digital context. Thanks to human translation we use "уничтожить" (destroy). These decisions are captured once and applied consistently. I can't read either one but various agents have assured me it's a good choice. 
+**Technical accuracy.** "Burn" means it's deleted permanently. A literal translation ("сжечь" in Russian) sounds absurd in digital context. Thanks to human translation we use "уничтожить" (destroy). These decisions are captured once and applied consistently. I can't read either one but various agents have assured me it's a good choice.
 
 ## Humans are Important
 
@@ -37,7 +37,6 @@ The glue is two reference documents per language:
 * [**Language notes**](https://github.com/onetimesecret/docs.onetimesecret.com/blob/8f1b38bc6fa875fd53bb5998a1007ebd88325579/src/content/docs/nl/translations/language-notes.md): Grammar rules, pitfalls, examples
 
 When [@kh0mka](https://github.com/kh0mka) from Minsk submitted a [Russian translation](https://github.com/onetimesecret/onetimesecret/pull/2130), I reviewed it with our in-house language Czar named Claude against these documents. We then [expanded the Russian glossary and language notes](https://github.com/onetimesecret/docs.onetimesecret.com/pull/254) to capture the terminology decisions and rationale for future reference.
-
 
 ### Contributing
 

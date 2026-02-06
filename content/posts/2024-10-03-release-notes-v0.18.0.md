@@ -18,14 +18,11 @@ Onetime Secret v0.18.0 brings significant improvements to our secure, one-time s
 
 ## Key Updates
 
-
 ### End User Improvements
 
 - Completely redesigned user interface for faster loading and smoother interactions
 - Enhanced internationalization support for a better experience across different languages
 - Improved error handling for clearer communication during issues
-
-
 
 ### Developer and System Administrator Changes
 
@@ -34,7 +31,6 @@ Onetime Secret v0.18.0 brings significant improvements to our secure, one-time s
 - Configuration file moved from `etc/config` to `etc/config.yaml`
 - Improved Docker build process with enhanced tagging and manifest generation
 - Conversion of locale files from YAML to JSON
-
 
 ## Important Notes
 
@@ -46,6 +42,5 @@ This update includes backwards-incompatible changes. If you're self-hosting Onet
 > * Locale files have been converted from YAML to JSON and moved to the front end Vue app. e.g. `etc/locales/en` is now `src/locales/en.json`.
 > * HTML template files have been pared down to just a handful for errors and passing settings from the ruby app to vue. The UI is now fully served from the Vue frontend. The `src/views` directory contains the page components which is the closest analogy to the HTML files in `templates/web`.
 Thank you for providing the detailed release notes for Onetime Secret v0.18.0. I'll craft an updated summary that aligns with the communication guidelines and highlights the key changes while clearly distinguishing between technical and user-facing updates.
-
 
 For a complete list of changes and technical details, visit our [GitHub repository](https://github.com/onetimesecret/onetimesecret/releases/tag/v0.18.0).

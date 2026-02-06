@@ -16,10 +16,8 @@ readingTime: 5
 # Our Privacy-First Approach
 At Onetime Secret, we believe privacy and simplicity go hand in hand. While many services collect extensive user data, we've chosen a different path focused on what matters most: secure, reliable secret sharing. You can learn more about our guiding principles in our [documentation](https://docs.onetimesecret.com/principles).
 
-
 ## Focused Communication
 You'll only receive emails you specifically request: secret link deliveries and account-critical notifications. No newsletters, no promotions - just the service you need, when you need it. Any new email types will be opt-in only.
-
 
 ## Clean, Secure Experience
 We maintain a straightforward service by excluding:
@@ -51,14 +49,12 @@ Have thoughts about our approach? [Send us feedback](https://onetimesecret.com/f
 
 ---
 
-
 ## Meta content: About the post image
 
 ::ImageModal{src="/img/blog/2024/20241101-industry-practices.svg" alt="Privacy-First Tech Practices Illustration, according to Copilot GPT-4o" width="600"}
 ::
 
 ::CollapsibleContent{summary="Click to expand the AI conversation"}
-
 
 Here's a behind-the-scenes look at the AI conversation that led to the creation of the image for this blog post:
 
