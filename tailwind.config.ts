@@ -65,79 +65,79 @@ export default <Partial<Config>>{
       brand: ['Zilla Slab', ...defaultTheme.fontFamily.serif],
       mono: defaultTheme.fontFamily.mono,
     },
-    typography: ({ theme }) => ({
-      DEFAULT: {
-        css: {
-          'h1, h2, h3, h4, h5, h6': {
-            fontFamily: 'Zilla Slab, serif',
-          },
-          'h1': {
-            fontSize: '2.25rem', // text-4xl
-            fontWeight: '700',
-            marginTop: '0',
-            marginBottom: '1rem',
-          },
-          'h2': {
-            fontSize: '1.875rem', // text-3xl
-            fontWeight: '700',
-            marginTop: '1.5rem',
-            marginBottom: '0.75rem',
-          },
-          'h3': {
-            fontSize: '1.5rem', // text-2xl
-            fontWeight: '600',
-            marginTop: '1.25rem',
-            marginBottom: '0.5rem',
-          },
-          'h4': {
-            fontSize: '1.25rem', // text-xl
-            fontWeight: '600',
-            marginTop: '1rem',
-            marginBottom: '0.5rem',
-          },
-          'h5': {
-            fontSize: '1.125rem', // text-lg
-            fontWeight: '500',
-            marginTop: '1rem',
-            marginBottom: '0.5rem',
-          },
-          'h6': {
-            fontSize: '1rem', // text-base
-            fontWeight: '500',
-            marginTop: '1rem',
-            marginBottom: '0.5rem',
-          },
-          'p': {
-            marginTop: '1.25em',
-            marginBottom: '1.25em',
-            lineHeight: '1.7',
-          },
-          'code': {
-            fontSize: '0.9em',
-            padding: '0.2em 0.4em',
-            margin: '0 0.1em',
-            backgroundColor: theme('colors.gray.100'),
-            borderRadius: theme('borderRadius.DEFAULT'),
-          },
-          'code::before': {
-            content: '""',
-          },
-          'code::after': {
-            content: '""',
-          },
-          'pre': {
-            fontSize: '0.9em',
-            lineHeight: '1.6',
-            padding: '0', // Let Shiki control padding
-            marginTop: '1.5em',
-            marginBottom: '1.5em',
-            backgroundColor: 'transparent', // Let Shiki control background
-            borderRadius: '0', // Let Shiki control border-radius
+    extend: {
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            'h1, h2, h3, h4, h5, h6': {
+              fontFamily: 'Zilla Slab, serif',
+            },
+            'h1': {
+              fontSize: '2.25rem', // text-4xl
+              fontWeight: '700',
+              marginTop: '0',
+              marginBottom: '1rem',
+            },
+            'h2': {
+              fontSize: '1.875rem', // text-3xl
+              fontWeight: '700',
+              marginTop: '1.5rem',
+              marginBottom: '0.75rem',
+            },
+            'h3': {
+              fontSize: '1.5rem', // text-2xl
+              fontWeight: '600',
+              marginTop: '1.25rem',
+              marginBottom: '0.5rem',
+            },
+            'h4': {
+              fontSize: '1.25rem', // text-xl
+              fontWeight: '600',
+              marginTop: '1rem',
+              marginBottom: '0.5rem',
+            },
+            'h5': {
+              fontSize: '1.125rem', // text-lg
+              fontWeight: '500',
+              marginTop: '1rem',
+              marginBottom: '0.5rem',
+            },
+            'h6': {
+              fontSize: '1rem', // text-base
+              fontWeight: '500',
+              marginTop: '1rem',
+              marginBottom: '0.5rem',
+            },
+            'p': {
+              marginTop: '1.25em',
+              marginBottom: '1.25em',
+              lineHeight: '1.7',
+            },
+            'code': {
+              fontSize: '0.9em',
+              padding: '0.2em 0.4em',
+              margin: '0 0.1em',
+              backgroundColor: theme('colors.gray.100'),
+              borderRadius: theme('borderRadius.DEFAULT'),
+            },
+            'code::before': {
+              content: '""',
+            },
+            'code::after': {
+              content: '""',
+            },
+            'pre': {
+              fontSize: '0.9em',
+              lineHeight: '1.6',
+              padding: '0', // Let Shiki control padding
+              marginTop: '1.5em',
+              marginBottom: '1.5em',
+              backgroundColor: 'transparent', // Let Shiki control background
+              borderRadius: '0', // Let Shiki control border-radius
+            },
           },
         },
-      },
-    }),
-    extend: {
+      }),
       colors: {
         // https://javisperez.github.io/tailwindcolorshades/?flamingo=dc4a22&guardsman-red=23b5dd
         brand: {

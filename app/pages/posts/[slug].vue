@@ -63,10 +63,12 @@ if (post.value.image?.src) {
 else {
   defineOgImage({
     component: 'OgImageOnetimeSecretOg',
-    title,
-    description,
-    headline: 'Blog',
-  } as any);
+    props: {
+      title,
+      description,
+      headline: 'Blog',
+    },
+  });
 }
 </script>
 

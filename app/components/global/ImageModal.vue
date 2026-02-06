@@ -8,11 +8,7 @@ interface Props {
   height?: number | string;
 }
 
-const props = defineProps<Props>();
-
-const _isSvg = computed(() => {
-  return props.src.toLowerCase().endsWith('.svg');
-});
+defineProps<Props>();
 
 const isModalOpen = ref(false);
 
@@ -42,16 +38,16 @@ onUnmounted(() => {
 <template>
   <div>
     <img
-      :src="props.src"
-      :alt="props.alt"
-      :width="props.width"
-      :height="props.height"
+      :src="src"
+      :alt="alt"
+      :width="width"
+      :height="height"
       class="rounded-lg border border-gray-300 shadow-lg dark:opacity-75 cursor-pointer"
       @click="openModal"
     >
     <teleport to="body">
       <div v-if="isModalOpen" class="modal" @click="closeModal">
-        <img :src="props.src" :alt="props.alt" class="modal-image">
+        <img :src="src" :alt="alt" class="modal-image">
       </div>
     </teleport>
   </div>
