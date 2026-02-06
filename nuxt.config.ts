@@ -66,6 +66,12 @@ export default defineNuxtConfig({
     provider: 'ipx',
   },
 
+  vite: {
+    server: {
+      allowedHosts: true,
+    },
+  },
+
   css: ['~/assets/css/main.css', '~/assets/css/font.css'],
 
   hooks: {
