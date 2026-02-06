@@ -1,5 +1,5 @@
 <template>
-  <ULandingNavbar />
-  <slot />
-  <ULandingFooter />
+  <div>
+    <slot />
+  </div>
 </template>

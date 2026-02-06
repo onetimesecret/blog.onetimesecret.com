@@ -43,11 +43,11 @@ const links = [
       <p class="text-gray-500 dark:text-gray-400 text-sm">
         Copyright © {{ new Date().getFullYear() }}. All rights reserved.
         <span class="ml-2">
-          <ULink to="https://onetimesecret.com/info/terms" class="hover:underline">Terms</ULink>
+          <NuxtLink to="https://onetimesecret.com/info/terms" class="hover:underline">Terms</NuxtLink>
           <span class="mx-1">·</span>
-          <ULink to="https://onetimesecret.com/info/privacy" class="hover:underline">Privacy</ULink>
+          <NuxtLink to="https://onetimesecret.com/info/privacy" class="hover:underline">Privacy</NuxtLink>
           <span class="mx-1">·</span>
-          <ULink to="https://onetimesecret.com/info/security" class="hover:underline">Security</ULink>
+          <NuxtLink to="https://onetimesecret.com/info/security" class="hover:underline">Security</NuxtLink>
         </span>
       </p>
     </template>
@@ -57,7 +57,7 @@ const links = [
         to="https://onetimesecret.com"
         target="_blank"
         aria-label="OnetimeSecret.com"
-        color="gray"
+        color="neutral"
         variant="ghost"
         class="hover:bg-gray-100 dark:hover:bg-gray-800 mr-2 text-sm"
       >
@@ -74,7 +74,7 @@ const links = [
         target="_blank"
         icon="i-simple-icons-github"
         aria-label="GitHub"
-        color="gray"
+        color="neutral"
         variant="ghost"
         class="hover:bg-gray-100 dark:hover:bg-gray-800"
       />

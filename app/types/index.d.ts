@@ -1,15 +1,30 @@
-import type { Avatar, Badge, Link } from '#ui/types';
-import type { ParsedContent } from '@nuxt/content';
-
-export interface BlogPost extends ParsedContent {
+export interface BlogPost {
   title: string;
   description: string;
   date: string;
-  image?: HTMLImageElement;
-  badge?: Badge;
-  authors?: ({
+  path: string;
+  body?: {
+    toc?: {
+      links?: { id: string; text: string; depth: number }[];
+    };
+  };
+  image?: {
+    src: string;
+    alt?: string;
+  };
+  badge?: {
+    label: string;
+    color?: string;
+  };
+  readingTime?: number;
+  headline?: string;
+  icon?: string;
+  authors?: {
     name: string;
     description?: string;
-    avatar?: Avatar;
-  } & Link)[];
+    to?: string;
+    avatar?: {
+      src: string;
+    };
+  }[];
 }

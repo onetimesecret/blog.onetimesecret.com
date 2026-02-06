@@ -1,5 +1,4 @@
-import { serverQueryContent } from '#content/server';
-
-export default eventHandler(async (event) => {
-  return serverQueryContent(event).where({ _type: 'markdown', navigation: { $ne: false } }).find();
+export default eventHandler(async () => {
+  const posts = await queryCollection('posts').all();
+  return posts;
 });

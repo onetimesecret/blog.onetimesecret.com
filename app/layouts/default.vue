@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import type { ParsedContent } from '@nuxt/content';
-
-const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation(), { default: () => [] });
-const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', { default: () => [], server: false });
+const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('posts'), { default: () => [] });
 
 provide('navigation', navigation);
 </script>
@@ -19,7 +16,6 @@ provide('navigation', navigation);
 
     <ClientOnly>
       <LazyUContentSearch
-        :files="files"
         :navigation="navigation"
       />
     </ClientOnly>

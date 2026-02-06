@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { NavItem } from '@nuxt/content';
+import type { ContentNavigationItem } from '@nuxt/content';
 
-const navigation = inject<Ref<NavItem[]>>('navigation', ref([]));
+const navigation = inject<Ref<ContentNavigationItem[]>>('navigation', ref([]));
 
 const links = [
   {
@@ -28,12 +28,12 @@ const links = [
     :links="links"
     class="dark:bg-gray-800"
   >
-    <template #logo>
+    <template #title>
       <OnetimeLogo class="dark:text-white rounded-md" />
       <span class="font-brand dark:text-white">Onetime Secret</span>
       <UBadge
         label="Blog"
-        color="brandcomp"
+        color="info"
         variant="subtle"
         class="mb-0.5 dark:bg-gray-700 dark:text-gray-300"
       />
@@ -59,9 +59,9 @@ const links = [
       </nav>
     </template>
 
-    <template #panel>
+    <template #body>
       <UNavigationTree
-        :links="mapContentNavigation(navigation)"
+        :links="navigation"
         default-open
         class="dark:bg-gray-800 dark:text-gray-300"
       />
