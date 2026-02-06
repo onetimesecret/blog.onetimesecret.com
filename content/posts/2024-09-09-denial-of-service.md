@@ -14,7 +14,6 @@ badge:
 readingTime: 4
 ---
 
-
 _See the follow-up posts:_
 
 * (Sept 12th, 2024) _[Denial of Service (DoS) Attack: Continued Adventure](/posts/2024-09-12-ddos-day-4)._
@@ -120,8 +119,6 @@ This one is from the web server's perspective. 12 hours of mostly normal traffic
 
 ::
 
-
-
 ## Updates
 
 Here's the formatted version with timestamps as headers:
@@ -145,7 +142,6 @@ The attack has mostly tapered off. There's still a lot of junk traffic coming fr
 ### 12:30 PDT, Sept 10, 2024
 
 The junk traffic continues. There are around 1600 unique IP addresses generating a considerable number of requests. But the situation has settled down somewhat -- with all the infrastructure changes we've made, we're able to weather the bursts and recover quickly. I'll start working on another post after this update.
-
 
 For comparison, this is what traffic from the previous 30 days looked like (the spike on the right is the start of the attack):
 

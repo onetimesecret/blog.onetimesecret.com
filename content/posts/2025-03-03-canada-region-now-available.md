@@ -16,12 +16,9 @@ readingTime: 5
 
 We've expanded our data center options with a new Canadian location. The Canada region ([ca.onetimesecret.com](https://ca.onetimesecret.com)) follows our share-nothing architecture - ensuring data created in Canada stays in Canada.
 
-
 ## Now Serving Canadian Customers
 
-
 We're pleased to introduce our new Canada locality, further enhancing our data privacy options and expanding user choice. The Canada instance is now available at ca.onetimesecret.com, complementing our existing EU site at eu.onetimesecret.com and our US site at us.onetimesecret.com.
-
 
 <div class="flex justify-center items-center my-10">
   <a href="https://ca.onetimesecret.com/" class="text-center inline-block">
@@ -38,9 +35,6 @@ We're pleased to introduce our new Canada locality, further enhancing our data p
     </span>
   </a>
 </div>
-
-
-
 
 ### A Share-Nothing Architecture
 
@@ -60,7 +54,6 @@ Using the Canada instance is simple. Just visit ca.onetimesecret.com directly or
 
 For organizations requiring dedicated instances or custom deployments within specific regions, [please contact us](https://onetimesecret.com/feedback) to discuss your requirements.
 
-
 ## Looking Forward
 
 The addition of our Canada region represents our ongoing commitment to data privacy and security. We continue to evaluate additional regions based on user needs and regulatory requirements.
@@ -75,7 +68,6 @@ The addition of our Canada region represents our ongoing commitment to data priv
 **User:**
 
 Do you feel inspired enough [by this blog post] to generate a comparable blog post image SVG like we did for the US post?
-
 
 ---
 
@@ -94,7 +86,6 @@ This SVG image for the Canada region announcement features:
 7. Brand-appropriate pink and red accent colors
 
 The image complements the blog post while maintaining the same professional style used in the US region announcement.
-
 
 ::ImageModal{src="/img/blog/2025/20250301-ca-data-centre-launch-rev1.svg" alt="" width="600"}
 ::
@@ -118,7 +109,6 @@ I added a highlight box around the CA domain to emphasize it as the new addition
 Dont forget to add a byline at the bottom on the right, like we did in the US image
 
 ---
-
 
 **Assistant:**
 

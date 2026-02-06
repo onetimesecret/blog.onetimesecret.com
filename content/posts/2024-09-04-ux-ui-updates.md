@@ -14,7 +14,6 @@ badge:
 readingTime: 4
 ---
 
-
 Some recent updates. I'm still working on the new design, moving the UI from purely old-school, server-rendered [mustache]() templates to Vue 3 components. I've been making some incremental improvements here and there.
 
 ## ["Or generate a random password" is confusing" #286](https://github.com/onetimesecret/onetimesecret/issues/286)
@@ -42,7 +41,6 @@ We re-enabled feedback functionality for non-authenticated users from the ubiqui
 ::
 
 I'll write more about Altcha in a future post. It's a really cool project and I'm Bram Stokered to be using it.
-
 
 ## [Add Language Dropdown, Enhance UI Elements, and Update Configuration #593](https://github.com/onetimesecret/onetimesecret/issues/593)
 

@@ -18,16 +18,13 @@ So the new design has been up for about a month now. In my rush to get it out, I
 
 _[Custom Font Not Loading in Safari, Works in Chrome #598](https://github.com/onetimesecret/onetimesecret/issues/598)_
 
-
 I look into it. It's definitely not loading in Safari. Or any other browser unless you happen to have the font installed locally. Cripes! How embarassing. It turns out I'd disabled the font settings in the Tailwind config file.
-
 
 ::ImageModal{src="/img/blog/2024/font-364116718-39ebbf8b-0d03-40cb-a59a-3efa7491e6ed.png" alt="Without the Custom Font, just a serif in general (Bad)" width="320" height="320"}
 ::
 
 ::ImageModal{src="/img/blog/2024/font-364116997-3a83b03b-ef93-4c91-aede-1a3e0f1d66f2.png" alt="With the Custom Font, Zilla Slab (Good)" width="320" height="320"}
 ::
-
 
 ::ImageModal{src="/img/blog/2024/Update font loading strategy for compatibility.jpeg" alt="Update font loading strategy for compatibility" width="320" height="320"}
 ::

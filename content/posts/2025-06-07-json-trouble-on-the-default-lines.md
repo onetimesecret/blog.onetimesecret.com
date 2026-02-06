@@ -130,8 +130,6 @@ This ensures predictable, fully defaulted configuration regardless of how sparse
 
 ### Appendix: Test Scripts
 
-
-
 For those interested in replicating these tests, here are the test scripts.
 
 **Ruby (`json_schemer_test.rb`):**
@@ -260,15 +258,14 @@ puts "\nTest script finished."
 
 ::
 
-
 **Node.js (`ajv_test.js`):**
 
 ::CollapsibleContent{summary="Node.js Test Script"}
 
 ```javascript
+import util from 'node:util'; // For deep logging objects
 // ajv_test.js
-import Ajv from "ajv";
-import util from "util"; // For deep logging objects
+import Ajv from 'ajv';
 
 // Deep copy utility for objects/arrays
 function deepCopy(obj) {
@@ -276,63 +273,63 @@ function deepCopy(obj) {
 }
 
 const minimalSchema = {
-  type: "object",
+  type: 'object',
   properties: {
     config_section: {
-      type: "object",
+      type: 'object',
       default: {},
       properties: {
-        setting1_with_default: { type: "string", default: "default_for_setting1" },
-        setting2_required_no_default: { type: "boolean" },
+        setting1_with_default: { type: 'string', default: 'default_for_setting1' },
+        setting2_required_no_default: { type: 'boolean' },
         nested_object: {
-          type: "object",
+          type: 'object',
           default: {},
           properties: {
-            deep_setting_with_default: { type: "number", default: 42 }, // Changed to number to match Ruby's integer
-            deep_setting_required_no_default: { type: "string" }
+            deep_setting_with_default: { type: 'number', default: 42 }, // Changed to number to match Ruby's integer
+            deep_setting_required_no_default: { type: 'string' }
           },
-          required: ["deep_setting_required_no_default"]
+          required: ['deep_setting_required_no_default']
         }
       },
-      required: ["setting2_required_no_default", "nested_object"]
+      required: ['setting2_required_no_default', 'nested_object']
     },
     top_level_prop_with_default: {
-      type: "string",
-      default: "default_for_top_level"
+      type: 'string',
+      default: 'default_for_top_level'
     }
   }
 };
 
-console.log("--- Schema Being Used ---");
+console.log('--- Schema Being Used ---');
 console.log(util.inspect(minimalSchema, { depth: null, colors: true }));
-console.log("-------------------------");
+console.log('-------------------------');
 
 const testScenarios = [
   {
-    description: "1. Completely empty input data",
+    description: '1. Completely empty input data',
     data: {}
   },
   {
-    description: "2. Input data with 'config_section' partially defined (string keys)",
+    description: '2. Input data with \'config_section\' partially defined (string keys)',
     data: {
       config_section: {
-        setting1_with_default: "custom_value_for_setting1"
+        setting1_with_default: 'custom_value_for_setting1'
       }
     }
   },
   {
-    description: "3. Input data with 'config_section' and 'nested_object' defined, satisfying some requirements (string keys)",
+    description: '3. Input data with \'config_section\' and \'nested_object\' defined, satisfying some requirements (string keys)',
     data: {
       config_section: {
         setting2_required_no_default: true,
         nested_object: {
-          deep_setting_required_no_default: "custom_deep_value"
+          deep_setting_required_no_default: 'custom_deep_value'
         }
       }
     }
   },
   {
-    description: "4. Input data with 'config_section' but 'nested_object' is an empty hash (string keys)",
+    description: '4. Input data with \'config_section\' but \'nested_object\' is an empty hash (string keys)',
     data: {
       config_section: {
         setting2_required_no_default: true,
@@ -346,35 +343,33 @@ const ajv = new Ajv({ useDefaults: true, allErrors: true });
 
 testScenarios.forEach((scenario) => {
   console.log(`\n--- Scenario: ${scenario.description} ---`);
-  let dataToValidate = deepCopy(scenario.data); 
+  const dataToValidate = deepCopy(scenario.data);
 
-  console.log("Data BEFORE validation:");
+  console.log('Data BEFORE validation:');
   console.log(util.inspect(dataToValidate, { depth: null, colors: true }));
 
   const validate = ajv.compile(minimalSchema);
   const isValid = validate(dataToValidate);
 
-  console.log("\nData AFTER validation:");
+  console.log('\nData AFTER validation:');
   console.log(util.inspect(dataToValidate, { depth: null, colors: true }));
 
   if (isValid) {
-    console.log("\nValidation PASSED.");
-  } else {
-    console.log("\nValidation FAILED. Errors:");
+    console.log('\nValidation PASSED.');
+  }
+  else {
+    console.log('\nValidation FAILED. Errors:');
     (validate.errors || []).forEach((err, errIdx) => {
       console.log(`  ${errIdx + 1}. Path: ${err.instancePath}, Keyword: ${err.keyword}, Message: ${err.message}, Params: ${util.inspect(err.params)}`);
     });
   }
-  console.log("------------------------------------");
+  console.log('------------------------------------');
 });
 
-console.log("\nTest script finished.");
-
-
+console.log('\nTest script finished.');
 ```
 
 ::
-
 
 **Python (`python_jsonschema_test.py`):**
 
@@ -394,7 +389,7 @@ def extend_with_default(validator_class):
             for property_name, subschema in properties.items():
                 if "default" in subschema:
                     instance.setdefault(property_name, copy.deepcopy(subschema["default"]))
-        
+
         # Continue with original 'properties' validation
         yield from validate_properties(validator, properties, instance, schema)
 
@@ -410,13 +405,13 @@ minimal_schema = {
   "properties": {
     "config_section": {
       "type": "object",
-      "default": {}, 
+      "default": {},
       "properties": {
         "setting1_with_default": { "type": "string", "default": "default_for_setting1" },
         "setting2_required_no_default": { "type": "boolean" },
         "nested_object": {
           "type": "object",
-          "default": {}, 
+          "default": {},
           "properties": {
             "deep_setting_with_default": { "type": "integer", "default": 42 },
             "deep_setting_required_no_default": { "type": "string" }
@@ -466,7 +461,7 @@ test_scenarios = [
     "data": {
       "config_section": {
         "setting2_required_no_default": True,
-        "nested_object": {} 
+        "nested_object": {}
       }
     }
   }
@@ -485,9 +480,9 @@ for scenario in test_scenarios:
         for prop, prop_schema in minimal_schema["properties"].items():
             if "default" in prop_schema:
                 data_to_validate.setdefault(prop, copy.deepcopy(prop_schema["default"]))
-    
+
     validator_instance = DefaultFillingValidator(minimal_schema)
-    
+
     collected_errors = []
     for error in sorted(validator_instance.iter_errors(data_to_validate), key=str):
         collected_errors.append(error)
@@ -504,7 +499,6 @@ for scenario in test_scenarios:
     print("------------------------------------")
 
 print("\nTest script finished.")
-
 
 ```
 

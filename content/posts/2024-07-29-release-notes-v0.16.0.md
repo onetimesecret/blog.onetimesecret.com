@@ -14,7 +14,6 @@ badge:
 readingTime: 5
 ---
 
-
 This major update brings significant modernization to Onetime Secret's technology stack and user interface, while maintaining its core functionality as a secure, one-time sharing platform for sensitive information.
 
 ## Key Updates

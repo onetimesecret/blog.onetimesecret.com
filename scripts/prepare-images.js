@@ -1,27 +1,26 @@
 // scripts/prepare-images.js - Updated version
-import { exec } from "child_process";
-import fs from "fs";
-import path from "path";
+import fs from 'node:fs';
+import path from 'node:path';
 
 // Copy problematic images directly to output folder structure
-const prepareImages = () => {
+function prepareImages() {
   try {
-    console.log("Starting image preparation...");
+    console.log('Starting image preparation...');
 
     // Make sure .output directory exists
-    if (!fs.existsSync(".output")) {
-      console.log("Creating .output directory...");
-      fs.mkdirSync(".output", { recursive: true });
+    if (!fs.existsSync('.output')) {
+      console.log('Creating .output directory...');
+      fs.mkdirSync('.output', { recursive: true });
     }
 
-    if (!fs.existsSync(".output/public")) {
-      console.log("Creating .output/public directory...");
-      fs.mkdirSync(".output/public", { recursive: true });
+    if (!fs.existsSync('.output/public')) {
+      console.log('Creating .output/public directory...');
+      fs.mkdirSync('.output/public', { recursive: true });
     }
 
     const problematicPaths = [
-      "public/img/blog/2024/day5",
-      "public/img/blog/2024/install-guide",
+      'public/img/blog/2024/day5',
+      'public/img/blog/2024/install-guide',
     ];
 
     // Create output directories and copy files
@@ -36,8 +35,8 @@ const prepareImages = () => {
       }
 
       const outputPath = path.join(
-        ".output/public",
-        dirPath.replace("public/", ""),
+        '.output/public',
+        dirPath.replace('public/', ''),
       );
 
       console.log(`Creating output directory: ${outputPath}`);
@@ -55,11 +54,13 @@ const prepareImages = () => {
       });
     });
 
-    console.log("Image preparation completed successfully!");
-  } catch (error) {
-    console.error("Error during image preparation:", error);
+    console.log('Image preparation completed successfully!');
+  }
+  catch (error) {
+    console.error('Error during image preparation:', error);
+    // eslint-disable-next-line node/prefer-global/process
     process.exit(1); // Exit with error code to signal failure
   }
-};
+}
 
 prepareImages();

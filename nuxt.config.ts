@@ -1,23 +1,22 @@
 // nuxt.config.ts
 
-import fs from "fs";
-import path from "path";
+import path from 'node:path';
 
 // Get all content files directly in the config
-import { routes } from "./scripts/generate-routes";
+import { routes } from './scripts/generate-routes';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  extends: ["@nuxt/ui-pro"],
+  extends: ['@nuxt/ui-pro'],
 
   modules: [
-    "@nuxt/content",
-    "@nuxt/eslint",
-    "@nuxt/image",
-    "@nuxt/ui",
-    "@vueuse/nuxt",
-    "nuxt-og-image",
-    "nuxt-security",
+    '@nuxt/content',
+    '@nuxt/eslint',
+    '@nuxt/image',
+    '@nuxt/ui',
+    '@vueuse/nuxt',
+    'nuxt-og-image',
+    'nuxt-security',
   ],
 
   experimental: {
@@ -35,15 +34,15 @@ export default defineNuxtConfig({
       interval: 250,
       failOnError: false,
       crawlLinks: false,
-      routes: routes,
+      routes,
       ignore: [
         // Filter out routes for dot files
-        (route) => route.includes("/posts/."),
+        route => route.includes('/posts/.'),
       ],
     },
     publicAssets: [
       {
-        dir: path.resolve(__dirname, "public"),
+        dir: path.resolve(__dirname, 'public'),
         maxAge: 60 * 60 * 24 * 7, // Cache for 1 week (adjust as needed)
       },
     ],
@@ -53,32 +52,32 @@ export default defineNuxtConfig({
     // or you might have 'mdc' instead of 'content' depending on your setup
     highlight: {
       theme: {
-        default: "houston", // Light theme
-        dark: "one-dark-pro", // Dark theme
+        default: 'houston', // Light theme
+        dark: 'one-dark-pro', // Dark theme
       },
-      themes: ["houston", "aurora-x"], // This lists available themes for Shiki
+      themes: ['houston', 'aurora-x'], // This lists available themes for Shiki
       langs: [
-        "javascript",
-        "typescript",
-        "python",
-        "perl",
-        "ruby",
-        "go",
-        "powershell",
-        "csharp",
-        "bash",
-        "html",
-        "css",
-        "markdown",
-        "xml",
+        'javascript',
+        'typescript',
+        'python',
+        'perl',
+        'ruby',
+        'go',
+        'powershell',
+        'csharp',
+        'bash',
+        'html',
+        'css',
+        'markdown',
+        'xml',
       ],
     },
   },
   image: {
     // Add SVG to the format list if not already present
-    format: ["webp", "jpg", "png", "svg"],
+    format: ['webp', 'jpg', 'png', 'svg'],
     // Configure IPX to handle SVGs
-    provider: "ipx",
+    provider: 'ipx',
     ipx: {
       // Optional: Add specific SVG optimization options
       svgo: {},
@@ -100,7 +99,8 @@ export default defineNuxtConfig({
    *    $ envsubst < nuxt.config.ts > nuxt.config.ts.tmp && mv nuxt.config.ts.tmp nuxt.config.ts
    */
   uiPro: {
-    license: process.env.NUXT_UI_PRO_LICENSE || "${NUXT_UI_PRO_LICENSE}",
+    // eslint-disable-next-line node/prefer-global/process, no-template-curly-in-string
+    license: process.env.NUXT_UI_PRO_LICENSE || '${NUXT_UI_PRO_LICENSE}',
   },
   postcss: {
     plugins: {
@@ -108,22 +108,23 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  css: ["@/assets/css/main.css", "@/assets/css/font.css"],
+  css: ['@/assets/css/main.css', '@/assets/css/font.css'],
   vite: {
-    plugins: [require("vite-svg-loader")],
-    assetsInclude: ["@/assets/css/fonts/**/*.woff", "@/**/**/*.woff2"],
+    // eslint-disable-next-line ts/no-require-imports
+    plugins: [require('vite-svg-loader')],
+    assetsInclude: ['@/assets/css/fonts/**/*.woff', '@/**/**/*.woff2'],
     server: {
       allowedHosts: true,
     },
   },
   hooks: {
     // Define `@nuxt/ui` components as global to use them in `.md` (feel free to add those you need)
-    "components:extend": (components) => {
-      const globals = components.filter((c) =>
-        ["UButton"].includes(c.pascalName),
+    'components:extend': (components) => {
+      const globals = components.filter(c =>
+        ['UButton'].includes(c.pascalName),
       );
 
-      globals.forEach((c) => (c.global = true));
+      globals.forEach(c => (c.global = true));
     },
   },
 
@@ -133,9 +134,9 @@ export default defineNuxtConfig({
 
   routeRules: {
     // Temporary workaround for prerender regression. see https://github.com/nuxt/nuxt/issues/27490
-    "/": { prerender: true },
-    "/api/search.json": { prerender: true },
-    "/docs": { redirect: "/docs/introduction", prerender: true },
+    '/': { prerender: true },
+    '/api/search.json': { prerender: true },
+    '/docs': { redirect: '/docs/introduction', prerender: true },
   },
 
   devtools: {
@@ -153,11 +154,11 @@ export default defineNuxtConfig({
   eslint: {
     config: {
       stylistic: {
-        commaDangle: "never",
-        braceStyle: "1tbs",
+        commaDangle: 'never',
+        braceStyle: '1tbs',
       },
     },
   },
 
-  compatibilityDate: "2024-07-11",
+  compatibilityDate: '2024-07-11',
 });

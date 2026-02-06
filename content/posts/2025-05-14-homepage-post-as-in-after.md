@@ -18,7 +18,6 @@ A recent phishing attempt exposed users to an impostor site that mirrored our in
 
 Following our [recent homepage update](/content/posts/2025-05-05-homepage-update-going-regional) emphasizing regional domains, this post details how our domain structure bolsters security through clarity and consistency—a vital consideration for a service handling sensitive information.
 
-
 <div class="flex justify-center items-center my-10">
   <a href="https://onetimesecret.com/" class="text-center inline-block">
     <span class="font-brand text-3xl sm:text-4xl md:text-5xl
@@ -39,13 +38,11 @@ Following our [recent homepage update](/content/posts/2025-05-05-homepage-update
 
 **Strategic Change:** We've moved our apex domain (onetimesecret.com) from functioning as an alias for eu.onetimesecret.com to a completely separate codebase with static content. While standard practice for most products, this is new for our service which has maintained a functional homepage since launch over 10 years ago.
 
-
 **Technical Benefits:**
   * **Distinctive User Experience:** Creates a clear visual and functional difference from impostor sites
   * **Streamlined Application Codebase:** Removing marketing content makes our open-source project simpler for self-hosted installations
   * **Independent Release Cycles:** Marketing site changes no longer require application deployments
   * **SEO Protection:** Consolidates domain authority to maintain search ranking visibility against sites using similar keywords and paid advertisements
-
 
 ## Domain Strategy Evolution: Before vs. After
 
@@ -65,7 +62,6 @@ Following our [recent homepage update](/content/posts/2025-05-05-homepage-update
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
   <figure class="mb-6">
 
-  
 **After Our Update:**
 - Apex domain (`onetimesecret.com`) is now a separate, static marketing site with distinct visual design
 - All legitimate secret-creation services use consistent regional subdomains (e.g., `nz.onetimesecret.com`)
@@ -73,7 +69,6 @@ Following our [recent homepage update](/content/posts/2025-05-05-homepage-update
 - All official subdomains follow consistent naming patterns (docs, blog, status)
   </figure>
   <figure class="mb-6">
-
 
 **Before Our Update:**
 - Our apex domain (`onetimesecret.com`) functioned as an alias to `eu.onetimesecret.com`
@@ -84,20 +79,17 @@ Following our [recent homepage update](/content/posts/2025-05-05-homepage-update
   </figure>
 </div>
 
-
 ## How This Protects Our Users
 
 Our domain strategy creates clear verification markers to help users identify authentic Onetime Secret services:
 
 * **Consistent Domain Pattern**: All legitimate services use the `*.onetimesecret.com` pattern - if you see `onetímesecret.org`, `1timesecret.com`, or similar variations, it's not our service.
-  
+
 * **Visual Distinction**: Our marketing site now has a distinctly different appearance from our application interface - impostors typically copy just one look.
 
 * **Regional Subdomains**: Legitimate services always use regional identifiers (e.g., `eu.onetimesecret.com`) - phishing sites rarely implement complete regional architecture
 
 * **Official Naming Conventions**: All legitimate subdomains follow consistent patterns (docs, blog, status).
-
-
 
 ## Conclusion: Engineering Security Through Domain Architecture
 
@@ -112,12 +104,9 @@ This architectural approach transforms our domain strategy from a potential secu
 
 Our next post will provide a detailed verification guide for users to validate authentic Onetime Secret services.
 
-
 ![Domain Strategy Diagram](/img/blog/2025/20250514-homepage-update-post-as-in-after.svg)
 
-
 ---
-
 
 ## Addendum: Quick Reference
 

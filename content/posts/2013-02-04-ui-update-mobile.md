@@ -34,7 +34,6 @@ The shared secret view now provides a clearer interface for recipients, enhancin
 ![Shared secret v2](/img/blog/2013/ots-secret2-v2s.png){alt="Shared secret v2" width="400" height="400" .rounded-lg .border-solid .border .border-gray-300 .shadow-lg .dark:opacity-75}
 ![Shared secret v3](/img/blog/2013/ots-secret2-v3s.png){alt="Shared secret v3" width="400" height="400" .rounded-lg .border-solid .border .border-gray-300 .shadow-lg .dark:opacity-75}
 
-
 ## Conclusion
 These UI improvements are part of our ongoing commitment to providing a secure, user-friendly platform for sharing sensitive information. The new design not only enhances the visual appeal but also improves functionality, especially on mobile devices. This update reinforces our core mission: offering a simple, reliable way to share passwords and confidential messages that self-destruct after a single view.
 

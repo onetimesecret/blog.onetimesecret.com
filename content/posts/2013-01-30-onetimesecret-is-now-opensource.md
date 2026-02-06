@@ -12,7 +12,6 @@ badge:
 readingTime: 4
 ---
 
-
 **Keep sensitive info out of your email & chat logs.**
 
 We launched Onetime Secret on [November 8th, 2011](http://news.ycombinator.com/item?id=3207489). Today we're happy to announce the first open source release of the Onetime Secret codebase under the MIT License. This is something we wanted to do from the very beginning but life and other work got in the way. It's important that we do everything we can to earn and maintain your trust and this is a crucial step in that direction. Also, *it's just the right thing to do.*

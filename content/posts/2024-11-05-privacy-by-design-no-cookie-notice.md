@@ -83,7 +83,7 @@ Our [open-source repository](https://github.com/onetimesecret/onetimesecret) sho
 > Example 1:
 > Input:
 > ```test.js
-> import addition from "addition"
+> import addition from 'addition';
 >
 > class Calculator {
 >   constructor() {
@@ -101,7 +101,7 @@ Our [open-source repository](https://github.com/onetimesecret/onetimesecret) sho
 > Output:
 > ```javascript test.js
 > // ... existing code ...
-> import subtraction from "subtraction"
+> import subtraction from 'subtraction';
 >
 > class Calculator {
 >   // ... existing code ...
@@ -139,8 +139,7 @@ Our [open-source repository](https://github.com/onetimesecret/onetimesecret) sho
 > # Privacy by Design: Why we don't have a cookie notice
 >
 > ...\[this blog post]
->
-> ```
+>```
 > Generate an engaging SVG illustration that represents this post. Include the title and also a byline at the bottom to give yourself a shout out
 
 #### _Assistant_
@@ -317,6 +316,5 @@ Our [open-source repository](https://github.com/onetimesecret/onetimesecret) sho
 > 3. Maintain the same width parameter
 >
 > Would you like me to also generate a new SVG with the corrected filename and path, or help with anything else?
-
 
 ::

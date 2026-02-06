@@ -30,7 +30,6 @@ Sometimes the good vs bad hackers are described as '<a href="http://en.wikipedia
 and '<a href="http://en.wikipedia.org/wiki/Black_hat">black hat</a>' hackers respectively.
 </p>
 
-
 <h3>Phishing</h3>
 
 <p class="indent">

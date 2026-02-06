@@ -1,21 +1,27 @@
 <!-- components/OnetimeSecretOg.vue -->
+<script setup lang="ts">
+defineProps<{
+  title: string;
+  description?: string;
+  headline?: string;
+}>();
+</script>
+
 <template>
   <div class="og-container">
     <div class="og-content">
-      <h1 class="og-title">{{ title }}</h1>
-      <p v-if="description" class="og-description">{{ description }}</p>
-      <p v-if="headline" class="og-headline">{{ headline }}</p>
+      <h1 class="og-title">
+        {{ title }}
+      </h1>
+      <p v-if="description" class="og-description">
+        {{ description }}
+      </p>
+      <p v-if="headline" class="og-headline">
+        {{ headline }}
+      </p>
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-defineProps<{
-  title: string
-  description?: string
-  headline?: string
-}>()
-</script>
 
 <style>
 .og-container {

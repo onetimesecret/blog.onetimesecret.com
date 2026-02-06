@@ -18,7 +18,6 @@ Today we're announcing Onetime Secret v0.20.0, a release focused on renewed lang
 
 [Full v0.20.0 release notes](https://github.com/onetimesecret/onetimesecret/releases/tag/v0.20.0)
 
-
 ## Key Improvements
 
 ### Internationalization Support
@@ -89,7 +88,6 @@ We've significantly improved:
 
 Note that we've renamed the `services` configuration key to `diagnostics` in etc/config.yaml, and we've introduced several new environment variables to support internationalization and enhanced monitoring. See the [full v0.20.0 release notes](https://github.com/onetimesecret/onetimesecret/releases/tag/v0.20.0) for details.
 
-
 ## New to Onetime Secret?
 
 Onetime Secret lets you share sensitive information that's automatically destroyed after it's viewed.
@@ -103,7 +101,6 @@ Onetime Secret lets you share sensitive information that's automatically destroy
 - [Roadmap](https://github.com/orgs/onetimesecret/projects/1)
 
 Thank you to everyone who contributed to this release. We appreciate all your support and feedback.
-
 
 ::ImageModal{src="/img/blog/2025/release-0.20.svg" alt="" width="600"}
 ::

@@ -1,21 +1,3 @@
-<template>
-  <div>
-    <img
-      :src="props.src"
-      :alt="props.alt"
-      :width="props.width"
-      :height="props.height"
-      @click="openModal"
-      class="rounded-lg border border-gray-300 shadow-lg dark:opacity-75 cursor-pointer"
-    />
-    <teleport to="body">
-      <div v-if="isModalOpen" @click="closeModal" class="modal">
-        <img :src="props.src" :alt="props.alt" class="modal-image" />
-      </div>
-    </teleport>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue';
 
@@ -26,26 +8,23 @@ interface Props {
   height?: number | string;
 }
 
-const isSvg = computed(() => {
-  return props.src.toLowerCase().endsWith('.svg');
-});
+defineProps<Props>();
 
-const props = defineProps<Props>();
 const isModalOpen = ref(false);
 
-const openModal = () => {
+function openModal() {
   isModalOpen.value = true;
-};
+}
 
-const closeModal = () => {
+function closeModal() {
   isModalOpen.value = false;
-};
+}
 
-const handleKeyDown = (event: KeyboardEvent) => {
+function handleKeyDown(event: KeyboardEvent) {
   if (event.key === 'Escape' && isModalOpen.value) {
     closeModal();
   }
-};
+}
 
 onMounted(() => {
   document.addEventListener('keydown', handleKeyDown);
@@ -56,6 +35,23 @@ onUnmounted(() => {
 });
 </script>
 
+<template>
+  <div>
+    <img
+      :src="src"
+      :alt="alt"
+      :width="width"
+      :height="height"
+      class="rounded-lg border border-gray-300 shadow-lg dark:opacity-75 cursor-pointer"
+      @click="openModal"
+    >
+    <teleport to="body">
+      <div v-if="isModalOpen" class="modal" @click="closeModal">
+        <img :src="src" :alt="alt" class="modal-image">
+      </div>
+    </teleport>
+  </div>
+</template>
 
 <style scoped>
 .modal {

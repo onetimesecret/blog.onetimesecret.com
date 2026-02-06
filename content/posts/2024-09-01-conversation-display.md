@@ -15,7 +15,6 @@ readingTime: 8
 _draft: true
 ---
 
-
 ::ConversationDisplay{ jsonUrl="/convos/convo.json" }
 
 ::

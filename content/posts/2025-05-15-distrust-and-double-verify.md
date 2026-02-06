@@ -16,7 +16,6 @@ readingTime: 5
 
 Following our [domain architecture update](/content/posts/2025-05-14-homepage-post-as-in-after), this guide provides concrete methods to verify authentic Onetime Secret services and identify impostor sites.
 
-
 ## Website Address Verification
 
 The most reliable way to verify authentic Onetime Secret services:
@@ -31,12 +30,10 @@ The most reliable way to verify authentic Onetime Secret services:
 Avoid lookalikes such as _one-timesecret.com_, _1timesecret.org_, _onetimesecret-secure.com_, and any domains with subtle character substitutions like _onetímesecret.com_ (using the accented letter "í" instead of regular "i")
 ::
 
-
 <figure class="mb-6">
   <img src="/img/blog/2025/20250515-verifying-onetimesecret.svg" alt="Verification guide for Onetime Secret services" class="rounded-lg shadow-md w-full">
   <figcaption class="text-sm text-gray-600 mt-2 text-center">Regional prefixes (eu., us., nz.) distinguish authentic Onetime Secret domains from others.</figcaption>
 </figure>
-
 
 ## Technical Verification
 
@@ -44,11 +41,10 @@ For technical users, verify these elements:
 
 - **Domain Registration**: Official domains registered since 2011 (verify via [WHOIS](https://whois.gandi.net/en/results?search=onetimesecret.com))
 - **HTTPS Enforcement**: All legitimate services enforce HTTPS with HSTS (see [HSTS Preload List](https://hstspreload.org/?search=onetimesecret.com))
-- **DNS Records**: Verify A record via [DNSChecker](https://dnschecker.org/#A/onetimesecret.com). 
-  - ✅ Should be all green check marks indicating valid records. 
+- **DNS Records**: Verify A record via [DNSChecker](https://dnschecker.org/#A/onetimesecret.com).
+  - ✅ Should be all green check marks indicating valid records.
   - ❌ Red X marks or missing records suggest a fraudulent site.
-  
-  
+
 ## Official Web Presence
 
 To establish trust in the domain you're on, check the following popular sites to compare the spelling of "onetimesecret.com".
@@ -58,7 +54,6 @@ To establish trust in the domain you're on, check the following popular sites to
 - **Docker Hub**: [hub.docker.com/r/onetimesecret/onetimesecret](https://hub.docker.com/r/onetimesecret/onetimesecret)
 - **Internet Archive**: [View our 10+ year history](https://web.archive.org/web/*/onetimesecret.com)
 - **Hacker News Discussion (2011)**: [Original announcement and discussion](https://news.ycombinator.com/item?id=3207489)
-
 
 ## Visual Clues (Secondary Verification)
 

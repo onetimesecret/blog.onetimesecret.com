@@ -1,19 +1,3 @@
-<template>
-  <div class="flex flex-col md:flex-row gap-4 my-6">
-    <NuxtImg
-      :src="imageSrc"
-      :alt="imageAlt"
-      :class="[
-        'max-w-full md:max-w-sm rounded-lg shadow-md',
-        floatRight ? 'md:order-1 md:mr-4' : 'md:order-2 md:ml-4'
-      ]"
-    />
-    <p class="text-gray-700">
-      <slot></slot>
-    </p>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { defineProps, withDefaults } from 'vue';
 
@@ -23,8 +7,23 @@ interface Props {
   floatRight?: boolean;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   imageAlt: 'Image',
-  floatRight: false
+  floatRight: false,
 });
 </script>
+
+<template>
+  <div class="flex flex-col md:flex-row gap-4 my-6">
+    <NuxtImg
+      :src="imageSrc"
+      :alt="imageAlt"
+      class="max-w-full md:max-w-sm rounded-lg shadow-md" :class="[
+        floatRight ? 'md:order-1 md:mr-4' : 'md:order-2 md:ml-4',
+      ]"
+    />
+    <p class="text-gray-700">
+      <slot />
+    </p>
+  </div>
+</template>
