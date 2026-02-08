@@ -1,26 +1,25 @@
 ---
 layout: post
 title: "Domain strategy cont'd: 1-800-Dot-Dev"
-date: 2025-05-14
+date: 2026-01-04
 authors:
   - name: Delano
     to: https://blog.onetimesecret.com/about
     avatar:
       src: /img/portrait-profile-pic-delano-2025-m.png
 image:
-  src: /img/blog/2025/ots-domain-strategy.svg
+  src: /img/blog/2026/ots-dot-dev-hotline.svg
 badge:
   label: Engineering
 readingTime: 5
 draft: true
 ---
 
-Can refer to previous posts re: homepage update, domain clarity.
 
 ## Our Domain Structure
 
-* **`onetimesecret.com`**: Marketing site and portal to regional applications
-* **Regional domains** (`eu.onetimesecret.com`, `us.onetimesecret.com`, etc): Main application instances with share-nothing architecture, providing data sovereignty and operational scalability
+* **`onetimesecret.com`**: Product/company homepage and portal into the regional ~dimension~ sites.
+* **Regional domains** (`eu.onetimesecret.com`, `ca.onetimesecret.com`, etc): Main application instances with share-nothing architecture, providing data sovereignty, and robust, fault-tolerant operations.
 * **Supporting domains**:
   * **`docs.onetimesecret.com`**: Comprehensive documentation
   * **`blog.onetimesecret.com`**: Product updates and engineering insights

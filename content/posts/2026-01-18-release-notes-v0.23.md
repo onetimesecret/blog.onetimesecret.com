@@ -18,7 +18,7 @@ Onetime Secret v0.23 spans four releases (v0.23.0 through v0.23.3), covering con
 
 [Full release notes on GitHub](https://github.com/onetimesecret/onetimesecret/releases/tag/v0.23.0)
 
-## Breaking Change: Config File Migration
+### Breaking Change: Config File Migration
 
 > [!WARNING]
 > **v0.23.0 requires a config file migration before startup.** Configuration files have been converted from symbol keys to string keys. The application will not start until the migration is applied.
