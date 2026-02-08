@@ -1,9 +1,10 @@
 module.exports = {
   ci: {
     collect: {
+      staticDistDir: './.output/public',
       url: [
-        'https://blog.onetime.dev/',
-        'https://blog.onetime.dev/posts/2024-09-05-constraints',
+        'http://localhost/index.html',
+        'http://localhost/posts/2024-09-05-constraints/index.html',
       ],
       // Run multiple times to get more stable results
       numberOfRuns: 3,
