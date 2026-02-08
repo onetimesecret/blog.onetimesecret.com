@@ -21,13 +21,13 @@ const displayContent = computed(() => {
 
 <template>
   <div
-    class="p-4 cursor-pointer transition-colors duration-200 dark:text-gray-200"
+    class="p-4 cursor-pointer transition-colors duration-200 dark:text-midnight-200"
     :class="{
       'bg-brandcompdim-100 dark:bg-brandcompdim-900': isUser,
       'bg-brandcomp-300 dark:bg-brandcomp-800': !isUser,
     }"
   >
-    <h3 class="dark:text-gray-100">
+    <h3 class="dark:text-midnight-100">
       {{ isUser ? 'User' : 'Assistant' }}
     </h3>
     <div class="prose dark:prose-invert dark:text-white" v-html="displayContent" />

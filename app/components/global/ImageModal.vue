@@ -42,7 +42,7 @@ onUnmounted(() => {
       :alt="alt"
       :width="width"
       :height="height"
-      class="rounded-lg border border-gray-300 shadow-lg dark:opacity-75 cursor-pointer"
+      class="rounded-lg border border-midnight-300 shadow-lg dark:opacity-75 cursor-pointer"
       @click="openModal"
     >
     <teleport to="body">

@@ -14,7 +14,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <div class="my-8 px-4 sm:px-6 lg:px-8">
-    <div class="relative overflow-hidden rounded-lg bg-gray-50 dark:bg-gray-800/50 shadow-md">
+    <div class="relative overflow-hidden rounded-lg bg-midnight-50 dark:bg-midnight-800/50 shadow-md">
       <div class="absolute inset-y-0 left-0 w-1 bg-branddim-500/70 dark:bg-branddim-400/70" />
       <div class="px-4 py-5 sm:p-6">
         <div class="mb-4 text-xl font-medium text-branddim-600 dark:text-branddim-400">
@@ -37,7 +37,7 @@ withDefaults(defineProps<Props>(), {
               class="w-full sm:w-48 h-auto object-cover rounded-lg"
             >
           </div>
-          <div class="flex-1 space-y-4 text-base text-gray-700 dark:text-gray-300">
+          <div class="flex-1 space-y-4 text-base text-midnight-700 dark:text-midnight-300">
             <slot />
           </div>
         </div>

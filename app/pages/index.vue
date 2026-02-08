@@ -35,7 +35,7 @@ function formatDate(date: string) {
 </script>
 
 <template>
-  <UContainer class="py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 dark:bg-gray-900">
+  <UContainer class="py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
     <UPageHeader
       :title="page?.title"
       :description="page?.description"
@@ -60,7 +60,7 @@ function formatDate(date: string) {
           :authors="post.authors as any"
           :badge="post.badge as any"
           :orientation="index === 0 ? 'horizontal' : 'vertical'"
-          class="transition-all duration-300 hover:shadow-lg dark:hover:shadow-gray-700 rounded-lg overflow-hidden"
+          class="transition-all duration-300 hover:shadow-lg dark:hover:shadow-midnight-700 rounded-lg overflow-hidden"
           :class="[
             index === 0 ? 'col-span-full mb-16' : '',
           ]"

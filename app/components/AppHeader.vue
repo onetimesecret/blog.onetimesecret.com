@@ -26,7 +26,7 @@ const links = [
 <template>
   <UHeader
     :links="links"
-    class="dark:bg-gray-800"
+    class="dark:bg-midnight-800"
   >
     <template #title>
       <OnetimeLogo class="dark:text-white rounded-md" />
@@ -35,21 +35,21 @@ const links = [
         label="Blog"
         color="info"
         variant="subtle"
-        class="mb-0.5 dark:bg-gray-700 dark:text-gray-300"
+        class="mb-0.5 dark:bg-midnight-700 dark:text-midnight-300"
       />
     </template>
 
     <template #right>
-      <nav class="flex items-center space-x-4">
+      <nav class="flex items-center gap-4">
         <a
           href="https://onetimesecret.com/signin"
-          class="hidden lg:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray-700 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors duration-150 ease-in-out"
+          class="hidden lg:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-midnight-700 bg-midnight-200 hover:bg-midnight-300 dark:bg-midnight-700 dark:text-midnight-200 dark:hover:bg-midnight-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-midnight-500 transition-colors duration-150 ease-in-out"
         >
           Sign in
         </a>
         <a
           href="https://onetimesecret.com/signup"
-          class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-brand-600 hover:bg-brand-700 dark:bg-brand-700 dark:text-gray-100 dark:hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 transition-colors duration-150 ease-in-out"
+          class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-brand-600 hover:bg-brand-700 dark:bg-brand-700 dark:text-midnight-100 dark:hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 transition-colors duration-150 ease-in-out"
         >
           Sign up
           <svg class="ml-2 -mr-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -60,10 +60,10 @@ const links = [
     </template>
 
     <template #body>
-      <UNavigationTree
-        :links="navigation"
-        default-open
-        class="dark:bg-gray-800 dark:text-gray-300"
+      <UNavigationMenu
+        :items="navigation"
+        orientation="vertical"
+        class="dark:bg-midnight-800 dark:text-midnight-300"
       />
     </template>
   </UHeader>
