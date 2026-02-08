@@ -15,10 +15,6 @@ export default defineNuxtConfig({
     'nuxt-security',
   ],
 
-  experimental: {
-    renderJsonPayloads: false,
-  },
-
   nitro: {
     prerender: {
       concurrency: 250,
@@ -33,6 +29,9 @@ export default defineNuxtConfig({
   content: {
     build: {
       markdown: {
+        remarkPlugins: {
+          'remark-github-blockquote-alert': {},
+        },
         highlight: {
           theme: {
             default: 'houston',
