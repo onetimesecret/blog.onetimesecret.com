@@ -105,9 +105,8 @@ module.exports = {
       ],
     },
     upload: {
-      target: 'temporary-public-storage',
-      githubStatusContextSuffix: 'nuxt-lighthouse-ci',
-      githubToken: process.env.GITHUB_TOKEN,
+      target: 'filesystem',
+      outputDir: '.lighthouseci/reports',
     },
     server: {
       // Don't start a server for static site testing
