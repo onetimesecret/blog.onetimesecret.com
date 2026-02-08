@@ -1,8 +1,13 @@
 module.exports = {
   ci: {
     collect: {
-      // Nuxt SSG-specific static output directory
+      // Serve the Nuxt SSG output directory
       staticDistDir: './.output/public',
+      // Explicit URLs to test (avoids auto-discovery hitting stubs like /docs/)
+      url: [
+        'http://localhost/index.html',
+        'http://localhost/posts/2024-09-05-constraints/index.html',
+      ],
       // Run multiple times to get more stable results
       numberOfRuns: 3,
       // Test both mobile and desktop
