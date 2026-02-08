@@ -86,7 +86,7 @@ else {
           {{ post.title }}
         </h1>
         <div class="flex items-center space-x-4 text-sm text-midnight-500 dark:text-midnight-400">
-          <time>{{ formattedDate }}</time>
+          <time :datetime="post.date">{{ formattedDate }}</time>
           <span>&middot;</span>
           <span>{{ post.readingTime }} min read</span>
         </div>

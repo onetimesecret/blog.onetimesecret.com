@@ -40,7 +40,7 @@ const links = [
     </template>
 
     <template #right>
-      <nav class="flex items-center gap-4">
+      <nav aria-label="Account" class="flex items-center gap-4">
         <a
           href="https://onetimesecret.com/signin"
           class="hidden lg:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-midnight-700 bg-midnight-200 hover:bg-midnight-300 dark:bg-midnight-700 dark:text-midnight-200 dark:hover:bg-midnight-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-midnight-500 transition-colors duration-150 ease-in-out"

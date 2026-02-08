@@ -11,6 +11,7 @@ const props = withDefaults(defineProps<Props>(), {
   expanded: false,
 });
 
+const contentId = useId();
 const isExpanded = ref(props.expanded);
 
 function toggleContent() {
@@ -23,6 +24,7 @@ function toggleContent() {
     <button
       class="flex items-center justify-between w-full px-4 py-2 text-left text-midnight-700 bg-midnight-100 rounded-lg hover:bg-midnight-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 dark:bg-midnight-800 dark:text-midnight-200 dark:hover:bg-midnight-700"
       :aria-expanded="isExpanded"
+      :aria-controls="contentId"
       @click="toggleContent"
     >
       <span class="font-sm">{{ summary }}</span>
@@ -53,6 +55,7 @@ function toggleContent() {
     >
       <div
         v-if="isExpanded"
+        :id="contentId"
         class="mt-2 px-4 py-3 bg-white rounded-lg shadow-sm dark:bg-midnight-900 dark:text-midnight-200"
       >
         <slot />
