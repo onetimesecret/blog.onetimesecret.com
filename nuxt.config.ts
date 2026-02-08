@@ -87,6 +87,21 @@ export default defineNuxtConfig({
     '/docs': { redirect: '/docs/introduction', prerender: true },
   },
 
+  security: {
+    headers: {
+      contentSecurityPolicy: {
+        'script-src': [
+          "'self'",
+          'https:',
+          "'unsafe-inline'",
+          "'strict-dynamic'",
+          "'nonce-{{nonce}}'",
+          "'wasm-unsafe-eval'"
+        ]
+      }
+    }
+  },
+
   devtools: {
     enabled: true,
   },
