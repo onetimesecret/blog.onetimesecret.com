@@ -49,7 +49,7 @@ const links = [
         </a>
         <a
           href="https://onetimesecret.com/signup"
-          class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-brand-600 hover:bg-brand-700 dark:bg-brand-700 dark:text-midnight-100 dark:hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 transition-colors duration-150 ease-in-out"
+          class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md font-brand text-white bg-brand-600 hover:bg-brand-700 dark:bg-brand-700 dark:text-midnight-100 dark:hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 transition-colors duration-150 ease-in-out"
         >
           Sign up
           <svg class="ml-2 -mr-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

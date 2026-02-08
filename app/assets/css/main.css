@@ -86,11 +86,17 @@
     color: var(--color-midnight-100, #d8e7ed);
   }
 
-  /* Apply brand font to headings and buttons */
+  .dark {
+    --ui-text-muted: var(--color-midnight-300);
+  }
+
+  /* Apply brand font to headings, buttons, and button-styled links */
   h1,
   h2,
   button,
-  a.block {
+  a.block,
+  a.inline-flex,
+  nav a {
     font-family: var(--font-brand);
   }
 }
