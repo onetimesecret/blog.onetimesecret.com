@@ -16,7 +16,6 @@ export default defineNuxtConfig({
   ],
 
   experimental: {
-    appManifest: false,
     renderJsonPayloads: false,
   },
 
@@ -27,9 +26,7 @@ export default defineNuxtConfig({
       failOnError: false,
       crawlLinks: false,
       routes,
-      ignore: [
-        route => route.includes('/posts/.'),
-      ],
+      ignore: [route => route.includes('/posts/.')],
     },
   },
 
@@ -68,14 +65,15 @@ export default defineNuxtConfig({
 
   vite: {
     server: {
-      allowedHosts: true,
+      allowedHosts:
+        process.env.VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS?.split(',') || [],
     },
   },
 
   css: ['~/assets/css/main.css', '~/assets/css/font.css'],
 
   hooks: {
-    'components:extend': (components) => {
+    'components:extend': (components: any[]) => {
       const globals = components.filter(c =>
         ['UButton'].includes(c.pascalName),
       );
