@@ -91,15 +91,15 @@ export default defineNuxtConfig({
     headers: {
       contentSecurityPolicy: {
         'script-src': [
-          "'self'",
+          '\'self\'',
           'https:',
-          "'unsafe-inline'",
-          "'strict-dynamic'",
-          "'nonce-{{nonce}}'",
-          "'wasm-unsafe-eval'"
-        ]
-      }
-    }
+          '\'unsafe-inline\'',
+          '\'strict-dynamic\'',
+          '\'nonce-{{nonce}}\'',
+          '\'wasm-unsafe-eval\'',
+        ],
+      },
+    },
   },
 
   devtools: {
