@@ -38,3 +38,6 @@ tmp
 Dockerfile.*
 !Dockerfile.example
 .qodo
+
+# Tools
+.lighthouseci
