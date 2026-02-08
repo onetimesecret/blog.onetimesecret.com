@@ -2,6 +2,8 @@
 import { format } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 
+const POSTS_PER_PAGE = 20;
+
 const { data: page } = await useAsyncData('homepage', () => queryCollection('content').path('/').first());
 if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
@@ -10,6 +12,15 @@ if (!page.value) {
 const { data: posts } = await useAsyncData('posts', () => queryCollection('posts')
   .order('date', 'DESC')
   .all());
+
+const visibleCount = ref(POSTS_PER_PAGE);
+
+const visiblePosts = computed(() => posts.value?.slice(0, visibleCount.value) ?? []);
+const hasMore = computed(() => (posts.value?.length ?? 0) > visibleCount.value);
+
+function showMore() {
+  visibleCount.value += POSTS_PER_PAGE;
+}
 
 useSeoMeta({
   title: page.value.title,
@@ -32,6 +43,16 @@ function formatDate(date: string) {
   const dateOut = new Date(year, month, day);
   return format(dateOut, 'MMMM d, yyyy', { locale: enUS });
 }
+
+function imageProps(post: any, index: number) {
+  const base = typeof post.image === 'string'
+    ? { src: post.image }
+    : { ...post.image };
+  if (index > 0) {
+    base.loading = 'lazy';
+  }
+  return base;
+}
 </script>
 
 <template>
@@ -50,12 +71,12 @@ function formatDate(date: string) {
     <UPageBody>
       <UBlogPosts>
         <UBlogPost
-          v-for="(post, index) in posts"
-          :key="index"
+          v-for="(post, index) in visiblePosts"
+          :key="post.path"
           :to="post.path"
           :title="post.title"
           :description="post.description"
-          :image="post.image as any"
+          :image="post.image ? imageProps(post, index) as any : undefined"
           :date="formatDate(post.date)"
           :authors="post.authors as any"
           :badge="post.badge as any"
@@ -66,6 +87,16 @@ function formatDate(date: string) {
           ]"
         />
       </UBlogPosts>
+
+      <div v-if="hasMore" class="mt-12 flex justify-center">
+        <UButton
+          label="Show older posts"
+          color="neutral"
+          variant="outline"
+          size="lg"
+          @click="showMore"
+        />
+      </div>
     </UPageBody>
   </UContainer>
 </template>

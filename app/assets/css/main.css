@@ -76,6 +76,13 @@
     font-family: var(--font-serif, ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif);
   }
 
+  /* Override bare --ui-primary in light mode: brand-600 (5.21:1) instead of
+     brand-500 (4.16:1) for WCAG AA normal-text compliance on white. */
+  :root,
+  .light {
+    --ui-primary: var(--ui-color-primary-600);
+  }
+
   body {
     background-color: var(--color-white, #fff);
     color: var(--color-midnight-900, #010b1c);
