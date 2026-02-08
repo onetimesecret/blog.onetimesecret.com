@@ -1,6 +1,6 @@
 <!-- pages/debug.vue -->
 <script setup>
-const { data: content } = await useAsyncData('content', () => queryContent().find());
+const { data: content } = await useAsyncData('content', () => queryCollection('posts').all());
 </script>
 
 <template>

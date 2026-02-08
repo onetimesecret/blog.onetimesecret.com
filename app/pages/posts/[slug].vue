@@ -1,49 +1,31 @@
 <script setup lang="ts">
-import type { BlogPost } from '~/types';
 import { format } from 'date-fns';
 import { enUS } from 'date-fns/locale';
-import { joinURL, withoutTrailingSlash } from 'ufo';
+import { joinURL } from 'ufo';
 
 const route = useRoute();
 
-const { data: post } = await useAsyncData(route.path, () => queryContent<BlogPost>(route.path).findOne());
+const { data: post } = await useAsyncData(route.path, () => queryCollection('posts').path(route.path).first());
 if (!post.value) {
   throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: true });
 }
 
-const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryContent('/posts')
-  .where({ _extension: 'md' })
-  .without(['body', 'excerpt'])
-  .sort({ date: -1 })
-  .findSurround(withoutTrailingSlash(route.path)), { default: () => [] });
+const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryCollectionItemSurroundings('posts', route.path), { default: () => [] });
 
-const title = post.value.head?.title || post.value.title;
-const description = post.value.head?.description || post.value.description;
+const title = post.value.title;
+const description = post.value.description;
 
-// Computed property for formatted date
 const formattedDate = computed(() => {
-  if (!post.value.date) {
+  if (!post.value?.date) {
     return 'No date';
   }
   const dateParts = post.value.date.split('-');
   const year = Number.parseInt(dateParts[0], 10);
-  const month = Number.parseInt(dateParts[1], 10) - 1; // Months are 0-based in JavaScript
+  const month = Number.parseInt(dateParts[1], 10) - 1;
   const day = Number.parseInt(dateParts[2], 10);
   const date = new Date(year, month, day);
-
-  // if (isNaN(date.getTime())) {
-  //  return 'Invalid date';
-  // }
-
   return format(date, 'MMMM d, yyyy', { locale: enUS });
 });
-
-// Alternative formats
-// const dateFormats = computed(() => ({
-//  short: format(parseISO(post.date), 'MMM d, yyyy'),
-//  iso: format(parseISO(post.date), 'yyyy-MM-dd'),
-//  full: format(parseISO(post.date), 'EEEE, MMMM d, yyyy')
-// }))
 
 useSeoMeta({
   title,
@@ -75,7 +57,7 @@ else {
 <template>
   <UContainer v-if="post" class="py-8 sm:py-16">
     <div class="mb-8">
-      <NuxtLink to="/" class="text-sm font-medium text-primary-600 hover:text-primary-500">
+      <NuxtLink to="/" class="text-sm font-medium text-brand-600 hover:text-brand-500">
         <svg class="inline-block w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
@@ -83,7 +65,7 @@ else {
       </NuxtLink>
     </div>
 
-    <article class="max-w-3xl mx-auto prose">
+    <article class="max-w-3xl mx-auto prose dark:prose-invert">
       <header class="mb-12">
         <div v-if="post.image?.src" class="mb-6">
           <img
@@ -95,15 +77,16 @@ else {
         </div>
 
         <UBadge
-          v-bind="post.badge"
+          v-if="post.badge"
+          :label="post.badge.label"
           variant="subtle"
           class="mb-4"
         />
-        <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+        <h1 class="text-4xl sm:text-5xl font-bold text-midnight-900 dark:text-white mb-4">
           {{ post.title }}
         </h1>
-        <div class="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
-          <time>{{ formattedDate }}</time>
+        <div class="flex items-center space-x-4 text-sm text-midnight-500 dark:text-midnight-400">
+          <time :datetime="post.date">{{ formattedDate }}</time>
           <span>&middot;</span>
           <span>{{ post.readingTime }} min read</span>
         </div>
@@ -112,10 +95,10 @@ else {
             v-for="(author, index) in post.authors"
             :key="index"
             :to="author.to"
-            color="white"
+            color="neutral"
             target="_blank"
             size="sm"
-            class="inline-flex items-center px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+            class="inline-flex items-center px-3 py-1.5 rounded-full bg-midnight-100 dark:bg-midnight-800 text-midnight-700 dark:text-midnight-300 hover:bg-midnight-200 dark:hover:bg-midnight-700 transition"
           >
             <UAvatar
               v-bind="author.avatar"
@@ -129,22 +112,22 @@ else {
       </header>
 
       <UPage class="relative">
-        <UPageBody prose class="dark:prose-invert max-w-none">
+        <UPageBody class="max-w-none">
           <ContentRenderer
             v-if="post && post.body"
             :value="post"
           />
 
-          <UContentSurround :surround="surround" class="mt-12" />
+          <USeparator v-if="surround?.filter(Boolean).length" class="mt-12" />
+          <UContentSurround :surround="(surround as any)" class="mt-6" />
         </UPageBody>
 
-        <aside class="hidden xl:block xl:pl-8 xl:w-64 xl:fixed xl:right-10 xl:top-24">
+        <template v-if="post.body?.toc?.links?.length" #right>
           <UContentToc
-            v-if="post.body && post.body.toc"
             :links="post.body.toc.links"
-            class="sticky top-24 max-h-(screen-24) overflow-y-auto text-sm text-gray-600 dark:text-gray-400"
+            class="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto text-sm text-midnight-600 dark:text-midnight-400"
           />
-        </aside>
+        </template>
       </UPage>
     </article>
   </UContainer>

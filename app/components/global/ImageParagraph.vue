@@ -22,7 +22,7 @@ withDefaults(defineProps<Props>(), {
         floatRight ? 'md:order-1 md:mr-4' : 'md:order-2 md:ml-4',
       ]"
     />
-    <p class="text-gray-700">
+    <p class="text-midnight-700 dark:text-midnight-300">
       <slot />
     </p>
   </div>

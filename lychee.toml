@@ -1,0 +1,48 @@
+# Lychee Configuration File
+# https://github.com/lycheeverse/lychee
+
+# Maximum number of concurrent network requests
+max_concurrency = 8
+
+# Maximum number of allowed redirects
+max_redirects = 5
+
+# Maximum number of retries per request
+max_retries = 3
+
+# Wait time between retries (in seconds)
+retry_wait_time = 2
+
+# Request timeout (in seconds)
+timeout = 20
+
+# Be honest about what we are
+user_agent = "Mozilla/5.0 (compatible; lychee/0.14; +https://blog.onetimesecret.com)"
+
+# HTTP status codes to accept as valid
+accept = [200, 204, 206, 301, 302, 429]
+
+# Include verbosity for debugging (off by default)
+# verbose = true
+
+# Cache responses to avoid repeat checks (useful for development)
+cache = true
+
+# HEAD is more polite and efficient (default)
+method = "head"
+
+# URLs to exclude (sites with aggressive bot detection)
+# exclude = [
+#     "https://bsky\\.app/.*",
+# ]
+
+# Exclude all private IPs
+exclude_all_private = true
+
+# Note: Email addresses are excluded by default in lychee v0.21.0+
+# No need to specify exclude_mail (deprecated flag)
+
+# Remap certain URLs (useful for local development or redirects)
+# Format: "pattern" = "replacement"
+# [remap]
+# "https://example.com" = "https://blog.onetimesecret.com"

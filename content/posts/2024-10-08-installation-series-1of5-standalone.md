@@ -162,8 +162,9 @@ Alternatively, you can download the latest release:
    cd onetimesecret
    ```
 
-> [!NOTE]
-> Choose the method that best suits your needs and environment. The git clone option is useful for developers who want to easily pull updates or contribute to the project, while the download option might be preferable for those who just want the latest stable release.
+::note
+Choose the method that best suits your needs and environment. The git clone option is useful for developers who want to easily pull updates or contribute to the project, while the download option might be preferable for those who just want the latest stable release.
+::
 
 ### Step 3: Initialize Configuration Files
 

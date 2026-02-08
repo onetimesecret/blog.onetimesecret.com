@@ -1,0 +1,213 @@
+name: Lighthouse CI Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lighthouse:
+    name: Lighthouse Audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10.28.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build blog site
+        run: pnpm generate
+        env:
+          NUXT_UI_PRO_LICENSE: ${{ secrets.NUXT_UI_PRO_LICENSE }}
+
+      - name: Run Lighthouse CI
+        run: pnpm dlx @lhci/cli autorun
+        env:
+          CI: true
+
+      - name: Upload Lighthouse reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports
+          path: .lighthouseci/
+          if-no-files-found: warn
+          retention-days: 14
+        if: always()
+
+      - name: Comment on PR with Lighthouse results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            try {
+              // Find the manifest file
+              const reportDir = '.lighthouseci';
+              const manifestPath = path.join(reportDir, 'manifest.json');
+
+              if (!fs.existsSync(manifestPath)) {
+                console.log('No Lighthouse manifest found.');
+                return;
+              }
+
+              const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+              console.log('Manifest entries:', manifest.length);
+
+              // Get representative runs for both mobile and desktop
+              const representativeRuns = manifest.filter(entry => entry.isRepresentativeRun);
+              console.log('Representative runs:', representativeRuns.length);
+
+              if (representativeRuns.length === 0) {
+                console.log('No representative runs found in manifest.');
+                return;
+              }
+
+              // Build comment header
+              let comment = `## 🚦 Lighthouse Audit Results\n\n`;
+
+              // Process each representative run (mobile/desktop)
+              for (const run of representativeRuns) {
+                const lhr = JSON.parse(fs.readFileSync(path.join(reportDir, run.jsonPath), 'utf8'));
+                const formFactor = lhr.configSettings.formFactor || 'unknown';
+                const emoji = formFactor === 'mobile' ? '📱' : '🖥️';
+
+                comment += `### ${emoji} ${formFactor.charAt(0).toUpperCase() + formFactor.slice(1)} Results\n\n`;
+
+                // Score categories
+                const scores = {
+                  'Performance': lhr.categories.performance.score,
+                  'Accessibility': lhr.categories.accessibility.score,
+                  'Best Practices': lhr.categories['best-practices'].score,
+                  'SEO': lhr.categories.seo.score
+                };
+
+                comment += `| Category | Score |\n| --- | --- |\n`;
+                for (const [category, score] of Object.entries(scores)) {
+                  const percentage = Math.round(score * 100);
+                  const emoji = percentage >= 90 ? '🟢' : percentage >= 50 ? '🟡' : '🔴';
+                  comment += `| ${category} | ${emoji} ${percentage} |\n`;
+                }
+
+                // Core Web Vitals
+                comment += `\n**Core Web Vitals**\n\n`;
+                const metrics = {
+                  'First Contentful Paint': lhr.audits['first-contentful-paint'],
+                  'Largest Contentful Paint': lhr.audits['largest-contentful-paint'],
+                  'Cumulative Layout Shift': lhr.audits['cumulative-layout-shift'],
+                  'Total Blocking Time': lhr.audits['total-blocking-time']
+                };
+
+                comment += `| Metric | Value |\n| --- | --- |\n`;
+                for (const [name, audit] of Object.entries(metrics)) {
+                  const emoji = audit.score >= 0.9 ? '✅' : audit.score >= 0.5 ? '⚠️' : '❌';
+                  comment += `| ${name} | ${emoji} ${audit.displayValue || 'N/A'} |\n`;
+                }
+
+                // === ACCESSIBILITY ISSUES ===
+                // Extract failed accessibility audits
+                const a11yAudits = Object.entries(lhr.audits)
+                  .filter(([id, audit]) => {
+                    return audit.score !== null &&
+                           audit.score < 1 &&
+                           lhr.categories.accessibility.auditRefs.some(ref => ref.id === id);
+                  })
+                  .map(([id, audit]) => ({
+                    id,
+                    title: audit.title,
+                    description: audit.description,
+                    score: audit.score,
+                    impact: audit.details?.impact || 'unknown'
+                  }))
+                  .sort((a, b) => a.score - b.score); // Sort by score (worst first)
+
+                if (a11yAudits.length > 0) {
+                  comment += `\n### ⚠️ Accessibility Issues (${a11yAudits.length})\n\n`;
+                  comment += `<details>\n<summary>Click to expand accessibility failures</summary>\n\n`;
+
+                  for (const audit of a11yAudits) {
+                    const scorePercent = Math.round((audit.score || 0) * 100);
+                    const impactEmoji = audit.impact === 'serious' ? '🔴' : audit.impact === 'moderate' ? '🟡' : '⚪';
+                    comment += `#### ${impactEmoji} ${audit.title} (Score: ${scorePercent})\n`;
+                    comment += `${audit.description}\n\n`;
+
+                    // Include detailed failures from the audit if available
+                    const auditDetails = lhr.audits[audit.id];
+                    if (auditDetails.details && auditDetails.details.items && auditDetails.details.items.length > 0) {
+                      const itemCount = auditDetails.details.items.length;
+                      comment += `**${itemCount} element${itemCount > 1 ? 's' : ''} affected**\n\n`;
+                    }
+                  }
+                  comment += `</details>\n\n`;
+                } else {
+                  comment += `\n### ✅ No accessibility issues detected!\n\n`;
+                }
+
+                // Link to detailed report (if URL available)
+                if (run.url) {
+                  comment += `[📋 View Full ${formFactor} Report](${run.url})\n\n`;
+                }
+
+                comment += `---\n\n`;
+              }
+
+              // Add artifact download link
+              const runId = context.runId;
+              const repoUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}`;
+              comment += `📦 [Download Detailed Reports](${repoUrl}/actions/runs/${runId})\n\n`;
+
+              // Detect which form factors were tested
+              const formFactors = new Set();
+              for (const run of representativeRuns) {
+                const lhr = JSON.parse(fs.readFileSync(path.join(reportDir, run.jsonPath), 'utf8'));
+                formFactors.add(lhr.configSettings.formFactor);
+              }
+
+              comment += `> Lighthouse CI ran ${representativeRuns.length} test${representativeRuns.length > 1 ? 's' : ''} `;
+              comment += `(mobile ${formFactors.has('mobile') ? '✓' : '✗'}, `;
+              comment += `desktop ${formFactors.has('desktop') ? '✓' : '✗'})\n`;
+
+              // Post the comment
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+
+              console.log('✅ Successfully posted Lighthouse results to PR');
+
+            } catch (error) {
+              console.error('❌ Error creating Lighthouse comment:', error);
+              // Still post a basic comment so users know to check artifacts
+              try {
+                const runId = context.runId;
+                const repoUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}`;
+                await github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: `## 🚦 Lighthouse Audit Results\n\n` +
+                        `⚠️ Unable to parse Lighthouse results automatically.\n\n` +
+                        `📦 [Download Full Reports](${repoUrl}/actions/runs/${runId})\n\n` +
+                        `Error: ${error.message}`
+                });
+              } catch (commentError) {
+                console.error('Failed to post fallback comment:', commentError);
+              }
+            }

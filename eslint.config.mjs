@@ -1,5 +1,3 @@
-/* eslint-env node */
-
 /**
  *
  * Follows formatting config via: https://github.com/antfu/eslint-config
