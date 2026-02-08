@@ -1,12 +1,9 @@
 module.exports = {
   ci: {
     collect: {
-      // Serve the Nuxt SSG output directory
-      staticDistDir: './.output/public',
-      // Explicit URLs to test (avoids auto-discovery hitting stubs like /docs/)
       url: [
-        'http://localhost/index.html',
-        'http://localhost/posts/2024-09-05-constraints/index.html',
+        'https://blog.onetime.dev/',
+        'https://blog.onetime.dev/posts/2024-09-05-constraints',
       ],
       // Run multiple times to get more stable results
       numberOfRuns: 3,
@@ -107,9 +104,6 @@ module.exports = {
     upload: {
       target: 'filesystem',
       outputDir: '.lighthouseci/reports',
-    },
-    server: {
-      // Don't start a server for static site testing
     },
   },
 };
