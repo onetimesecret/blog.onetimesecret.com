@@ -20,8 +20,9 @@ Onetime Secret v0.23 spans four releases (v0.23.0 through v0.23.3), covering con
 
 ### Breaking Change: Config File Migration
 
-> [!WARNING]
-> **v0.23.0 requires a config file migration before startup.** Configuration files have been converted from symbol keys to string keys. The application will not start until the migration is applied.
+::warning
+**v0.23.0 requires a config file migration before startup.** Configuration files have been converted from symbol keys to string keys. The application will not start until the migration is applied.
+::
 
 On first boot after upgrading to v0.23.0, you'll see a prompt like this:
 
@@ -57,6 +58,7 @@ This release also introduces a Git JSON merge driver for locale files ([#2080](h
 ## Installation
 
 **Docker**: `docker pull onetimesecret/onetimesecret:v0.23.3`
+
 **Source**: [GitHub Release](https://github.com/onetimesecret/onetimesecret/releases/tag/v0.23.3)
 
 v0.23.2 also includes 49 dependency updates. See the individual release notes for the full changelog.
