@@ -11,7 +11,11 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck",
+    "check:links": "./bin/check-links.sh",
+    "check:links:external": "./bin/check-links.sh --external",
+    "check:links:verbose": "./bin/check-links.sh --verbose",
+    "check:links:get": "./bin/check-links.sh --get --external"
   },
   "dependencies": {
     "@nuxt/content": "^3.11.2",
