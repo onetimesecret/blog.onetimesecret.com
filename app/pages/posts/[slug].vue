@@ -65,7 +65,7 @@ else {
       </NuxtLink>
     </div>
 
-    <article class="max-w-3xl mx-auto prose">
+    <article class="max-w-3xl mx-auto prose dark:prose-invert">
       <header class="mb-12">
         <div v-if="post.image?.src" class="mb-6">
           <img
@@ -82,10 +82,10 @@ else {
           variant="subtle"
           class="mb-4"
         />
-        <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+        <h1 class="text-4xl sm:text-5xl font-bold text-midnight-900 dark:text-white mb-4">
           {{ post.title }}
         </h1>
-        <div class="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
+        <div class="flex items-center space-x-4 text-sm text-midnight-500 dark:text-midnight-400">
           <time>{{ formattedDate }}</time>
           <span>&middot;</span>
           <span>{{ post.readingTime }} min read</span>
@@ -98,7 +98,7 @@ else {
             color="neutral"
             target="_blank"
             size="sm"
-            class="inline-flex items-center px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+            class="inline-flex items-center px-3 py-1.5 rounded-full bg-midnight-100 dark:bg-midnight-800 text-midnight-700 dark:text-midnight-300 hover:bg-midnight-200 dark:hover:bg-midnight-700 transition"
           >
             <UAvatar
               v-bind="author.avatar"
@@ -112,7 +112,7 @@ else {
       </header>
 
       <UPage class="relative">
-        <UPageBody class="dark:prose-invert max-w-none">
+        <UPageBody class="max-w-none">
           <ContentRenderer
             v-if="post && post.body"
             :value="post"
@@ -125,7 +125,7 @@ else {
         <template v-if="post.body?.toc?.links?.length" #right>
           <UContentToc
             :links="post.body.toc.links"
-            class="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto text-sm text-gray-600 dark:text-gray-400"
+            class="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto text-sm text-midnight-600 dark:text-midnight-400"
           />
         </template>
       </UPage>
