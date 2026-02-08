@@ -76,6 +76,16 @@
     font-family: var(--font-serif, ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif);
   }
 
+  body {
+    background-color: var(--color-white, #fff);
+    color: var(--color-midnight-900, #010b1c);
+  }
+
+  .dark body {
+    background-color: var(--color-midnight-900, #010b1c);
+    color: var(--color-midnight-100, #d8e7ed);
+  }
+
   /* Apply brand font to headings and buttons */
   h1,
   h2,
