@@ -2,7 +2,7 @@
   "name": "onetimesecret-blog",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@10.7.0",
+  "packageManager": "pnpm@10.28.2",
   "scripts": {
     "pregenerate": "echo 'Pregenerate this'",
     "build": "NODE_OPTIONS='--max-old-space-size=2048 ' npx nuxt build",
