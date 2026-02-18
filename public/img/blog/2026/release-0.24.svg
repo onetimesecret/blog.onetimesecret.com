@@ -205,13 +205,13 @@
       The Architecture Release
     </text>
     <text x="100" y="98" font-size="10" text-anchor="middle" fill="#fcf8f2">
-      PostgreSQL 17+ &amp; RabbitMQ 4.3
+      PostgreSQL 17+ &bull; RabbitMQ 4.3
     </text>
     <text x="100" y="112" font-size="10" text-anchor="middle" fill="#fcf8f2">
-      Three Authentication Modes
+      Organizations &bull; API v3
     </text>
     <text x="100" y="128" font-size="9" text-anchor="middle" fill="#a1a1aa">
-      5,000+ commits &bull; Data Migration
+      5,000+ commits &bull; 27 Languages
     </text>
   </g>
 
