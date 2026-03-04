@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Upgrading to Onetime Secret v0.24.0"
-date: 2026-02-18
+date: 2026-03-02
 authors:
   - name: Delano
     to: https://blog.onetimesecret.com/about

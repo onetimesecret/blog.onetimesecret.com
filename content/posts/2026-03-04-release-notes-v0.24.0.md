@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Onetime Secret v0.24.0: The Architecture Release"
-date: 2026-02-18
+date: 2026-03-04
 authors:
   - name: Delano
     to: https://blog.onetimesecret.com/about
@@ -18,8 +18,7 @@ Onetime Secret v0.24.0 is the largest release in the project's history: over 5,0
 
 This release introduces two operational modes (simple and full), Rodauth-based authentication with MFA and SSO, organizations with role-based access, API v3, and background job processing via RabbitMQ. Full mode adds PostgreSQL 17+ as the primary datastore for account and operational data.
 
-<!-- TODO: Uncomment when published -->
-<!-- [Full release notes on GitHub](https://github.com/onetimesecret/onetimesecret/releases/tag/v0.24.0) -->
+ [Full release notes on GitHub](https://github.com/onetimesecret/onetimesecret/releases/tag/v0.24.0)
 
 ::warning
 **Upgrading from v0.23.x requires manual intervention.** Configuration files, authentication mode selection, and a multi-step data migration are all required before the application will start. <!-- TODO: See the [upgrade guide](/posts/2026-02-18-upgrading-to-v0.24) for detailed steps. -->
@@ -81,9 +80,7 @@ RabbitMQ 4.3+ handles email delivery (including delayed delivery for expiration 
 
 ## Installation
 
-<!-- TODO: Update Docker tag when published -->
-
-**Docker**: `docker pull onetimesecret/onetimesecret:v0.24.0`
+**Docker**: `docker pull ghcr.io/onetimesecret/onetimesecret:v0.24.0`
 
 **Source**: [GitHub Release](https://github.com/onetimesecret/onetimesecret/releases/tag/v0.24.0)
 
