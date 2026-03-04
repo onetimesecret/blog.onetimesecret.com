@@ -52,18 +52,18 @@ v0.24.0 introduces two new operational modes.
 
 Several configuration keys have been renamed, moved, or added. The application will not start with outdated configuration.
 
-| Change                     | Before         | After                                        |
-| -------------------------- | -------------- | -------------------------------------------- |
-| Keys type                  | symbol         | string                                       |
-| Email sender name          | `fromname`     | `from_name`                                  |
-| Auth environment variables | various names  | `AUTH_SIGNIN_ENABLED`, `AUTH_SIGNUP_ENABLED` |
-| Session configuration      | `auth.yaml`    | site config                                  |
-| Domains configuration      | `site` section | Moved to `features`                          |
-| Regions configuration      | `site` section | Moved to `features`                          |
-| Experimental configuration | Top-level      | Removed                                      |
-| Auth configuration         |                | New auth.yaml file                           |
-| Billing configuration      |                | New billing.yaml file                        |
-| Logging configuration      |                | New logging.yaml file                        |
+| Change                     | Before         | After                                                             |
+| -------------------------- | -------------- | ----------------------------------------------------------------- |
+| Keys type                  | symbol         | string                                                            |
+| Email sender name          | `fromname`     | `from_name`                                                       |
+| Auth environment variables | various names  | `AUTH_SIGNIN_ENABLED`, `AUTH_SIGNUP_ENABLED`, ... (and many more) |
+| Session configuration      | `auth.yaml`    | site config                                                       |
+| Domains configuration      | `site` section | Moved to `features`                                               |
+| Regions configuration      | `site` section | Moved to `features`                                               |
+| Experimental configuration | Top-level      | Removed                                                           |
+| Auth configuration         |                | New auth.yaml file                                                |
+| Billing configuration      |                | New billing.yaml file                                             |
+| Logging configuration      |                | New logging.yaml file                                             |
 
 #### Environment Variables
 
@@ -71,20 +71,15 @@ Many new environment variables have been added to support the new authentication
 
 ### Step 3: Install PostgreSQL and RabbitMQ (Full Mode Only)
 
-
 For Postgresql, there is an initial schema setup that needs to be run before starting the application. See apps/web/auth/migrations/README.md.
 
 For RabbitMQ, there is one required step for initialization of the queues and exchanges. This is handled by the `bin/ots queues init` command.
-
-
-```bash
 
 ### Step 4: Run the Data Migration
 
 The Familia data model library has been rewritten from v1 to v2. This requires a migration pipeline to transform existing Redis data to the new schema. The scripts included in the `scripts/upgrade/v0.24.0` directory handle this process and are the same files we used to migrate the onetimesecret.com production environments. They can be run in a dry-run mode to preview the changes before applying them.
 
 All scripts support `--help` for usage instructions and options.
-
 
 ```bash
 ./scripts/upgrade/v0.24.0/info.sh
