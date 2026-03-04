@@ -21,12 +21,12 @@ This release introduces two operational modes (simple and full), Rodauth-based a
  [Full release notes on GitHub](https://github.com/onetimesecret/onetimesecret/releases/tag/v0.24.0)
 
 ::warning
-**Upgrading from v0.23.x requires manual intervention.** Configuration files, authentication mode selection, and a multi-step data migration are all required before the application will start. <!-- TODO: See the [upgrade guide](/posts/2026-02-18-upgrading-to-v0.24) for detailed steps. -->
+**Upgrading from v0.23.x requires manual intervention.** Configuration files, authentication mode selection, and a multi-step data migration are all required before the application will start. See the [upgrade guide](/posts/2026-03-02-upgrading-to-v0.24) for detailed steps.
 ::
 
 ## Architecture
 
-The web framework layer has been modernized with Rack 3 and Otto 2. The data model library has been rewritten from Familia v1 to v2, which is the primary driver of the migration requirement.
+The web framework layer has been modernized with Rack 3 and Otto 2. The data model library has been rewritten from Familia v1 to v2, which is the primary driver of the migration requirement along with the ne Organization and authentication system changes. The application is now fully multi-threaded and fork-safe for Puma cluster mode.
 
 v0.24.0 introduces two operational modes:
 
