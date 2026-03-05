@@ -29,6 +29,7 @@ mailto:*
 
 # Exclude static asset paths (served from public/ at runtime, not in content dir)
 .*/img/.*
+.*/archive/.*
 
 # Exclude Nuxt Content route links with version numbers in slugs
 # Lychee misinterprets dots in slugs (e.g. v0.24) as file extensions,

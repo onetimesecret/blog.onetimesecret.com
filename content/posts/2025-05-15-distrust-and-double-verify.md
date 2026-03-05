@@ -14,7 +14,7 @@ badge:
 readingTime: 5
 ---
 
-Following our [domain architecture update](/content/posts/2025-05-14-homepage-post-as-in-after), this guide provides concrete methods to verify authentic Onetime Secret services and identify impostor sites.
+Following our [domain architecture update](/posts/2025-05-14-homepage-post-as-in-after), this guide provides concrete methods to verify authentic Onetime Secret services and identify impostor sites.
 
 ## Website Address Verification
 

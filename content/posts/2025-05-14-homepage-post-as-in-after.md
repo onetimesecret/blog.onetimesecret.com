@@ -16,7 +16,7 @@ readingTime: 5
 
 A recent phishing attempt exposed users to an impostor site that mirrored our interface but actually exposed secrets. While Cloudflare helped shut down this particular site, the incident highlighted a broader concern: user can struggle to distinguish legitimate from fraudulent services (see [Which one of these is the real onetimesecret?](https://github.com/onetimesecret/onetimesecret/issues/1233)).
 
-Following our [recent homepage update](/content/posts/2025-05-05-homepage-update-going-regional) emphasizing regional domains, this post details how our domain structure bolsters security through clarity and consistency—a vital consideration for a service handling sensitive information.
+Following our [recent homepage update](/posts/2025-05-05-homepage-update-going-regional) emphasizing regional domains, this post details how our domain structure bolsters security through clarity and consistency—a vital consideration for a service handling sensitive information.
 
 <div class="flex justify-center items-center my-10">
   <a href="https://onetimesecret.com/" class="text-center inline-block">
