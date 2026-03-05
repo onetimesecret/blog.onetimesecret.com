@@ -12,7 +12,7 @@ badge:
 readingTime: 6
 ---
 
-This guide covers upgrading from v0.23.x to v0.24.0. This is not a drop-in replacement — you will need to update configuration files, choose an authentication mode, and run several data migrations in order to continue running with your existing data.
+This guide covers upgrading from v0.23.x to v0.24.0. This is not a drop-in replacement. You will need to update configuration files, choose an authentication mode, and run several data migrations in order to continue running with your existing data.
 
 See the [release announcement](/posts/2026-03-04-release-notes-v0.24.0) for an overview of what's new.
 

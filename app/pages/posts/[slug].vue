@@ -68,12 +68,12 @@ else {
     <article class="max-w-3xl mx-auto prose dark:prose-invert">
       <header class="mb-12">
         <div v-if="post.image?.src" class="not-prose mb-6">
-          <img
+          <NuxtImg
             :src="post.image.src"
             :alt="post.image.alt || post.title"
             class="w-full h-auto rounded-lg shadow-sm"
             loading="lazy"
-          >
+          />
         </div>
 
         <UBadge

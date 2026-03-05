@@ -58,13 +58,13 @@ onUnmounted(() => {
       :aria-label="`View full size: ${props.alt}`"
       @click="openModal"
     >
-      <img
+      <NuxtImg
         :src="src"
         :alt="alt"
         :width="width"
         :height="height"
         class="rounded-lg border border-midnight-300 shadow-lg dark:opacity-75 cursor-pointer"
-      >
+      />
     </button>
     <teleport to="body">
       <div
@@ -84,7 +84,7 @@ onUnmounted(() => {
         >
           <span aria-hidden="true">&times;</span>
         </button>
-        <img :src="src" :alt="alt" class="modal-image">
+        <NuxtImg :src="src" :alt="alt" class="modal-image" />
       </div>
     </teleport>
   </div>
