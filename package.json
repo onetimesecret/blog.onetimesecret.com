@@ -18,7 +18,7 @@
     "check:links:get": "./bin/check-links.sh --get --external"
   },
   "dependencies": {
-    "@nuxt/content": "^3.11.2",
+    "@nuxt/content": "^3.12.0",
     "@nuxt/eslint": "^1.13.0",
     "@nuxt/icon": "^2.2.1",
     "@nuxt/image": "^2.0.0",
