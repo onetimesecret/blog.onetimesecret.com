@@ -11,7 +11,7 @@ image:
   src: /img/blog/2026/release-0.24.svg
 badge:
   label: Release
-readingTime: 4
+readingTime: 6
 ---
 
 Onetime Secret v0.24.0 is the largest release in the project's history: over 5,000 commits spanning architecture, authentication, and operations. If this weren't a sub-1.0 project, it would have been a major version increment.
@@ -20,11 +20,13 @@ The motivation behind this release is straightforward. As more organizations beg
 
 Here's what's new:
 
-- Two operational modes — **simple** (Redis-only) and **full** (with PostgreSQL and RabbitMQ)
+- Three authentication modes — **disabled**, **simple** (Redis-only), and **full** (PostgreSQL + RabbitMQ)
 - Rodauth-based authentication with MFA, passkeys, and SSO
 - Organizations with role-based access, replacing the older Teams model
 - API v3 with OpenAPI infrastructure
 - Background job processing via RabbitMQ
+- Billing consolidation with entitlement enforcement
+- Frontend upgraded to Vite 6 and Tailwind CSS v4
 
 [Full release notes on GitHub](https://github.com/onetimesecret/onetimesecret/releases/tag/v0.24.0)
 
@@ -32,15 +34,33 @@ Here's what's new:
 **Upgrading from v0.23.x requires manual intervention.** Configuration files, authentication mode selection, and a multi-step data migration are all required before the application will start. See the [upgrade guide](/posts/2026-03-02-upgrading-to-v0.24) for detailed steps.
 ::
 
+### Migrate or start fresh?
+
+**Start fresh** if you don't use accounts, have few live secrets in flight, or want to adopt full authentication mode. You're not reinstalling from scratch — you start from the new default config files and re-apply your site-specific settings.
+
+**Migrate** if you have active user accounts, live secrets that can't expire and be re-created, or API integrations that depend on stable identifiers. The Familia v1-to-v2 data migration pipeline handles the transform, and passwords migrate transparently from bcrypt to argon2id on next login.
+
+| Situation | Recommendation |
+|---|---|
+| Anonymous-only instance, no accounts | Fresh start |
+| Few accounts, no live secrets, moving to full auth | Fresh start |
+| Few accounts, no live secrets, staying simple | Either works; fresh start is less effort |
+| Active accounts, live secrets, staying simple | Migrate |
+| Active accounts, live secrets, moving to full auth | Migrate |
+| Public instance, many accounts, API integrations | Migrate |
+
 ## Architecture
 
 Under the hood, the web framework layer has moved to Rack 3 and Otto 2, and the data model library has been rewritten from Familia v1 to v2. That rewrite is the primary driver behind the migration requirement — along with the new organization and authentication systems, the data shapes have changed enough that existing installs need a structured migration path.
 
 The application is now fully multi-threaded and fork-safe for Puma cluster mode.
 
-The most visible architectural change is the introduction of two operational modes:
+The front end upgraded to Vite 6 and Tailwind CSS v4. JSON serialization moved to OJ.
 
-- **Simple** — Redis-only. Same behavior as before, no additional dependencies. If you're running a small internal instance, this is all you need.
+The most visible architectural change is the introduction of three authentication modes:
+
+- **Disabled** — No authentication at all. Anonymous secret sharing only. Redis is the sole data store. Minimal operational footprint, ideal for deployments behind a VPN or reverse proxy that handles auth upstream.
+- **Simple** — Redis-only authentication. Same behavior as v0.23, no additional dependencies. If you're running a small internal instance, this is all you need.
 - **Full** — Adds PostgreSQL 17+ for durable account and session state, and RabbitMQ 4.3+ for background job processing. This is the mode used by [onetimesecret.com](https://onetimesecret.com).
 
 ## Authentication
@@ -55,7 +75,7 @@ Full mode now uses [Rodauth](https://rodauth.jeremyevans.net/), which brings:
 - OmniAuth SSO integration for OIDC identity providers
 - Argon2id password hashing with transparent bcrypt migration for existing accounts
 
-Existing bcrypt-hashed passwords are migrated to Argon2id transparently on next login — no user action required. Signin and signup routes are controlled via `AUTH_SIGNIN_ENABLED` and `AUTH_SIGNUP_ENABLED` feature flags. Authentication can also be disabled entirely for deployments behind a VPN or reverse proxy that handles it upstream.
+Existing bcrypt-hashed passwords are migrated to Argon2id transparently on next login — no user action required. Signin and signup routes are controlled via `AUTH_SIGNIN_ENABLED` and `AUTH_SIGNUP_ENABLED` feature flags.
 
 ## Organizations
 
@@ -75,7 +95,11 @@ Previously, email delivery and webhook processing happened inline during request
 
 **CLI** — The command-line interface has moved from drydock to dry-cli, with new commands for organization management, domain verification, rabbitmq queue management. Bin wrappers for frontend, scheduler, and backend processes make it easier to run individual components.
 
+**Billing** — Plans are consolidated into a unified structure with legacy plan mapping. An entitlement enforcement system gates features based on plan. HMAC-based subscription federation enables cross-region benefit sharing. New CLI commands handle catalog management, price generation, and webhook replay.
+
 **Logging** — SemanticLogger replaces the custom logging system, bringing structured output with correlation tracking, monotonic timing, and fork-safe logging for Puma cluster mode. HTTP request logging is configured via `logging.yaml`.
+
+**Configuration** — The config structure has been reorganized. Key changes include `fromname` → `from_name`, domains and regions config moving from `site` to `features`, session config moving from `auth.yaml` to site config, and a new `logging.yaml` for HTTP request logging. Full env var configuration is now supported via `.env` files — see `.env.example` for the complete set.
 
 ## New Contributors
 
@@ -89,6 +113,8 @@ Previously, email delivery and webhook processing happened inline during request
 **Docker**: `docker pull ghcr.io/onetimesecret/onetimesecret:v0.24.0`
 
 **Source**: [GitHub Release](https://github.com/onetimesecret/onetimesecret/releases/tag/v0.24.0)
+
+**Full changelog**: [v0.23.1...v0.24.0](https://github.com/onetimesecret/onetimesecret/compare/v0.23.1...v0.24.0)
 
 ---
 
