@@ -16,6 +16,9 @@ readingTime: 4
 
 On a whim while working with Claude on reorganizing our tests, I thought I'd ask how it really feels.
 
+::ImageModal{src="/img/blog/2025/20250520-claude37-roasts-our-tests.png" alt="Screenshot of Claude 3.7 Sonnet roasting our test suite organization" width="600"}
+::
+
 ---
 
 ### User

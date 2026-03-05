@@ -23,6 +23,7 @@ logs
 .idea
 .prompts
 .crossnote
+.lycheecache
 tmp
 
 # Local env files
