@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Onetime Secret v0.24.0: The Architecture Release"
+title: "Onetime Secret v0.24.0: A New Foundation"
 date: 2026-03-04
 authors:
   - name: Delano

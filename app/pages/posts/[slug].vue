@@ -67,11 +67,11 @@ else {
 
     <article class="max-w-3xl mx-auto prose dark:prose-invert">
       <header class="mb-12">
-        <div v-if="post.image?.src" class="mb-6">
+        <div v-if="post.image?.src" class="not-prose mb-6">
           <img
             :src="post.image.src"
-            :alt="post.title"
-            class="w-full rounded-lg shadow-sm object-cover mx-auto"
+            :alt="post.image.alt || post.title"
+            class="w-full h-auto rounded-lg shadow-sm"
             loading="lazy"
           >
         </div>
