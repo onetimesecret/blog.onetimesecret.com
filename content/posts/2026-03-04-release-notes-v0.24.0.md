@@ -31,7 +31,7 @@ Here's what's new:
 [Full release notes on GitHub](https://github.com/onetimesecret/onetimesecret/releases/tag/v0.24.0)
 
 ::warning
-**Upgrading from v0.23.x requires manual intervention.** Configuration files, authentication mode selection, and a multi-step data migration are all required before the application will start. See the [upgrade guide](/posts/2026-03-02-upgrading-to-v0.24) for detailed steps.
+**Upgrading from v0.23.x requires manual intervention.** Configuration files, authentication mode selection, and a multi-step data migration are all required before the application will start. See the [upgrade guide](https://docs.onetimesecret.com/en/self-hosting/upgrading-v0-24/) for detailed steps.
 ::
 
 ### Migrate or start fresh?
@@ -118,7 +118,7 @@ Previously, email delivery and webhook processing happened inline during request
 
 ---
 
-This release has been a long time coming. It touches nearly every layer of the application, and we're aware that means a non-trivial upgrade path for existing installs. The [upgrade guide](/posts/2026-03-02-upgrading-to-v0.24) walks through every step. If you run into issues, [open a discussion on GitHub](https://github.com/onetimesecret/onetimesecret/discussions) — we're here to help.
+This release has been a long time coming. It touches nearly every layer of the application, and we're aware that means a non-trivial upgrade path for existing installs. The [upgrade guide](https://docs.onetimesecret.com/en/self-hosting/upgrading-v0-24/) walks through every step. If you run into issues, [open a discussion on GitHub](https://github.com/onetimesecret/onetimesecret/discussions) — we're here to help.
 
 ::ImageModal{src="/img/blog/2026/release-0.24.svg" alt="Onetime Secret v0.24.0 release illustration" width="600"}
 ::
