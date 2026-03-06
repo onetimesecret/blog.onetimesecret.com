@@ -4,13 +4,17 @@ import { enUS } from 'date-fns/locale';
 import { joinURL } from 'ufo';
 
 const route = useRoute();
+// Normalize path: strip trailing slash to match prerendered payload keys.
+// GitHub Pages 301-redirects to trailing-slash URLs, causing a mismatch
+// between the prerendered key (/posts/slug) and client path (/posts/slug/).
+const path = route.path.replace(/\/+$/, '') || '/';
 
-const { data: post } = await useAsyncData(route.path, () => queryCollection('posts').path(route.path).first());
+const { data: post } = await useAsyncData(path, () => queryCollection('posts').path(path).first());
 if (!post.value) {
   throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: true });
 }
 
-const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryCollectionItemSurroundings('posts', route.path), { default: () => [] });
+const { data: surround } = await useAsyncData(`${path}-surround`, () => queryCollectionItemSurroundings('posts', path), { default: () => [] });
 
 const title = post.value.title;
 const description = post.value.description;
