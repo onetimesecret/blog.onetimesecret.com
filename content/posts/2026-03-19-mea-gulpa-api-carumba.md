@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Mea gulpa: a bowl of humble broth (or, API-carumba)"
+title: "Mea gulpa: a big bowl of humble broth (or, API-carumba: an upgrade story)"
 date: 2026-03-19
 authors:
   - name: Delano
