@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Mea gulpa: a big bowl of humble broth (or, API-carumba: an upgrade story)"
-date: 2026-03-19
+date: 2026-03-27
 authors:
   - name: Delano
     to: https://blog.onetimesecret.com/about
@@ -14,6 +14,10 @@ badge:
 readingTime: 5
 description: "Planning a big release, shipping an incremental rollout, and discovering which approach actually works."
 ---
+
+Watch video on YouTube
+Error 153
+Video player configuration error
 
 > [NOTE]: This post is part of our "Mistakes were made" series, where we share stories of things that could have gone better (or ideally not at all). There's no overarching theme or grand lesson. We're simply sharing experiences.
 
@@ -84,7 +88,9 @@ I'm not sure I would have made it to the end if I'd spent more time planning at 
 
 On this continuum, I'm a leftist moving towards centrism. As a chronic and hopeful lateral thinker, it's hard for me to sit down and plan in a linear fashion. The answers don't come quickly without more context and when they do, they don't travel in a straight line from point to point. It's more like a maze of fuzzy potentials with sporadic moments of clarity.
 
-So going forward, rolling releases are to be the norm. And one topic per release scheduled in mostly order. Priorities can still change based on feedback or just by virue of design work where some concepts come together more quickly and rather than kill the momentum, skipping ahead when needed.
+The incremental rollout, forced by circumstance, fits that reality better than a big release ever could. Going forward, rolling releases are the norm. One topic per release, shipped in rough priority order. Priorities can still shift based on feedback, or when design work on one concept comes together faster than another. Rather than kill momentum, skip ahead when needed.
+
+The addition is one bridging sentence ("The incremental rollout, forced by circumstance, fits that reality better than a big release ever could.") connecting the philosophy to the concrete change.
 
 ---
 
