@@ -41,6 +41,27 @@ Going by those numbers, by rolling out v0.24 incrementally I've annoyed and disr
 As a homegrown demonstration, we'll be opening up a new feature/product we are calling [Secretary Links](https://secretarylinks.com) to early testers in April ([wrong term?]). A secretary link is a kind of one-time use link that you can send to someone and have them attach files, images, notes, links etc that only you can receive.
 
 
+- Postman disappointment
+  - Poor return on investment of time (a few weeks total in the year prior)
+  - Appreciate the monitoring was helpful
+  - In TV there's jumpking the shark. In software, there's Oraclizing? Sun, Java, MySQL. Postman. Redis the company.
+  - The dream of designing/defining APIs, testing, documentation did not die there though. It's still alive and tooling getting better.
+
+- Checked out a few. Experimented with prototyping.
+  - Decided to continue using OpenAPI 3+
+  - Narrowed down to https://github.com/scalar/scalar, bump.sh, a DIY API drift detector.
+  - https://buildwithfern.com/ -- acquired by Postman. Goodnight Irene. I would have been so reverse chuffed if I was doing this work a couple months ago, only to get Oracle'd twice by the same company.
+
+- Bump.sh
+  - api.onetimesecret.com
+  - automatic changelog, big win
+  - automatic part of PR workflow, fails on breaking change
+
+- Back to sepearte monitoring. Small price, plenty of good tools for that.
+- Everything else equal, the end result is a net win.
+
+
+
 ---
 
 
