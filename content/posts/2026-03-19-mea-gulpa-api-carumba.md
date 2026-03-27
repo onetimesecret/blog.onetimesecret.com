@@ -20,12 +20,26 @@ description: "Planning a big release, shipping an incremental rollout, and disco
 
 **Section 1: The plan**
 
-I befuddled up the upgrade from v0.23 to v0.24. Part of the problem was procedural: there were about 5000 commits and 8 months worth of changes. That's thousands as in more than 500, 50, and 5 combined. Or about 20 commits a day, every day for 240 days. But commits are like notes: they can range anywhere from a few scratches on a napkin to full blown essays. But essays can suck and a note on a napkin can be super insightful.
+I befuddled up the upgrade from v0.23 to v0.24. Prior to to that I was averaging about a month per release. Part of the problem was procedural: there was a lot that needed to get done for a codebase going on 15 years of age and regular day to day business activity to tend to.
 
-**Section 2: Why the road got long**
+In the end it amounted to over about 5000 commits, several false starts, and 8 months of prioritizing and re-prioritizing. That's about 20 commits a day, every day for 240 days, though commits are like notes: they can range anywhere from a few scratches on a napkin to full blown essays. But essays can suck and a note on a napkin can be super insightful so the numbers don't mean much other than to say, "that's a lot of something".
 
 
-The road was too long. There was a lot to get done and I'm not sure I would have made it to the end if I'd spent more time planning at the start. My theory on planning projects goes like this:
+**Section 2: The road is long**
+
+<!-- Neil Diamond, He Ain't Heavy He's my Brother. First line, "The road is loooOOooong..." -->
+<iframe width="480" src="https://www.youtube-nocookie.com/embed/usZtSl8mX08" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+The road was too long. I knew there were a few key areas that needed to be addressed to support a new level of complexity and functionality, but I didn't have a sense of what the critical path was. Or I should say, I thought I did. That's why I started with the configuration system and made some potentially helpful improvements, like separating the monolith config.yaml into fixed portion that loaded once at boot time and mutable that could be updated on the fly. While that solved some problems, the net complexity increased (especially when you track config changes like diffs [ed: add github link to relevant PR/commit]). Increasing the complexity of something is a natural consequence of that thing being able to do more stuff. But it has to be measured and contained in the right places for it to be effective longterm and not immediately contribute to tech debt.
+
+I was like, "Wow there is a lot going on a boot time. It now seems wildly inappropriate to have gotten so specific about configruation without address the Initialization Experience more broadly. That was the first false start. (A bit over a month, month and a half)
+
+
+So then I focused on boot order. False start number two. Each time I carried some of that learning through as a kinf od like abridged version of config management and abridged version of boot semantics. Both important and necessary improvements. But it was the codebase guiding me at this point. The code is the guru.
+
+And from there I made the commitment to continue in earnest, knowing there were mile markers I wanted to hit -- background jobs, new authentication system, _revisit encryption_ -- and letting the relative complexity be my guide.
+
+I'm not sure I would have made it to the end if I'd spent more time planning at the start. My theory on planning projects goes like this:
 
 - There's a continuum with chaos at one end and certainty on the other.
 - Everyone tends to be comfortable at some point along that line, depending on their appetite for risk.
