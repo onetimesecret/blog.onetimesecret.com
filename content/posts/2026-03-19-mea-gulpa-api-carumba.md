@@ -39,6 +39,48 @@ So then I focused on boot order. False start number two. Each time I carried som
 
 And from there I made the commitment to continue in earnest, knowing there were mile markers I wanted to hit -- background jobs, new authentication system, _revisit encryption_ -- and letting the relative complexity be my guide.
 
+
+
+
+**Section 3: What forced the pivot**
+
+We're now getting to the new year at this point and I knew that if I didn't start taking some real steps, it may never end. So out of desperation I realized it was 100% necessary to update all of the regions at the same time. Or at least that with a bit of additional work and planning, they could be staggered. But it still meant that the payment system integration needed to be fleshed out so that it wsa built in a way that supported each region running it's own configuration.
+
+A straigthforward example is with webhooks. When something happens in the external payment system, it makes a call back to the application to keep it informed. How is that going to work when you have 5 completely separate production environments, that don't share data or communicate in any way? Ah well, the payment system (Stripe) supports multiple webhooks which is great. But when there's an event, it calls all of the webhooks which is not... actually that's fine b/c only one needs to care and the others can ignore it. In order for that one environment to care, there needs to be a way to match up the event with the environment. Ah we just label everything in the payment system with a region. Each environment knows what region it is so it can filter webhook events based on that. Beauteous.
+
+The data migrations were a huge part of the Update Experience and about 3-4 weeks to stablize and get repeatable. There are about 14 steps to the process. All of the data steps were idempotent to minimize the chance of introducing unexpected results and making it possible to debug an error and continue the processing without having to go back to make code changes to the scripts cut a new release.
+
+Setting up the new environments so we could keep the current systems in noermal working condition right up until the upgrade. That way if anything went pear-shaped we could simply start the existing system back up and live to try another day. That pre-work to get an environment ready is about a day and a half to two days.
+
+So just by the virtue of chunking out the sysadmin environment work into one at a time, it made sense to continue on that one environment to do the upgrade as well. It did not seem feeasible to spend 1.5-2 weeks dedicated to sysadmin before upgrading even one region.
+
+
+[MISSING: The "reality bites" moment. What happened that turned a planned big release into an incremental rollout?]
+
+
+**Section 4: The rollout sequence**
+
+We rolled out UK first b/c it was a completely new region. That helped get the syste install and setup sequence worked out. The UK got the first cut of v0.24. The billing system wasn't done but it didn't block creating an account. The API was broken but no one was using it yet. But all together it was enough to get a bulwark/bulkhead/beach head/footing to draw a line in the sand and then using that as feedback on what fires to put out and in roughly what order.
+
+There were issues with the API. Even though we have separate API versions, v1 and v2, the expectation is that those versions are like contracts. It works this way or that way, but it's consistent and reliable. There were issues with missing fields and authentication failing. Just by the nature of the changes we needed to make, the v1 API was partially reimplemented. The v2 is mostly the same code, but has a new authentication system and data store serializes to JSON types now so to keep parity for v2, we need to convert typed values back to strings. Needless to say I didn't get it quite right the first time. [ed: find github issue(s) relevant to API issues]
+
+How I worked through that in a systematic way is the story for another post. But the process took about a month.
+
+**Section 5: The contained blast radius**
+
+We don't maintain any formal metrics on an ongoing basis, beyond what we need for operations and continuity. So the amount of activity per region is just a rough estimate. The EU is the O.G. region which was for many years all of onetimesecret.com until its coming out party in 2024 [ed: link to EU/US regions launch and get specific date]. Indirectly from the operational data, the EU region handles about 65% of the total activity across all regions. The US is about 15% and the remaining 20% is CA, NZ, and UK. As a customer base, it's ~30% EU, ~30% US, and ~30% everywhere else. [ed: generate a vector graphic chart that demonstrates the customer base superimposed on the regions].
+
+Going by those numbers, by rolling out v0.24 incrementally I've annoyed and disrupted about 35% of our user base, and a subset of those more than others. That's relatively _not bad_ but it's not nothing either. That's why I'm writing this post after all.
+
+But there were real consequences. The NZ region was unavailable for about 8 hours. And just by the nature of needing to make it happen, I didn't give any lead time warning about the outage. Although scheduled overnight to minimize impact, there were a couple customers that were not-insignificantly inconvenienced.
+
+The next rollout CA, was better. Only about 4 hours. And US, about 3. EU which I had thought would be first is now more realistically the last. It will likely take the longest just based on the amount of data. But it'll be a sweet release indeed and timely spring cleaning for the O.G. instance of Redis.
+
+
+**Section 6: The takeaway**
+
+The pattern common to all technological advancement: make it work and then make it better. It needs to exist so that it can be improved in a tangible way. But it hopefully can radiate the least amount of annoyance and disruption as is feasible in doing so.
+
 I'm not sure I would have made it to the end if I'd spent more time planning at the start. My theory on planning projects goes like this:
 
 - There's a continuum with chaos at one end and certainty on the other.
@@ -47,24 +89,7 @@ I'm not sure I would have made it to the end if I'd spent more time planning at 
 
 On this continuum, I'm a leftist moving towards centrism. As a chronic and hopeful lateral thinker, it's hard for me to sit down and plan in a linear fashion. The answers don't come quickly without more context and when they do, they don't travel in a straight line from point to point. It's more like a maze of fuzzy potentials with sporadic moments of clarity.
 
-
-**Section 3: What forced the pivot**
-
-[MISSING: The "reality bites" moment. What happened that turned a planned big release into an incremental rollout?]
-
-
-**Section 4: The rollout sequence**
-
-We don't maintain any formal metrics on an ongoing basis, beyond what we need for operations and continuity. So the amount of activity per region is just a rough estimate. The EU is the O.G. region which was for many years all of onetimesecret.com until its coming out party in 2024 [ed: link to EU/US regions launch and get specific date]. Indirectly from the operational data, the EU region handles about 65% of the total activity across all regions. The US is about 15% and the remaining 20% is CA, NZ, and UK. As a customer base, it's ~30% EU, ~30% US, and ~30% everywhere else. [ed: generate a vector graphic chart that demonstrates the customer base superimposed on the regions].
-
-**Section 5: The contained blast radius**
-
-Going by those numbers, by rolling out v0.24 incrementally I've annoyed and disrupted about 35% of our user base, and a subset of those more than others. That's relatively _not bad_ but it's not something I take lightly.
-
-
-**Section 6: The takeaway**
-
-The pattern common to all technological advancement: make it work and then make it better. It needs to exist so that it can be improved in a tangible way. But it hopefully can radiate the least amount of annoyance and disruption as is feasible in doing so.
+From now on rolling releases
 
 [MISSING: What would have broken if it had been big-bang? What does this change about future releases?]
 
@@ -74,9 +99,3 @@ The pattern common to all technological advancement: make it work and then make 
 ### About the title
 
 _The title is a layered and unnecessary pun: "Mea culpa" → "Mea gulpa" (as in gulp, swallowing one's pride at 7/11) and "humble broth" (like eating humble pie, but soup) and "API-carumba" (a reference to Bart Simpson as a modern software developer, "Ay carumba"). No one asks for this stuff, yet here we are._
-
-
----
-
-
----
