@@ -15,9 +15,6 @@ readingTime: 5
 description: "Planning a big release, shipping an incremental rollout, and discovering which approach actually works."
 ---
 
-Watch video on YouTube
-Error 153
-Video player configuration error
 
 > [NOTE]: This post is part of our "Mistakes were made" series, where we share stories of things that could have gone better (or ideally not at all). There's no overarching theme or grand lesson. We're simply sharing experiences.
 
@@ -31,10 +28,10 @@ In the end it amounted to about 5000 commits, several false starts, and 8 months
 
 ## The road is long
 
-<!-- Neil Diamond, He Ain't Heavy He's my Brother. First line, "The road is loooOOooong..." -->
-<iframe width="480" src="https://www.youtube-nocookie.com/embed/usZtSl8mX08" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+::youtube-no-cookie{video-id="usZtSl8mX08" caption="Neil Diamond - He Ain't Heavy, He's My Brother"}
+::
 
-The road was too long. I knew there were a few key areas that needed to be addressed to support a new level of complexity and functionality, but I didn't have a sense of what the critical path was. Or I should say, I thought I did. That's why I started with the configuration system and made some potentially helpful improvements, like separating the monolith config.yaml into a fixed portion that loaded once at boot time and a mutable portion that could be updated on the fly. While that solved some problems, the net complexity increased (especially when you track config changes like diffs [ed: add github link to relevant PR/commit]). Increasing the complexity of something is a natural consequence of that thing being able to do more stuff. But it has to be measured and contained in the right places for it to be effective long term and not immediately contribute to tech debt.
+The road was too long. I knew there were a few key areas that needed to be addressed to support a new level of complexity and functionality, but I didn't have a sense of what the critical path was. Or I should say, I thought I did. That's why I started with the configuration system and made some potentially helpful improvements, like separating the monolith config.yaml into a fixed portion that loaded once at boot time and a mutable portion that could be updated on the fly. While that solved some problems, the net complexity increased (especially when you [track config changes like diffs](https://github.com/onetimesecret/onetimesecret/pull/1494)). Increasing the complexity of something is a natural consequence of that thing being able to do more stuff. But it has to be measured and contained in the right places for it to be effective long term and not immediately contribute to tech debt.
 
 I was like, "Wow there is a lot going on at boot time. It now seems wildly inappropriate to have gotten so specific about configuration without addressing the Initialization Experience more broadly." That was the first false start. A bit over a month, month and a half.
 
@@ -60,14 +57,14 @@ So just by the virtue of chunking out the sysadmin environment work one at a tim
 
 We rolled out UK first because it was a completely new region. That helped get the system install and setup sequence worked out. The UK got the first cut of v0.24. The billing system wasn't done but it didn't block creating an account. The API was broken but no one was using it yet. All together it was enough to get a beachhead, draw a line in the sand, and use that as feedback on what fires to put out and in roughly what order.
 
-There were issues with the API. Even though we have separate API versions, v1 and v2, the expectation is that those versions are like contracts. It works this way or that way, but it's consistent and reliable. There were issues with missing fields and authentication failing. Just by the nature of the changes we needed to make, the v1 API was partially reimplemented. The v2 code is mostly unchanged but has a new authentication system, and the data store serializes to JSON types now so to keep remain consistent, we need to convert typed values back to strings. Needless to say I didn't get it quite right the first time. [ed: find github issue(s) relevant to API issues]
+There were issues with the API. Even though we have separate API versions, v1 and v2, the expectation is that those versions are like contracts. It works this way or that way, but it's consistent and reliable. There were issues with missing fields and authentication failing. Just by the nature of the changes we needed to make, the v1 API was partially reimplemented. The v2 code is mostly unchanged but has a new authentication system, and the data store serializes to JSON types now so to keep remain consistent, we need to convert typed values back to strings. Needless to say I didn't get it quite right the first time ([#2615](https://github.com/onetimesecret/onetimesecret/issues/2615), [#2618](https://github.com/onetimesecret/onetimesecret/issues/2618), [#2699](https://github.com/onetimesecret/onetimesecret/issues/2699)).
 
 How I worked through that in a systematic way is the story for another post. But the process took about a month.
 
 
 ## The contained blast radius
 
-We don't maintain any formal metrics on an ongoing basis, beyond what we need for operations and continuity. So the amount of activity per region is just a rough estimate. The EU is the O.G. region which was for many years all of onetimesecret.com until its coming out party in 2024 [ed: link to EU/US regions launch and get specific date]. Indirectly from the operational data, the EU region handles about 65% of the total activity across all regions. The US is about 15% and the remaining 20% is CA, NZ, and UK. As a customer base, it's ~30% EU, ~30% US, and ~30% everywhere else. [ed: generate a vector graphic chart that demonstrates the customer base superimposed on the regions]
+We don't maintain any formal metrics on an ongoing basis, beyond what we need for operations and continuity. So the amount of activity per region is just a rough estimate. The EU is the O.G. region which was for many years all of onetimesecret.com until its coming out party in [October 2024](/posts/2024-10-23-us-data-center). Indirectly from the operational data, the EU region handles about 65% of the total activity across all regions. The US is about 15% and the remaining 20% is CA, NZ, and UK. As a customer base, it's ~30% EU, ~30% US, and ~30% everywhere else.
 
 Going by those numbers, by rolling out v0.24 incrementally I've annoyed and disrupted about 35% of our user base, and a subset of those more than others. That's relatively _not bad_ but it's not nothing either. That's why I'm writing this post after all.
 
@@ -88,13 +85,12 @@ I'm not sure I would have made it to the end if I'd spent more time planning at 
 
 On this continuum, I'm a leftist moving towards centrism. As a chronic and hopeful lateral thinker, it's hard for me to sit down and plan in a linear fashion. The answers don't come quickly without more context and when they do, they don't travel in a straight line from point to point. It's more like a maze of fuzzy potentials with sporadic moments of clarity.
 
-The incremental rollout, forced by circumstance, fits that reality better than a big release ever could. Going forward, rolling releases are the norm. One topic per release, shipped in rough priority order. Priorities can still shift based on feedback, or when design work on one concept comes together faster than another. Rather than kill momentum, skip ahead when needed.
+The incremental rollout fits that reality better than a big release. Going forward, rolling releases are the norm. One topic per release, shipped in rough priority order. Priorities can still shift based on feedback, or when design work on one concept comes together faster than another. Rather than kill momentum, skip ahead when needed.
 
-The addition is one bridging sentence ("The incremental rollout, forced by circumstance, fits that reality better than a big release ever could.") connecting the philosophy to the concrete change.
+_- Delano_
 
 ---
 
 ### About the title
 
 _The title is a layered and unnecessary pun: "Mea culpa" → "Mea gulpa" (as in gulp, swallowing one's pride at 7-Eleven) and "humble broth" (like eating humble pie, but soup) and "API-carumba" (a reference to Bart Simpson as a modern software developer, "Ay carumba"). No one asks for this stuff, yet here we are._
-```
