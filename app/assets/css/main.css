@@ -97,6 +97,22 @@
     --ui-text-muted: var(--color-midnight-300);
   }
 
+  /* Improve visibility of horizontal rules in dark mode */
+  .dark hr {
+    border-color: var(--color-midnight-300);
+  }
+
+  /* Improve visibility of list markers in dark mode */
+  .dark ul,
+  .dark ol {
+    --tw-prose-bullets: var(--color-midnight-200);
+    --tw-prose-counters: var(--color-midnight-200);
+  }
+
+  .dark li::marker {
+    color: var(--color-midnight-200);
+  }
+
   /* Apply brand font to headings, buttons, and button-styled links */
   h1,
   h2,

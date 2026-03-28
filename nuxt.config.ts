@@ -94,6 +94,10 @@ export default defineNuxtConfig({
           '\'nonce-{{nonce}}\'',
           '\'wasm-unsafe-eval\'',
         ],
+        'frame-src': [
+          '\'self\'',
+          'https://www.youtube-nocookie.com',
+        ],
       },
     },
   },
