@@ -16,14 +16,16 @@ description: "Planning a big release, shipping an incremental rollout, and disco
 ---
 
 
-> [NOTE]: This post is part of our "Mistakes were made" series, where we share stories of things that could have gone better (or ideally not at all). There's no overarching theme or grand lesson. We're simply sharing experiences.
+::note
+This post is part of our "Mistakes were made" series, where we share stories of things that could have gone better (or ideally not at all). There's no overarching theme or grand lesson. We're simply sharing experiences.
+::
 
 
 ## The plan
 
 I befuddled up the upgrade from v0.23 to v0.24. Prior to that I was averaging about a month per release. Part of the problem was procedural: there was a lot that needed to get done for a codebase going on 15 years of age and regular day to day business activity to tend to.
 
-In the end it amounted to about 5000 commits, several false starts, and 8 months of prioritizing and re-prioritizing. That's about 20 commits a day, every day for 240 days, though commits are like notes: they can range anywhere from a few scratches on a napkin to full blown essays. But essays can suck and a note on a napkin can be super insightful so the numbers don't mean much other than to say, "that's a lot of something".
+In the end it amounted to about [5000 commits, several false starts, and 8 months of prioritizing and re-prioritizing](https://github.com/onetimesecret/onetimesecret/pull/2421). That's about 20 commits a day, every day for 240 days, though commits are like notes: they can range anywhere from a few scratches on a napkin to full blown essays. But essays can suck and a note on a napkin can be super insightful so the numbers don't mean much other than to say, "that's a lot of something".
 
 
 ## The road is long
@@ -50,14 +52,14 @@ The data migrations were a huge part of the Update Experience and took about 3-4
 
 Setting up the new environments so we could keep the current systems in normal working condition right up until the upgrade. That way if anything went pear-shaped we could simply start the existing system back up and live to try another day. That pre-work to get an environment ready is about a day and a half to two days.
 
-So just by the virtue of chunking out the sysadmin environment work one at a time, it made sense to continue on that one environment to do the upgrade as well. It did not seem feasible to spend 1.5-2 weeks dedicated to sysadmin before upgrading even one region.
+So by chunking out the sysadmin environment work one at a time, it made sense to continue on that one environment to do the upgrade as well. It did not seem feasible to spend 1.5-2 weeks dedicated to sysadmin before upgrading even one region.
 
 
 ## The rollout sequence
 
 We rolled out UK first because it was a completely new region. That helped get the system install and setup sequence worked out. The UK got the first cut of v0.24. The billing system wasn't done but it didn't block creating an account. The API was broken but no one was using it yet. All together it was enough to get a beachhead, draw a line in the sand, and use that as feedback on what fires to put out and in roughly what order.
 
-There were issues with the API. Even though we have separate API versions, v1 and v2, the expectation is that those versions are like contracts. It works this way or that way, but it's consistent and reliable. There were issues with missing fields and authentication failing. Just by the nature of the changes we needed to make, the v1 API was partially reimplemented. The v2 code is mostly unchanged but has a new authentication system, and the data store serializes to JSON types now so to keep remain consistent, we need to convert typed values back to strings. Needless to say I didn't get it quite right the first time ([#2615](https://github.com/onetimesecret/onetimesecret/issues/2615), [#2618](https://github.com/onetimesecret/onetimesecret/issues/2618), [#2699](https://github.com/onetimesecret/onetimesecret/issues/2699)).
+There were issues with the API. Even though we have separate API versions, v1 and v2, the expectation is that those versions are like contracts. It works this way or that way, but it's consistent and reliable. There were issues with missing fields and authentication failing. Given the scope of the changes, the v1 API was partially reimplemented. The v2 code is mostly unchanged but has a new authentication system, and the data store serializes to JSON types now, so to remain consistent, we need to convert typed values back to strings. Needless to say I didn't get it quite right the first time ([#2615](https://github.com/onetimesecret/onetimesecret/issues/2615), [#2618](https://github.com/onetimesecret/onetimesecret/issues/2618), [#2699](https://github.com/onetimesecret/onetimesecret/issues/2699)).
 
 How I worked through that in a systematic way is the story for another post. But the process took about a month.
 
