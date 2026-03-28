@@ -3,20 +3,17 @@ interface Props {
   videoId: string;
   title?: string;
   caption?: string;
-  width?: number | string;
-  height?: number | string;
   aspectRatio?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  title: 'YouTube video player',
+  title: '',
   caption: '',
-  width: 560,
-  height: 315,
   aspectRatio: '16/9',
 });
 
 const embedUrl = computed(() => `https://www.youtube-nocookie.com/embed/${props.videoId}`);
+const iframeTitle = computed(() => props.title || props.caption || 'YouTube video player');
 </script>
 
 <template>
@@ -27,9 +24,7 @@ const embedUrl = computed(() => `https://www.youtube-nocookie.com/embed/${props.
     >
       <iframe
         :src="embedUrl"
-        :title="title"
-        :width="width"
-        :height="height"
+        :title="iframeTitle"
         class="absolute inset-0 h-full w-full"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
