@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Domain strategy cont'd: 1-800-Dot-Dev"
-date: 2026-01-04
+date: 2026-00-00
 authors:
   - name: Delano
     to: https://blog.onetimesecret.com/about
@@ -13,6 +13,7 @@ badge:
   label: Engineering
 readingTime: 5
 draft: true
+navigation: false
 ---
 
 ## About our domains
