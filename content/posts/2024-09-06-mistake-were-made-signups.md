@@ -15,7 +15,9 @@ readingTime: 10
 description: "I introduced a bug that prevented new users from verifying their accounts. Verification emails went out fine but the link wasn't setting the `verified` flag on the account record."
 ---
 
-> [NOTE]: This post is part of our "Mistakes were made" series, where we share stories of things that could have gone better (or ideally not at all). There's no overarching theme or grand lesson. We're simply sharing experiences. If you're looking for a structured approach to learning from failure, consider resources like the [Incident Handbook](https://www.atlassian.com/incident-management/handbook). I haven't read it but [Codestral 22b](https://mistral.ai/news/codestral/) seems to like it.
+::note
+This post is part of our "Mistakes were made" series, where we share stories of things that could have gone better (or ideally not at all). There's no overarching theme or grand lesson. We're simply sharing experiences. If you're looking for a structured approach to learning from failure, consider resources like the [Incident Handbook](https://www.atlassian.com/incident-management/handbook). I haven't read it but [Codestral 22b](https://mistral.ai/news/codestral/) seems to like it.
+::
 
 I introduced a bug a little over a week ago that prevented new users from verifying their accounts. Verification emails have been a bit of an issue over the years b/c there's no easy way to re-send them (I just haven't ever gotten around to it). In this case, the verification emails went out fine but when the user clicks the link it looks like it worked but underneath, it wasn't actually setting the `verified` flag on the account record.
 

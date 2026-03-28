@@ -95,6 +95,11 @@
 
   .dark {
     --ui-text-muted: var(--color-midnight-300);
+
+    /* Prose typography dark mode overrides */
+    --tw-prose-hr: var(--color-midnight-300);
+    --tw-prose-bullets: var(--color-midnight-200);
+    --tw-prose-counters: var(--color-midnight-200);
   }
 
   /* Apply brand font to headings, buttons, and button-styled links */
