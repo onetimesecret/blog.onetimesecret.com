@@ -59,7 +59,7 @@ So by chunking out the sysadmin environment work one at a time, it made sense to
 
 We rolled out UK first because it was a completely new region. That helped get the system install and setup sequence worked out. The UK got the first cut of v0.24. The billing system wasn't done but it didn't block creating an account. The API was broken but no one was using it yet. All together it was enough to get a beachhead, draw a line in the sand, and use that as feedback on what fires to put out and in roughly what order.
 
-There were issues with the API. Even though we have separate API versions, v1 and v2, the expectation is that those versions are like contracts. It works this way or that way, but it's consistent and reliable. There were issues with missing fields and authentication failing. Given the scope of the changes, the v1 API was partially reimplemented. The v2 code is mostly unchanged but has a new authentication system, and the data store serializes to JSON types now, so to remain consistent, we need to convert typed values back to strings. Needless to say I didn't get it quite right the first time ([#2615](https://github.com/onetimesecret/onetimesecret/issues/2615), [#2618](https://github.com/onetimesecret/onetimesecret/issues/2618), [#2699](https://github.com/onetimesecret/onetimesecret/issues/2699)).
+There were issues with the API. Even though we have separate API versions, v1 and v2, the expectation is that those versions are like contracts. It works this way or that way, but it's consistent and reliable. There were issues with missing fields and authentication errors. Given the scope of the changes, the v1 API was partially reimplemented. The v2 code is mostly unchanged but has a new authentication system, and the data store serializes to JSON types now, so to remain consistent, we need to convert typed values back to strings. Needless to say I didn't get it quite right the first time ([#2615](https://github.com/onetimesecret/onetimesecret/issues/2615), [#2618](https://github.com/onetimesecret/onetimesecret/issues/2618), [#2699](https://github.com/onetimesecret/onetimesecret/issues/2699)).
 
 How I worked through that in a systematic way is the story for another post. But the process took about a month.
 
@@ -79,20 +79,27 @@ The next rollout, CA, was better. Only about 4 hours. And US, about 3. EU which 
 
 The pattern common to all technological advancement: make it work and then make it better. It needs to exist so that it can be improved in a tangible way. But it can hopefully radiate the least amount of annoyance and disruption as is feasible in doing so.
 
-I'm not sure I would have made it to the end if I'd spent more time planning at the start. My theory on planning projects goes like this:
+I'm not sure I would have made it to the end if I'd spent more time planning at the start. More planning would have meant more assumptions, I wouldn't have learned that config and boot sequence weren't as important as I thought until much later, and in general would have meant less feedback. The incremental rollout forced me to confront problems earlier in NZ (newest region before UK, convenient timezone) before they could compound in EU.
 
-- There's a continuum with chaos at one end and certainty on the other.
-- Everyone tends to be comfortable at some point along that line, depending on their appetite for risk.
-- Zero planning gets close to maximum chaos; maximal planning gets close to infinity time units.
-
-On this continuum, I'm a leftist moving towards centrism. As a chronic and hopeful lateral thinker, it's hard for me to sit down and plan in a linear fashion. The answers don't come quickly without more context and when they do, they don't travel in a straight line from point to point. It's more like a maze of fuzzy potentials with sporadic moments of clarity.
-
-The incremental rollout fits that reality better than a big release. Going forward, rolling releases are the norm. One topic per release, shipped in rough priority order. Priorities can still shift based on feedback, or when design work on one concept comes together faster than another. Rather than kill momentum, skip ahead when needed.
+Going forward, rolling releases are the norm. One topic per release, shipped in rough priority order. Priorities can still shift based on feedback, or when design work on one concept comes together faster than another. Rather than kill momentum, skip ahead when needed.
 
 _- Delano_
 
 ---
 
-### About the title
+::CollapsibleContent{summary="About this post"}
 
-_The title is a layered and unnecessary pun: "Mea culpa" → "Mea gulpa" (as in gulp, swallowing one's pride at 7-Eleven) and "humble broth" (like eating humble pie, but soup) and "API-carumba" (a reference to Bart Simpson as a modern software developer, "Ay carumba"). No one asks for this stuff, yet here we are._
+**The title**
+is a layered and unnecessary pun: "Mea culpa" → "Mea gulpa" (as in gulp, swallowing one's pride at 7-Eleven) and "humble broth" (like eating humble pie, but soup) and "API-carumba" (a reference to Bart Simpson as a modern software developer, "Ay carumba"). No one asks for this stuff, yet here we are.
+
+**The image** was created by Claude after I suggested using a random Kagi search for inspiration when starting this "Mistakes were made" post. It picked a result about Dalí and came up with the melting clock motif.
+
+> **Me:** Help me understand the 3:14 reference.
+>
+> **Claude:** It's pi time — 3.14 rendered as a clock face. A nod to Dalí's melting clocks from *The Persistence of Memory*, but instead of showing a "real" time, it shows π. Fits the surreal math-meets-art vibe, and the warp filter makes the clock face melt just like the original.
+
+![The melting clock detail showing 3:14](/img/blog/2026/20260319-api-carumba-clock-detail.png)
+
+Nailed it, buddy.
+
+::
