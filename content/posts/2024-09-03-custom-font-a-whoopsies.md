@@ -1,7 +1,7 @@
 ---
 layout: post
 title: So the custom font was a whoopsies
-date: 2024-09-02
+date: 2024-09-03
 authors:
   - name: Delano
     to: https://blog.onetimesecret.com/about

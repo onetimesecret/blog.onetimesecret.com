@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Onetime Secret v0.18.0: Enjoying the Vue"
-date: 2024-10-04
+date: 2024-10-03
 authors:
   - name: Delano
     to: https://blog.onetimesecret.com/about

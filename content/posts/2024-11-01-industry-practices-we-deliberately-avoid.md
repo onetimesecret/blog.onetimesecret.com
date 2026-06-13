@@ -13,7 +13,7 @@ badge:
 readingTime: 5
 ---
 
-# Our Privacy-First Approach
+## Our Privacy-First Approach
 At Onetime Secret, we believe privacy and simplicity go hand in hand. While many services collect extensive user data, we've chosen a different path focused on what matters most: secure, reliable secret sharing. You can learn more about our guiding principles in our [documentation](https://docs.onetimesecret.com/principles).
 
 ## Focused Communication

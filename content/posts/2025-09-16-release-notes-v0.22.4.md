@@ -14,8 +14,6 @@ badge:
 readingTime: 2
 ---
 
-# OneTimeSecret v0.22.4 Release Notes
-
 Version v0.22.4 introduces new configuration options for customizing security policies and access control.
 
 ## Changes

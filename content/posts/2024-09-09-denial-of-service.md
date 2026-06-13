@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Denial of Service (DoS) Attack: A brief summary"
-date: 2024-09-10
+date: 2024-09-09
 authors:
   - name: Delano
     to: https://blog.onetimesecret.com/about

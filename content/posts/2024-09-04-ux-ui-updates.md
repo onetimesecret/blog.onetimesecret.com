@@ -1,7 +1,7 @@
 ---
 layout: post
 title: UI/UX Updates - September '24
-date: 2024-09-03
+date: 2024-09-04
 authors:
   - name: Delano
     to: https://blog.onetimesecret.com/about

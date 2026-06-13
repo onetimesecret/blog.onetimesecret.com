@@ -15,8 +15,6 @@ readingTime: 5
 
 Our privacy-by-design approach means no need for cookie banners. We don't need to ask permission for something we don't do in the first place.
 
-# Privacy by Design: Why we don't have a cookie notice
-
 ## A Different Approach
 You might have noticed something missing on Onetime Secret: there's no cookie consent banner. That's not an oversight—it's by design. While most websites greet you with pop-ups about tracking and cookies, we've taken a deliberately different approach: we don't track you at all.
 
