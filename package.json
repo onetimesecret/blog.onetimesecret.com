@@ -12,6 +12,7 @@
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "typecheck": "nuxt typecheck",
+    "check:content": "node scripts/check-content.js",
     "check:links": "./bin/check-links.sh",
     "check:links:external": "./bin/check-links.sh --external",
     "check:links:verbose": "./bin/check-links.sh --verbose",

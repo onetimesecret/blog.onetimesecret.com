@@ -1,0 +1,50 @@
+# .github/workflows/check-content.yml
+---
+name: Check Content
+
+# Lints blog markdown for the classes of mistakes that have reached published
+# posts before: empty links, malformed URLs, relative asset paths, missing
+# frontmatter, broken local image references, leaked AI-assistant replies,
+# duplicate page titles, and filename/`date` drift.
+#
+# Complements the Lychee link checker (check-links.yml): that validates links
+# resolve, this validates the markdown around them. Runs on plain Node with no
+# dependencies, so it does not need pnpm install or the Nuxt UI Pro license.
+#
+# Run locally: pnpm check:content
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'content/**'
+      - 'scripts/check-content.js'
+      - '.github/workflows/check-content.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'content/**'
+      - 'scripts/check-content.js'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-content:
+    name: Lint blog content
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Lint content
+        shell: bash
+        run: |
+          set -o pipefail
+          node scripts/check-content.js | tee "$GITHUB_STEP_SUMMARY"
