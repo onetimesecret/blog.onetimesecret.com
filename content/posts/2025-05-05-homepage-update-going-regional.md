@@ -49,7 +49,7 @@ When you click any secret link, you'll automatically go to the right regional do
 
 Pick the region closest to you for best performance
 
-- **European Union**: [eu.onetimesecret.com](https:///eu.onetimesecret.com/)
+- **European Union**: [eu.onetimesecret.com](https://eu.onetimesecret.com/)
 - **Canada**: [ca.onetimesecret.com](https://ca.onetimesecret.com/)
 - **United States**: [us.onetimesecret.com](https://us.onetimesecret.com/)
 - **Aotearoa New Zealand**: [nz.onetimesecret.com](https://nz.onetimesecret.com/)

@@ -32,8 +32,7 @@ That's it. No tracking cookies, no third-party analytics, no behavior monitoring
 This minimal approach delivers tangible benefits:
 - Smaller attack surface for enhanced security
 - Straightforward privacy policy without surprises
-- Faster page loads without tracking
-- scripts and bloated requests
+- Faster page loads without tracking scripts and bloated requests
 - No cross-site tracking concerns
 
 ## Proven Since 2012
@@ -41,7 +40,7 @@ As a service that's been operating since 2012, we've proven that respecting priv
 
 ## How We Improve Without Tracking
 Some ask how we improve our service without detailed analytics. Our approach is simple:
-1. Direct user feedback through via email and our [feedback page](https://onetimesecret.com/feedback)
+1. Direct user feedback via email and our [feedback page](https://onetimesecret.com/feedback)
 2. Open-source [community contributions](https://github.com/onetimesecret/onetimesecret/issues) and insights
 3. Focus on core functionality and security
 
