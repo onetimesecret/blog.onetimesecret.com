@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Onetime Secret is Now Opensource
-date: 2013-02-04
+date: 2013-01-30
 authors:
   - name: Delano
     to: https://blog.onetimesecret.com/about

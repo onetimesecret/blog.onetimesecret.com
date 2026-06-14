@@ -555,15 +555,15 @@ Should there be tests for critical user flows like onboarding? Yes. Did I have t
 
 </InsetParagraph>
 
-## There was abug afoot
+## There was a bug afoot
 
 I didn't catch the issue until Thursday evening thanks to a helpful report from a user. By that point a few hundred accounts had been created. I [deployed a fix](https://github.com/onetimesecret/onetimesecret/releases/tag/v0.17.1-rc4) right away  and got to work documenting what happened and the list of accounts affected. Old compliance habits die hard. And also come in handy when you need to do a post-mortem.
 
-I waited until Friday morning to follow-up on manually verifying the accounts and sending out notifications. There was no rush at that point I sent out an email to the affected users to apologize and let them know that their accounts were now verified. I also included a fortune cookie message at the end of the email to lighten the mood and add some Lite Value℗.
+I waited until Friday morning to follow-up on manually verifying the accounts and sending out notifications. There was no rush at that point. I sent out an email to the affected users to apologize and let them know that their accounts were now verified. I also included a fortune cookie message at the end of the email to lighten the mood and add some Lite Value℗.
 
 ## Hands-on support
 
-I wrote some code to get a rough idea of which accounts were affected based on date range. Then split that into two Redis sets: verified and not verified. The not verified group was ~650 accounts. From there I codifed the process of manually verifying the accounts and sending out an email to each one. I added a sleep of 1 second between each email to play nice with the email provider. Some choices you make simply to avoid obvious headaches and don't spend time optimizing for the sake of it.
+I wrote some code to get a rough idea of which accounts were affected based on date range. Then split that into two Redis sets: verified and not verified. The not verified group was ~650 accounts. From there I codified the process of manually verifying the accounts and sending out an email to each one. I added a sleep of 1 second between each email to play nice with the email provider. Some choices you make simply to avoid obvious headaches and don't spend time optimizing for the sake of it.
 
 ::CollapsibleContent{summary="Click to expand the code snippet"}
 
@@ -677,7 +677,7 @@ The bug was introduced following a full refactor of the underlying storage code 
 
 ## Meta content: About the title illustration
 
-As is tradition, the main illustraion for this post was created by Anthropic Claude 3.5. It did the heavy lifting and I filled the role of hype-man.
+As is tradition, the main illustration for this post was created by Anthropic Claude 3.5. It did the heavy lifting and I filled the role of hype-man.
 
 ::ImageModal{src="/img/blog/2024/20240906-signups-glitch.svg" alt="Older layout from June" width="320" height="320"}
 ::

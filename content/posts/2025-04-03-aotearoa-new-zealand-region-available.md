@@ -14,8 +14,6 @@ badge:
 readingTime: 5
 ---
 
-# Aotearoa New Zealand Region Now Available
-
 Our data center network has expanded with an Aotearoa New Zealand location. The Aotearoa New Zealand region ([nz.onetimesecret.com](https://nz.onetimesecret.com)) maintains our share-nothing architecture - ensuring data created in Aotearoa New Zealand stays in Aotearoa New Zealand.
 
 ## Serving the South Pacific

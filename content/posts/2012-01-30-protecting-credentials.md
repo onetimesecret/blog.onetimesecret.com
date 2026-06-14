@@ -16,7 +16,7 @@ readingTime: 13
 
 <p> In my <a href="/posts/2012-01-25-good-passwords">previous blog post</a>,
 I wrote about choosing good passwords. However, most hack attempts don't involve password hacking/guessing
-at all. Even dictionary attacks — which are far more common that brute force attacks — are not the
+at all. Even dictionary attacks — which are far more common than brute force attacks — are not the
 most common way that criminals get at your account information and private data. In this blog post,
 I'll mention some of the more common attacks, and how you can protect yourself against them.</p>
 
@@ -37,7 +37,7 @@ The term '<a href="http://en.wikipedia.org/wiki/Phishing">phishing</a>' is a hac
 from 'fishing', implying that there is a bait and that someone is waiting for a bite from a victim.
 This is because phishing attacks often involve sending a potential victim some sort of request or
 message, often forged or made to look like it is from some other individual or company. The
-'bait' is a message that is a call to action on the victims part, enticing them to give
+'bait' is a message that is a call to action on the victim's part, enticing them to give
 up some private information.
 </p>
 <p class="indent"> For example: they might send an email claiming to be your bank informing you that
@@ -116,12 +116,12 @@ you just leave it out there, and eventually the flies are all stuck in the pot.
 
 <p class="indent">
 However, not all honeypots are run by good guys. Like a trojan, a honeypot is a tool, or service that
-seems beneficial, however it's end goal is definitely not. A very common black hat honeypot is
+seems beneficial, however its end goal is definitely not. A very common black hat honeypot is
 a 'free' wifi hot-spot. Since they are in control of the hotspot, all traffic is routed and controlled
 by them. This means that they can give bogus <a href="http://en.wikipedia.org/wiki/Domain_Name_System">DNS
 responses</a> and therefore easily route you to forged/malicious websites even if you use your own
 bookmarks or type URLs directly. Also, any traffic that isn't encrypted (http instead of https) can be
-spyed on and collected and analyzed. So passwords or sessions for popular sites that don't use SSL can
+spied on and collected and analyzed. So passwords or sessions for popular sites that don't use SSL can
 be <a href="http://en.wikipedia.org/wiki/Packet_analyzer">sniffed</a> and <a href="http://en.wikipedia.org/wiki/Session_hijacking">hijacked</a>,
 effectively giving the criminals control over your accounts.</p>
 
@@ -132,5 +132,5 @@ use SSL for <strong>all</strong> of their communications. While not available to
 best way of all would be to use <a href="http://en.wikipedia.org/wiki/VPN">VPN</a> whenever you are
 on a public network, including all known/reputable wifi hotspots. Chances are, if you work for a
 company that has a decent security policy and expects you to connect to their networks from home
-or on the road, they do (or at least should) provide VPN connectivety.
+or on the road, they do (or at least should) provide VPN connectivity.
 </p>

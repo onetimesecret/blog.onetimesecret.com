@@ -154,7 +154,7 @@ Our open-source first development model positions Onetime Secret as a leader in 
       ::
 
       ::div{ .w-[50%] .dark:text-white }
-        Originally post to the GitHub repo wiki
+        Originally posted to the GitHub repo wiki
       ::
     ::
   ::

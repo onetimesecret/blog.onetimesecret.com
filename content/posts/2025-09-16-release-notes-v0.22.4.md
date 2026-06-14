@@ -14,8 +14,6 @@ badge:
 readingTime: 2
 ---
 
-# OneTimeSecret v0.22.4 Release Notes
-
 Version v0.22.4 introduces new configuration options for customizing security policies and access control.
 
 ## Changes
@@ -45,7 +43,7 @@ PASSWORD_GEN_SYMBOLS=false
 
 ## Installation
 
-**Docker**: `docker pull onetimesecret/onetimesecret:v0.22.6`
+**Docker**: `docker pull onetimesecret/onetimesecret:v0.22.4`
 **Source**: [GitHub Release](https://github.com/onetimesecret/onetimesecret/releases/tag/v0.22.4)
 
 The release also includes updates to `INSTALL.md` and the `README.md` for Docker deployment.

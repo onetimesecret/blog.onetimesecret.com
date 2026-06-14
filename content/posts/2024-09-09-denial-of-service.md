@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Denial of Service (DoS) Attack: A brief summary"
-date: 2024-09-10
+date: 2024-09-09
 authors:
   - name: Delano
     to: https://blog.onetimesecret.com/about
@@ -47,7 +47,7 @@ We're still investigating and will share a full post-mortem soon. This incident 
 
 To whoever was behind this attack: bravo, I guess? But seriously, can we all go home now?
 
-I'm not going to sugarcoat it. This was a major disruption to our service, and that doesn't feel great. Actualyl it specifically feels bad. Our focus now is learning from this and making Onetime Secret better.
+I'm not going to sugarcoat it. This was a major disruption to our service, and that doesn't feel great. Actually, it specifically feels bad. Our focus now is learning from this and making Onetime Secret better.
 
 Thanks for your patience and understanding. We'll keep you updated as we know more.
 
@@ -129,7 +129,7 @@ The attack seems like it may not actually be done yet.
 
 ### 19:00 PDT, Sept 9, 2024
 
-The attack is still ongoing. The network team at our hosting company (Hetzner) emailed earlier. I'm just catching up on emails now. They included some numbers. Around noon today (PDT), over a five minute period: over 1 million packets per second, 311+ million packets total. That's a lot. And it's being going on and off for hours.
+The attack is still ongoing. The network team at our hosting company (Hetzner) emailed earlier. I'm just catching up on emails now. They included some numbers. Around noon today (PDT), over a five minute period: over 1 million packets per second, 311+ million packets total. That's a lot. And it's been going on and off for hours.
 
 ### 23:45 PDT, Sept 9, 2024
 

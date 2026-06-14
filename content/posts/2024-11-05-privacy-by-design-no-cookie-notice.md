@@ -15,8 +15,6 @@ readingTime: 5
 
 Our privacy-by-design approach means no need for cookie banners. We don't need to ask permission for something we don't do in the first place.
 
-# Privacy by Design: Why we don't have a cookie notice
-
 ## A Different Approach
 You might have noticed something missing on Onetime Secret: there's no cookie consent banner. That's not an oversight—it's by design. While most websites greet you with pop-ups about tracking and cookies, we've taken a deliberately different approach: we don't track you at all.
 
@@ -32,16 +30,15 @@ That's it. No tracking cookies, no third-party analytics, no behavior monitoring
 This minimal approach delivers tangible benefits:
 - Smaller attack surface for enhanced security
 - Straightforward privacy policy without surprises
-- Faster page loads without tracking
-- scripts and bloated requests
+- Faster page loads without tracking scripts and bloated requests
 - No cross-site tracking concerns
 
-## Proven Since 2012
-As a service that's been operating since 2012, we've proven that respecting privacy and delivering value go hand in hand. While others rely on tracking for improvements, we focus on what matters: direct user feedback and essential operational metrics. This keeps us aligned with our core mission of providing a reliable, trustworthy service for sharing sensitive information.
+## Proven Since 2013
+As a service whose code has been open source since 2013, we've proven that respecting privacy and delivering value go hand in hand. While others rely on tracking for improvements, we focus on what matters: direct user feedback and essential operational metrics. This keeps us aligned with our core mission of providing a reliable, trustworthy service for sharing sensitive information.
 
 ## How We Improve Without Tracking
 Some ask how we improve our service without detailed analytics. Our approach is simple:
-1. Direct user feedback through via email and our [feedback page](https://onetimesecret.com/feedback)
+1. Direct user feedback via email and our [feedback page](https://onetimesecret.com/feedback)
 2. Open-source [community contributions](https://github.com/onetimesecret/onetimesecret/issues) and insights
 3. Focus on core functionality and security
 

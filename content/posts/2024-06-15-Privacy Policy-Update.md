@@ -12,7 +12,7 @@ badge:
 readingTime: 31
 ---
 
-_When we first launched in 2012, we never anticipated the widespread use and trust that our platform has gained over the years. To put it simply, we've been really fortunate to have a product that people have stuck with for more than a decade._
+_When we open-sourced Onetime Secret in 2013, we never anticipated the widespread use and trust that our platform has gained over the years. To put it simply, we've been really fortunate to have a product that people have stuck with for more than a decade._
 
 _As our user base has grown and evolved, so have their expectations and needs, which has prompted these much-needed updates. We're incredibly grateful for the trust you've placed in us over the years and are committed to continuing to earn that trust through open, transparent communication and secure data handling practices._
 
@@ -74,7 +74,7 @@ You can find the [complete, exhaustive list of changes here](https://github.com/
       ::
 
       ::div{ .w-[50%] .dark:text-white }
-        Originally post to the GitHub repo wiki
+        Originally posted to the GitHub repo wiki
       ::
     ::
   ::

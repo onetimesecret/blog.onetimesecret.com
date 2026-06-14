@@ -14,8 +14,6 @@ badge:
 readingTime: 6
 ---
 
-# Ugly By Nature: Why Our Blog Graphics Look Terrible (On Purpose)
-
 At Onetime Secret, we believe in transparency, not just in our product, but in all of our communication. You may have noticed something unusual about the graphics in our blog posts: they're unprofessional, poorly executed, and often down right ugly. This isn't an oversight or a cost-cutting measure. It's a deliberate choice that aligns with our core values and our approach to technology. Let's dive into why we've made this decision and what it means for you, our readers.
 
 ![AI-Generated Graphic: Transparency in Tech](/img/blog/2024/ai-generated-graphics-transparency.svg)
@@ -71,7 +69,7 @@ How do you feel about our approach to AI-generated graphics? [Send us feedback](
 
 ## Meta content: About the post image
 
-::ImageModal{src="img/blog/2024/ai-generated-graphics-transparency.svg" title="Claude AI's interpretation of Global Data Centers" alt="Claude AI's interpretation of Global Data Centers" width="600"}
+::ImageModal{src="/img/blog/2024/ai-generated-graphics-transparency.svg" title="Claude AI's interpretation of Global Data Centers" alt="Claude AI's interpretation of Global Data Centers" width="600"}
 ::
 
 ::CollapsibleContent{summary="Click to expand the AI conversation"}

@@ -20,9 +20,18 @@ pnpm preview      # Preview production build
 ```bash
 pnpm lint         # Run ESLint
 pnpm typecheck    # TypeScript type checking
+pnpm check:content # Lint blog markdown (frontmatter, links, asset paths, etc.)
+pnpm check:links  # Check for broken links with lychee (requires lychee installed)
 ```
 
 After making changes, always run both `pnpm lint` and `pnpm typecheck` to ensure code quality.
+
+When editing or adding blog posts in `/content/posts/`, also run `pnpm check:content`.
+It runs on plain Node (no build/license needed) and is enforced in CI via
+`.github/workflows/check-content.yml`. Errors (empty links, malformed URLs,
+relative asset paths, missing/invalid frontmatter) fail the build; warnings
+(filename/`date` drift, duplicate H1, leaked AI replies, missing local assets,
+unfiltered drafts) are reported for review. See `scripts/check-content.js`.
 
 ## Architecture
 
