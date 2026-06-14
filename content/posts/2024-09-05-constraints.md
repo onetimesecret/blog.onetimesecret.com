@@ -9,6 +9,8 @@ authors:
       src: /img/portrait-profile-pic-delano-2025-m.png
 image:
   src: /img/blog/2024/2024-0905-data-privacy-framework-claude.svg
+  width: 800
+  height: 400
 badge:
   label: Privacy
 readingTime: 6

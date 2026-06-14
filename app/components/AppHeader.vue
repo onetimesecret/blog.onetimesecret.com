@@ -31,7 +31,7 @@ const links = [
         label="Blog"
         color="info"
         variant="subtle"
-        class="mb-0.5 dark:bg-midnight-700 dark:text-midnight-300"
+        class="mb-0.5 text-info-700 dark:bg-midnight-700 dark:text-midnight-300"
       />
     </template>
 
