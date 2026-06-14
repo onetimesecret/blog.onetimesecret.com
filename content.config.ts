@@ -27,6 +27,10 @@ export default defineContentConfig({
         image: z.object({
           src: z.string(),
           alt: z.string().optional(),
+          // Intrinsic dimensions let the hero <NuxtImg> reserve space,
+          // avoiding layout shift (CLS) and the "unsized-images" audit.
+          width: z.number().optional(),
+          height: z.number().optional(),
         }).optional(),
         badge: z.object({
           label: z.string(),

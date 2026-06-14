@@ -75,6 +75,8 @@ else {
           <NuxtImg
             :src="post.image.src"
             :alt="post.image.alt || post.title"
+            :width="post.image.width"
+            :height="post.image.height"
             class="w-full h-auto rounded-lg shadow-sm"
             loading="lazy"
           />
