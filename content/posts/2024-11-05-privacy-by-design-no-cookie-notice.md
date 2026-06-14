@@ -33,8 +33,8 @@ This minimal approach delivers tangible benefits:
 - Faster page loads without tracking scripts and bloated requests
 - No cross-site tracking concerns
 
-## Proven Since 2012
-As a service that's been operating since 2012, we've proven that respecting privacy and delivering value go hand in hand. While others rely on tracking for improvements, we focus on what matters: direct user feedback and essential operational metrics. This keeps us aligned with our core mission of providing a reliable, trustworthy service for sharing sensitive information.
+## Proven Since 2013
+As a service whose code has been open source since 2013, we've proven that respecting privacy and delivering value go hand in hand. While others rely on tracking for improvements, we focus on what matters: direct user feedback and essential operational metrics. This keeps us aligned with our core mission of providing a reliable, trustworthy service for sharing sensitive information.
 
 ## How We Improve Without Tracking
 Some ask how we improve our service without detailed analytics. Our approach is simple:
