@@ -139,8 +139,12 @@ function checkFile(file) {
   }
 
   // Draft posts still render — there is no draft filter in the posts query.
-  if (fmLines.some(l => /^_draft:\s*true\b/.test(l))) {
-    report(WARN, file, 1, 'draft', '`_draft: true` is set but drafts are not filtered — this post will publish');
+  // Check both Nuxt Content's standard `draft:` field and the `_draft:` variant;
+  // they are different keys, so a draft using either should be flagged.
+  const draftLine = fmLines.find(l => /^_?draft:\s*true\b/.test(l));
+  if (draftLine) {
+    const field = draftLine.startsWith('_') ? '_draft' : 'draft';
+    report(WARN, file, 1, 'draft', `\`${field}: true\` is set but drafts are not filtered — this post will publish`);
   }
 
   // Frontmatter image: relative path (missing leading slash) or missing file.
