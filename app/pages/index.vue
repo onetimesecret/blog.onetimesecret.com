@@ -29,11 +29,10 @@ useSeoMeta({
   ogDescription: page.value.description,
 });
 
-defineOgImage({
-  component: 'Blog',
+defineOgImage('SimpleBlog', {
   title: page.value.title,
   description: page.value.description,
-} as any);
+});
 
 function formatDate(date: string) {
   const dateParts = date.split('-');
