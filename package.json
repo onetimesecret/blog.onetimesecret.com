@@ -6,7 +6,7 @@
   "scripts": {
     "pregenerate": "echo 'Pregenerate this'",
     "build": "NODE_OPTIONS='--max-old-space-size=2048' nuxt build",
-    "dev": "nuxt dev --host --port=5175",
+    "dev": "nuxt dev --host 0.0.0.0 --port 5175",
     "generate": "NODE_OPTIONS='--max-old-space-size=4096 ' nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
