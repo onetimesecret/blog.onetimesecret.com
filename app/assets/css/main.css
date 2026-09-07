@@ -67,8 +67,9 @@
   --color-midnight-900: #010b1c;
   --color-midnight-950: #000612;
 
-  /* Font families */
-  --font-brand: 'Zilla Slab', serif;
+  /* Font families (faces declared in font.css) */
+  --font-brand: 'Zilla Slab Provenance', 'Zilla Slab', Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-serif: 'Maryheather Provenance', Georgia, Cambria, 'Times New Roman', Times, serif;
 }
 
 @layer base {
@@ -105,6 +106,10 @@
   /* Apply brand font to headings, buttons, and button-styled links */
   h1,
   h2,
+  h3,
+  h4,
+  h5,
+  h6,
   button,
   a.block,
   a.inline-flex,

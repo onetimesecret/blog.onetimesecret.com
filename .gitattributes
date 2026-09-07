@@ -1,0 +1,5 @@
+# Upstream OFL licence texts ship verbatim beside the derived webfonts
+# (OFL 1.1 clause 2). Keep their bytes, including CRLF line endings, exactly
+# as published rather than normalising them.
+app/assets/css/fonts/*-provenance/LICENSE -text
+app/assets/css/fonts/*-provenance/OFL.txt -text
