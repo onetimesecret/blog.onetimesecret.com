@@ -77,6 +77,13 @@
     font-family: var(--font-serif, ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif);
   }
 
+  /* Reader switched the provenance (P+) faces off via the ProvenanceToggle
+     content component: same typefaces, without the marks. */
+  html[data-provenance='off'] {
+    --font-brand: 'Zilla Slab', Georgia, Cambria, 'Times New Roman', Times, serif;
+    --font-serif: 'Maryheather', Georgia, Cambria, 'Times New Roman', Times, serif;
+  }
+
   /* Override bare --ui-primary in light mode: brand-600 (5.21:1) instead of
      brand-500 (4.16:1) for WCAG AA normal-text compliance on white. */
   :root,

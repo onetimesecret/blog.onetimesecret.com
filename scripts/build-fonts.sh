@@ -15,6 +15,12 @@
 # Output: subset WOFF2 files under app/assets/css/fonts/, referenced by
 #         app/assets/css/font.css.
 #
+# The plain (non-P+) Maryheather build is staged as well, from
+# temp/maryheather/patched/MaryheatherNerdFontPropo-*.ttf. It backs the
+# "provenance off" state of the ProvenanceToggle content component, so readers
+# can compare the same typeface with and without the marks. Zilla Slab's plain
+# faces already ship in fonts/zs/.
+#
 # The patcher's --complete build adds ~10k icon glyphs (about 1 MB per face).
 # The blog only needs the text glyphs plus the provenance machinery, so each
 # face is subset to:
@@ -61,7 +67,7 @@ subset() {
 # Four faces per family: 400/700 x normal/italic.
 FACES=(Regular Italic Bold BoldItalic)
 
-mkdir -p "$OUT/zilla-slab-provenance" "$OUT/maryheather-provenance"
+mkdir -p "$OUT/zilla-slab-provenance" "$OUT/maryheather-provenance" "$OUT/maryheather"
 
 for face in "${FACES[@]}"; do
   subset "$SRC/zilla/patched/ZillaSlabNerdFontPropoP+-$face.ttf" \
@@ -73,10 +79,16 @@ for face in "${FACES[@]}"; do
          "$OUT/maryheather-provenance/MaryheatherNerdFontPropoP+-$face.woff2"
 done
 
+for face in "${FACES[@]}"; do
+  subset "$SRC/maryheather/patched/MaryheatherNerdFontPropo-$face.ttf" \
+         "$OUT/maryheather/MaryheatherNerdFontPropo-$face.woff2"
+done
+
 # Upstream licence texts ship beside the derived fonts (OFL 1.1 clause 2).
 if [ -f "$SRC/zilla/zilla.zip" ]; then
   unzip -p "$SRC/zilla/zilla.zip" 'zilla-slab/LICENSE' > "$OUT/zilla-slab-provenance/LICENSE"
 fi
 if [ -f "$SRC/maryheather/merriweather.zip" ]; then
   unzip -p "$SRC/maryheather/merriweather.zip" 'Merriweather-1.582/OFL.txt' > "$OUT/maryheather-provenance/OFL.txt"
+  unzip -p "$SRC/maryheather/merriweather.zip" 'Merriweather-1.582/OFL.txt' > "$OUT/maryheather/OFL.txt"
 fi
