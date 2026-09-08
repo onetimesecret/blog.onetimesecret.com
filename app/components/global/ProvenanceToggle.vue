@@ -31,10 +31,10 @@ const markedSample = computed(() =>
   Array.from(props.sample).map(ch => WHITESPACE.test(ch) ? ch : ch + AI_MARK).join(''),
 );
 
-const families = computed(() => enabled.value
-  ? { headings: 'Zilla Slab Provenance', body: 'Maryheather Provenance' }
-  : { headings: 'Zilla Slab', body: 'Maryheather' },
-);
+// The base family names never change. The "Provenance" suffix is always
+// rendered and only hidden when P+ is off, so the readout keeps its width and
+// nothing shifts when the switch flips.
+const families = { headings: 'Zilla Slab', body: 'Maryheather' };
 </script>
 
 <template>
@@ -53,14 +53,14 @@ const families = computed(() => enabled.value
 
     <div class="space-y-3 px-4 py-4 text-base text-midnight-800 dark:text-midnight-200">
       <p class="text-sm text-midnight-600 dark:text-midnight-400">
-        Headings: <span class="font-brand text-midnight-900 dark:text-midnight-100">{{ families.headings }}</span>
+        Headings: <span class="font-brand text-midnight-900 dark:text-midnight-100">{{ families.headings }} <span :class="{ invisible: !enabled }">Provenance</span></span>
         &middot;
-        Body: <span class="text-midnight-900 dark:text-midnight-100">{{ families.body }}</span>
+        Body: <span class="text-midnight-900 dark:text-midnight-100">{{ families.body }} <span :class="{ invisible: !enabled }">Provenance</span></span>
       </p>
 
       <dl class="grid gap-x-4 gap-y-2 sm:grid-cols-[auto_1fr]">
         <dt class="text-sm text-midnight-600 dark:text-midnight-400">
-          Unmarked
+          Default (assumed human)
         </dt>
         <dd class="text-lg">
           {{ sample }}
