@@ -19,6 +19,10 @@
 # Output: subset WOFF2 files under app/assets/css/fonts/, referenced by
 #         app/assets/css/font.css.
 #
+# Desktop (TTF) downloads are not built here. The fork's
+# bin/scripts/package-provenance-fonts.sh zips the full patched TTFs per
+# family for a GitHub Release on delano/nerd-fonts, which the post links to.
+#
 # The plain (non-P+) Maryheather build is staged as well, from
 # temp/maryheather/patched/MaryheatherNerdFontPropo-*.ttf. It backs the
 # "provenance off" state of the ProvenanceToggle content component, so readers
