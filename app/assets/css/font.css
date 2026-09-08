@@ -33,3 +33,120 @@
   font-style: italic;
   font-display: fallback;
 }
+
+/*
+ * Provenance (P+) builds. These are Nerd Font builds patched with
+ * --provenance=explicit (https://github.com/delano/nerd-fonts/issues/10):
+ * text marked as AI-generated (U+E0101 after each character, or the PUA-B
+ * form U+100000 + code point) renders with a bar across the glyph, while
+ * unmarked text renders as the plain face. Subset and staged by
+ * scripts/build-fonts.sh; licence texts sit beside the files.
+ */
+
+/* Zilla Slab P+: headings, nav, buttons (via --font-brand). */
+@font-face {
+  font-family: 'Zilla Slab P+';
+  src: url('~/assets/css/fonts/zilla-slab-provenance/ZillaSlabNerdFontPropoP+-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zilla Slab P+';
+  src: url('~/assets/css/fonts/zilla-slab-provenance/ZillaSlabNerdFontPropoP+-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zilla Slab P+';
+  src: url('~/assets/css/fonts/zilla-slab-provenance/ZillaSlabNerdFontPropoP+-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zilla Slab P+';
+  src: url('~/assets/css/fonts/zilla-slab-provenance/ZillaSlabNerdFontPropoP+-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/*
+ * Maryheather P+: body and prose (via --font-serif).
+ * Maryheather is Merriweather patched and renamed. "Merriweather" is an OFL
+ * Reserved Font Name, so the derived family carries a non-reserved name; the
+ * upstream copyright and OFL text ship in fonts/maryheather-provenance/.
+ */
+@font-face {
+  font-family: 'Maryheather P+';
+  src: url('~/assets/css/fonts/maryheather-provenance/MaryheatherNerdFontPropoP+-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Maryheather P+';
+  src: url('~/assets/css/fonts/maryheather-provenance/MaryheatherNerdFontPropoP+-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Maryheather P+';
+  src: url('~/assets/css/fonts/maryheather-provenance/MaryheatherNerdFontPropoP+-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Maryheather P+';
+  src: url('~/assets/css/fonts/maryheather-provenance/MaryheatherNerdFontPropoP+-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/*
+ * Maryheather (plain): the same renamed Merriweather build without the
+ * provenance marks. Only requested when the reader switches provenance off
+ * (html[data-provenance='off'], see ProvenanceToggle).
+ */
+@font-face {
+  font-family: 'Maryheather';
+  src: url('~/assets/css/fonts/maryheather/MaryheatherNerdFontPropo-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Maryheather';
+  src: url('~/assets/css/fonts/maryheather/MaryheatherNerdFontPropo-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Maryheather';
+  src: url('~/assets/css/fonts/maryheather/MaryheatherNerdFontPropo-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Maryheather';
+  src: url('~/assets/css/fonts/maryheather/MaryheatherNerdFontPropo-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}

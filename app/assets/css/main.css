@@ -67,13 +67,21 @@
   --color-midnight-900: #010b1c;
   --color-midnight-950: #000612;
 
-  /* Font families */
-  --font-brand: 'Zilla Slab', serif;
+  /* Font families (faces declared in font.css) */
+  --font-brand: 'Zilla Slab P+', 'Zilla Slab', Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-serif: 'Maryheather P+', Georgia, Cambria, 'Times New Roman', Times, serif;
 }
 
 @layer base {
   html {
     font-family: var(--font-serif, ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif);
+  }
+
+  /* Reader switched the provenance (P+) faces off via the ProvenanceToggle
+     content component: same typefaces, without the marks. */
+  html[data-provenance='off'] {
+    --font-brand: 'Zilla Slab', Georgia, Cambria, 'Times New Roman', Times, serif;
+    --font-serif: 'Maryheather', Georgia, Cambria, 'Times New Roman', Times, serif;
   }
 
   /* Override bare --ui-primary in light mode: brand-600 (5.21:1) instead of
@@ -105,6 +113,10 @@
   /* Apply brand font to headings, buttons, and button-styled links */
   h1,
   h2,
+  h3,
+  h4,
+  h5,
+  h6,
   button,
   a.block,
   a.inline-flex,

@@ -62,9 +62,10 @@ export default defineNuxtConfig({
   // Privacy: never contact third-party font providers (Google Fonts, Bunny,
   // Fontshare, Fontsource, Google icons). @nuxt/ui bundles @nuxt/fonts, which
   // would otherwise probe those at build time. Restricting to the `local`
-  // provider disables every remote provider. Our only custom font (Zilla Slab)
-  // is self-hosted via app/assets/css/font.css; everything else uses system
-  // font stacks, so nothing depends on a remote provider.
+  // provider disables every remote provider. Our custom fonts (Zilla Slab and
+  // Maryheather, both self-hosted via app/assets/css/font.css) are the only
+  // webfonts; everything else uses system font stacks, so nothing depends on a
+  // remote provider.
   fonts: {
     provider: 'local',
   },
