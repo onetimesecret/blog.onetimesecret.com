@@ -89,7 +89,7 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 ## Webfonts
 
 The site self-hosts two font families, declared in `app/assets/css/font.css`:
-Zilla Slab Provenance (headings, nav, buttons) and Maryheather Provenance
+Zilla Slab P+ (headings, nav, buttons) and Maryheather P+
 (body). Both are Nerd Font "P+" builds that render a visible mark on text
 flagged as AI-generated; plain Zilla Slab and Maryheather faces back the
 reader-facing `::ProvenanceToggle` content component. Maryheather is

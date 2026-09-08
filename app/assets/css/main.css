@@ -68,8 +68,8 @@
   --color-midnight-950: #000612;
 
   /* Font families (faces declared in font.css) */
-  --font-brand: 'Zilla Slab Provenance', 'Zilla Slab', Georgia, Cambria, 'Times New Roman', Times, serif;
-  --font-serif: 'Maryheather Provenance', Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-brand: 'Zilla Slab P+', 'Zilla Slab', Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-serif: 'Maryheather P+', Georgia, Cambria, 'Times New Roman', Times, serif;
 }
 
 @layer base {

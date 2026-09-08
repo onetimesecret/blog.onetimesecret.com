@@ -27,6 +27,13 @@ T󠄁h󠄁i󠄁s󠄁 p󠄁a󠄁r󠄁a󠄁g󠄁r󠄁a󠄁p󠄁h󠄁 w󠄁a󠄁s�
 
 With P+ on, the marked line and the paragraph inside the panel show the bar. With P+ off, the same characters render in the plain faces and the marks disappear. The toggle is client-side only and resets on the next page load.
 
+## Under the hood
+
+The mark is not a style or an annotation layered on top of the text. It is a code point sitting in the string after each character. The word below is five characters on screen and ten code points in the file, and that stays true whichever way the switch is set. Only the font's opinion about U+E0101 changes.
+
+::ProvenanceInspector{sample="once."}
+::
+
 ## Why bother
 
 A footnote saying "AI helped write this" tells you nothing about which sentences. A mark carried in the text itself travels with the words, down to the character, and doesn't depend on anyone remembering to add a note. It also degrades cleanly: on a device without these fonts, the selector is invisible and the text reads normally.

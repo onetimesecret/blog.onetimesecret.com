@@ -17,7 +17,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  label: 'Provenance fonts',
+  label: 'With Provenance',
   sample: 'The quick brown fox jumps over the lazy dog.',
 });
 
@@ -31,56 +31,42 @@ const markedSample = computed(() =>
   Array.from(props.sample).map(ch => WHITESPACE.test(ch) ? ch : ch + AI_MARK).join(''),
 );
 
-// The base family names never change. The "Provenance" suffix is always
+// The base family names never change. The "P+" suffix is always
 // rendered and only hidden when P+ is off, so the readout keeps its width and
 // nothing shifts when the switch flips.
 const families = { headings: 'Zilla Slab', body: 'Maryheather' };
 </script>
 
 <template>
-  <div class="not-prose my-8 rounded-lg border border-midnight-200 bg-midnight-50 shadow-sm dark:border-midnight-700 dark:bg-midnight-800/50">
-    <div class="flex flex-wrap items-center justify-between gap-3 border-b border-midnight-200 px-4 py-3 dark:border-midnight-700">
-      <div class="font-brand text-lg font-medium text-midnight-900 dark:text-midnight-100">
-        {{ label }}
-      </div>
-      <USwitch
-        v-model="enabled"
-        :label="enabled ? 'P+ on' : 'P+ off'"
-        color="primary"
-        size="lg"
-      />
+  <ProvenancePanel :label="label">
+    <p class="text-sm text-midnight-600 dark:text-midnight-400">
+      Headings: <span class="font-brand text-midnight-900 dark:text-midnight-100">{{ families.headings }} <span :class="{ invisible: !enabled }">P+</span></span>
+      &middot;
+      Body: <span class="text-midnight-900 dark:text-midnight-100">{{ families.body }} <span :class="{ invisible: !enabled }">P+</span></span>
+    </p>
+
+    <dl class="grid gap-x-4 gap-y-2 sm:grid-cols-[auto_1fr]">
+      <dt class="text-sm text-midnight-600 dark:text-midnight-400">
+        Default (assumed human)
+      </dt>
+      <dd class="text-lg">
+        {{ sample }}
+      </dd>
+      <dt class="text-sm text-midnight-600 dark:text-midnight-400">
+        Marked AI-generated
+      </dt>
+      <dd class="text-lg">
+        {{ markedSample }}
+      </dd>
+    </dl>
+
+    <div v-if="$slots.default" class="border-t border-midnight-200 pt-3 dark:border-midnight-700">
+      <slot />
     </div>
 
-    <div class="space-y-3 px-4 py-4 text-base text-midnight-800 dark:text-midnight-200">
-      <p class="text-sm text-midnight-600 dark:text-midnight-400">
-        Headings: <span class="font-brand text-midnight-900 dark:text-midnight-100">{{ families.headings }} <span :class="{ invisible: !enabled }">Provenance</span></span>
-        &middot;
-        Body: <span class="text-midnight-900 dark:text-midnight-100">{{ families.body }} <span :class="{ invisible: !enabled }">Provenance</span></span>
-      </p>
-
-      <dl class="grid gap-x-4 gap-y-2 sm:grid-cols-[auto_1fr]">
-        <dt class="text-sm text-midnight-600 dark:text-midnight-400">
-          Default (assumed human)
-        </dt>
-        <dd class="text-lg">
-          {{ sample }}
-        </dd>
-        <dt class="text-sm text-midnight-600 dark:text-midnight-400">
-          Marked AI-generated
-        </dt>
-        <dd class="text-lg">
-          {{ markedSample }}
-        </dd>
-      </dl>
-
-      <div v-if="$slots.default" class="border-t border-midnight-200 pt-3 dark:border-midnight-700">
-        <slot />
-      </div>
-
-      <p class="text-xs text-midnight-500 dark:text-midnight-400">
-        The marked line carries U+E0101 after each character. With P+ off, the same
-        characters render in the plain face and the marks are invisible.
-      </p>
-    </div>
-  </div>
+    <p class="text-xs text-midnight-500 dark:text-midnight-400">
+      The marked line carries U+E0101 after each character. With P+ off, the same
+      characters render in the plain face and the marks are invisible.
+    </p>
+  </ProvenancePanel>
 </template>
