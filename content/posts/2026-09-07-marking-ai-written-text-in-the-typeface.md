@@ -7,6 +7,8 @@ authors:
     to: https://blog.onetimesecret.com/about
     avatar:
       src: /img/portrait-profile-pic-delano-2025-m.png
+image:
+  src: /img/blog/2026/20260907-provenance-sawtooth.svg
 badge:
   label: Experiments
 readingTime: 3
@@ -43,3 +45,11 @@ The mark is not a style or an annotation layered on top of the text. It is a var
 A footnote saying "AI helped write this" tells you nothing about which sentences. A mark carried in the text itself can travel with the words, down to the character, and doesn't depend on anyone remembering to add a note. It also degrades cleanly: in a plain font, the selector takes up no space and the text reads normally.
 
 We haven't decided how widely to use this. For now it's a working demo, and the fonts are self-hosted, so the font files are not fetched from a third party. If you're curious about the build, the [blog repository](https://github.com/onetimesecret/blog.onetimesecret.com) has the script that subsets the patched fonts into the WOFF2 files the site serves.
+
+---
+
+::CollapsibleContent{summary="About this post"}
+
+**The image** was created by Claude. The brief was the post itself: a letter whose shadow is the sawtooth, a marked "once." next to a plain one, and the P+ stamp. The glowing conveyor of teeth along the bottom is Claude's idea of the marks travelling with the words.
+
+::

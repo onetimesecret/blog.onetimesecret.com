@@ -1,0 +1,150 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <title>A slab-serif letter whose shadow is a glowing sawtooth, marking it as machine-written</title>
+  <defs>
+    <!-- Deep ink void - the page before anyone has written on it -->
+    <radialGradient id="void" cx="50%" cy="45%" r="75%">
+      <stop offset="0%" style="stop-color:#1c1530" />
+      <stop offset="55%" style="stop-color:#0d0a18" />
+      <stop offset="100%" style="stop-color:#000000" />
+    </radialGradient>
+
+    <!-- Letter fill - warm paper catching light from below -->
+    <linearGradient id="letterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff6e0" />
+      <stop offset="55%" style="stop-color:#f0d9a6" />
+      <stop offset="100%" style="stop-color:#c9963e" />
+    </linearGradient>
+
+    <!-- Sawtooth fill - electric provenance -->
+    <linearGradient id="toothGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff3ec9" />
+      <stop offset="50%" style="stop-color:#4de3ff" />
+      <stop offset="100%" style="stop-color:#ff3ec9" />
+    </linearGradient>
+
+    <!-- Floor glow rising up from the mark -->
+    <linearGradient id="floorGlow" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#4de3ff;stop-opacity:0.55" />
+      <stop offset="60%" style="stop-color:#4de3ff;stop-opacity:0.08" />
+      <stop offset="100%" style="stop-color:#4de3ff;stop-opacity:0" />
+    </linearGradient>
+
+    <!-- Badge ring -->
+    <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4de3ff" />
+      <stop offset="100%" style="stop-color:#ff3ec9" />
+    </linearGradient>
+
+    <!-- Neon glow -->
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Bigger, softer glow for the floor -->
+    <filter id="bloom" x="-30%" y="-60%" width="160%" height="220%">
+      <feGaussianBlur stdDeviation="9" />
+    </filter>
+
+    <!-- Slight surreal warp so the letter looks a little melted at the foot -->
+    <filter id="warp">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="7" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+
+    <!-- Stars -->
+    <pattern id="stars" width="60" height="60" patternUnits="userSpaceOnUse">
+      <circle cx="7" cy="9" r="0.5" fill="#ffffff" opacity="0.6" />
+      <circle cx="28" cy="4" r="0.3" fill="#ffffff" opacity="0.4" />
+      <circle cx="51" cy="17" r="0.45" fill="#ffffff" opacity="0.5" />
+      <circle cx="14" cy="36" r="0.6" fill="#ffffff" opacity="0.7" />
+      <circle cx="39" cy="46" r="0.3" fill="#ffffff" opacity="0.3" />
+      <circle cx="55" cy="52" r="0.5" fill="#ffffff" opacity="0.5" />
+      <circle cx="23" cy="55" r="0.4" fill="#ffffff" opacity="0.4" />
+    </pattern>
+
+    <!-- A single tooth, tiled to make a sawtooth stroke -->
+    <pattern id="teeth" width="10" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 8 L5 0 L10 8 Z" fill="url(#toothGrad)" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="url(#void)" />
+  <rect width="100%" height="100%" fill="url(#stars)" opacity="0.8" />
+
+  <!-- Drifting fragments of the mechanism -->
+  <g opacity="0.16" font-family="monospace" font-size="8" fill="#4de3ff">
+    <text x="26" y="62" transform="rotate(-14 26 62)">U+E0101</text>
+    <text x="292" y="44" transform="rotate(9 292 44)">variation selector</text>
+    <text x="330" y="330" transform="rotate(-7 330 330)">copy</text>
+    <text x="40" y="352" transform="rotate(6 40 352)">paste</text>
+    <text x="20" y="200" transform="rotate(-90 20 200)">who wrote this?</text>
+    <text x="384" y="230" transform="rotate(90 384 230)">glyph level</text>
+  </g>
+
+  <!-- The floor: a horizon line where the marks live -->
+  <rect x="0" y="262" width="400" height="90" fill="url(#floorGlow)" />
+
+  <!-- Spotlight cone rising from the mark to light the letter from below -->
+  <path d="M120 300 L200 60 L280 300 Z" fill="#4de3ff" opacity="0.06" />
+
+  <!-- The letter's shadow, cast as a sawtooth -->
+  <g filter="url(#bloom)" opacity="0.9">
+    <path d="M118 312 L128 290 L138 312 L148 290 L158 312 L168 290 L178 312 L188 290 L198 312 L208 290 L218 312 L228 290 L238 312 L248 290 L258 312 L268 290 L278 312 Z"
+          fill="url(#toothGrad)" />
+  </g>
+  <path d="M118 312 L128 290 L138 312 L148 290 L158 312 L168 290 L178 312 L188 290 L198 312 L208 290 L218 312 L228 290 L238 312 L248 290 L258 312 L268 290 L278 312 Z"
+        fill="url(#toothGrad)" filter="url(#glow)" />
+
+  <!-- The letter itself: one honest slab-serif 'a' -->
+  <g filter="url(#warp)">
+    <text x="200" y="278" text-anchor="middle"
+          font-family="'Zilla Slab', Rockwell, 'Roboto Slab', Georgia, serif"
+          font-weight="700" font-size="250"
+          fill="url(#letterGrad)" stroke="#3b2a12" stroke-width="2">a</text>
+  </g>
+  <!-- Rim light on the letter from the mark below -->
+  <text x="200" y="278" text-anchor="middle"
+        font-family="'Zilla Slab', Rockwell, 'Roboto Slab', Georgia, serif"
+        font-weight="700" font-size="250"
+        fill="none" stroke="#4de3ff" stroke-width="1.2" opacity="0.5" filter="url(#glow)">a</text>
+
+  <!-- The sawtooth keeps going: a conveyor of marks running off both edges -->
+  <g filter="url(#glow)">
+    <rect x="-10" y="326" width="420" height="8" fill="url(#teeth)" opacity="0.95" />
+  </g>
+  <line x1="0" y1="334" x2="400" y2="334" stroke="#4de3ff" stroke-width="0.8" opacity="0.5" />
+
+  <!-- A sentence that has been marked: every glyph carries its own tooth -->
+  <g font-family="Maryheather, Merriweather, Georgia, serif" font-size="18" fill="#fff6e0" filter="url(#glow)">
+    <text x="244" y="118">once.</text>
+  </g>
+  <g fill="url(#toothGrad)" filter="url(#glow)" opacity="0.95">
+    <path d="M245 124 L248 118 L251 124 Z" />
+    <path d="M256 124 L259 118 L262 124 Z" />
+    <path d="M267 124 L270 118 L273 124 Z" />
+    <path d="M278 124 L281 118 L284 124 Z" />
+    <path d="M287 124 L290 118 L293 124 Z" />
+  </g>
+
+  <!-- ...and one that has not, sitting plain and unlit -->
+  <g font-family="Maryheather, Merriweather, Georgia, serif" font-size="18" fill="#fff6e0" opacity="0.55">
+    <text x="60" y="118">once.</text>
+  </g>
+
+  <!-- P+ stamp, slightly askew like it was pressed by hand -->
+  <g transform="translate(78 292) rotate(-12)" filter="url(#glow)">
+    <circle cx="0" cy="0" r="26" fill="#0d0a18" stroke="url(#badgeGrad)" stroke-width="3" />
+    <circle cx="0" cy="0" r="20" fill="none" stroke="url(#badgeGrad)" stroke-width="0.8" opacity="0.6" stroke-dasharray="2 3" />
+    <text x="0" y="7" text-anchor="middle"
+          font-family="'Zilla Slab', Rockwell, Georgia, serif" font-weight="700" font-size="22"
+          fill="url(#badgeGrad)">P+</text>
+  </g>
+
+  <!-- Caption -->
+  <text x="200" y="376" text-anchor="middle" font-family="monospace" font-size="9" fill="#4de3ff" opacity="0.7" letter-spacing="3">THE MARK TRAVELS WITH THE WORDS</text>
+</svg>
