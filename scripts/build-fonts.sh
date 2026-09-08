@@ -3,9 +3,13 @@
 # Stage the provenance (P+) webfonts used by the blog.
 #
 # Input:  explicit-provenance Nerd Font builds produced by the delano/nerd-fonts
-#         fork (see https://github.com/delano/nerd-fonts/issues/10), expected at
+#         fork (see https://github.com/delano/nerd-fonts/issues/10). The fork
+#         commits them under patched-fonts/{zilla,maryheather}/patched/, so run
+#           FONT_SRC=/path/to/nerd-fonts/patched-fonts scripts/build-fonts.sh
+#         The default FONT_SRC of temp/ expects the same layout:
 #         temp/zilla/patched/ZillaSlabNerdFontPropoP+-*.ttf and
 #         temp/maryheather/patched/MaryheatherNerdFontPropoP+-*.ttf.
+#         The ai mark (U+E0101) is a sawtooth; the unknown mark (U+E0102) is a bar.
 #
 # Merriweather declares "Merriweather" as an OFL Reserved Font Name, so the
 # patcher renames the generated family to Maryheather via the fork's SIL table,

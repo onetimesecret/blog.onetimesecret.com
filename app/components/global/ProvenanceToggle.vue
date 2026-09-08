@@ -2,7 +2,7 @@
 /**
  * Lets a reader switch the page between the provenance (P+) fonts and the
  * plain faces of the same typefaces. Text carrying the AI-generated mark
- * (U+E0101 after each character) shows a bar only while P+ is on.
+ * (U+E0101 after each character) shows a sawtooth only while P+ is on.
  *
  * Usage in markdown:
  *   ::ProvenanceToggle
