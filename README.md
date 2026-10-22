@@ -86,6 +86,19 @@ bun run preview
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
+## Webfonts
+
+The site self-hosts two font families, declared in `app/assets/css/font.css`:
+Zilla Slab P+ (headings, nav, buttons) and Maryheather P+
+(body). Both are Nerd Font "P+" builds that render a visible mark on text
+flagged as AI-generated; plain Zilla Slab and Maryheather faces back the
+reader-facing `::ProvenanceToggle` content component. Maryheather is
+Merriweather renamed, because "Merriweather" is an OFL Reserved Font Name.
+
+The staged WOFF2 files are produced by `scripts/build-fonts.sh` from patched
+TTFs in the gitignored `temp/` directory. See the script header for the input
+layout, subsetting rules, and how to validate the result.
+
 ## Nuxt Studio integration
 
 Add `@nuxthq/studio` dependency to your package.json:
