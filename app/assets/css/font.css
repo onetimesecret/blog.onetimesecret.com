@@ -116,8 +116,9 @@
 
 /*
  * Maryheather (plain): the same renamed Merriweather build without the
- * provenance marks. Only requested when the reader switches provenance off
- * (html[data-provenance='off'], see ProvenanceToggle).
+ * provenance marks. Used by the TextProv display demos (.prov-plain-face in
+ * provenance.css): they paint marks from the stylesheet and need a face
+ * without a glyph of its own for U+E0101.
  */
 @font-face {
   font-family: 'Maryheather';
