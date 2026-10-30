@@ -1,0 +1,14 @@
+shamefullyHoist: true
+shellEmulator: true
+trustPolicy: no-downgrade
+trustPolicyExclude:
+  # npm CLI team's 2023 ReDoS backport, published by hand after 7.x had provenance
+  - semver@6.3.1
+
+allowBuilds:
+  '@parcel/watcher': false
+  better-sqlite3: true
+  esbuild: true
+  sharp: true
+  unrs-resolver: true
+  vue-demi: true
