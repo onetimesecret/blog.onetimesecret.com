@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
+  <title>A reader's lens reveals glowing provenance marks beneath a line of text</title>
+  <defs>
+    <radialGradient id="void"><stop stop-color="#221735"/><stop offset="1" stop-color="#04030a"/></radialGradient>
+    <linearGradient id="neon"><stop stop-color="#4de3ff"/><stop offset="1" stop-color="#ff3ec9"/></linearGradient>
+    <linearGradient id="paper" x2="0" y2="1"><stop stop-color="#fff6e0"/><stop offset="1" stop-color="#c9963e"/></linearGradient>
+    <pattern id="stars" width="61" height="57" patternUnits="userSpaceOnUse"><circle cx="8" cy="12" r="0.6" fill="#fff" opacity="0.4"/><circle cx="43" cy="37" r="0.4" fill="#fff" opacity="0.3"/></pattern>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="bloom" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="15"/></filter>
+    <filter id="warp"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="27" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="3"/></filter>
+  </defs>
+  <rect width="800" height="400" fill="url(#void)"/>
+  <rect width="800" height="400" fill="url(#stars)"/>
+  <g font-family="monospace" font-size="11" fill="#4de3ff" opacity="0.18">
+    <text x="65" y="86" transform="rotate(-9 65 86)">time and trust</text>
+    <text x="570" y="83" transform="rotate(8 570 83)">source / voice</text>
+    <text x="83" y="325" transform="rotate(-6 83 325)">review matters</text>
+    <text x="560" y="327" transform="rotate(7 560 327)">the reader decides</text>
+  </g>
+  <ellipse cx="419" cy="218" rx="170" ry="64" fill="#4de3ff" opacity="0.12" filter="url(#bloom)"/>
+  <g stroke="#fff6e0" stroke-width="2" opacity="0.13">
+    <path d="M135 145 H295 M505 145 H665 M135 265 H300 M535 265 H665"/>
+    <path d="M135 158 H245 M555 158 H665 M135 278 H260 M570 278 H665"/>
+  </g>
+  <text x="400" y="224" text-anchor="middle" font-family="Georgia, serif" font-size="57" fill="url(#paper)" filter="url(#warp)">the medium is the message.</text>
+  <g fill="none" stroke="url(#neon)" filter="url(#glow)">
+    <circle cx="410" cy="197" r="87" stroke-width="3"/>
+    <path d="M474 259 L519 298" stroke-width="12" stroke-linecap="round"/>
+    <path d="M337 239 L344 229 L351 239 L358 229 L365 239 L372 229 L379 239 L386 229 L393 239 L400 229 L407 239 L414 229 L421 239 L428 229 L435 239 L442 229 L449 239 L456 229 L463 239 L470 229 L477 239" stroke-width="2"/>
+  </g>
+  <path d="M345 166 A70 70 0 0 1 412 126" fill="none" stroke="#fff" stroke-width="2" opacity="0.3"/>
+</svg>
