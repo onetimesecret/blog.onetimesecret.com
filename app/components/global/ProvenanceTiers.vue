@@ -22,7 +22,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  label: 'Watermark, not flag',
+  label: 'Display Tiers',
   before: 'We drafted the proposal on Tuesday, and ',
   marked: 'the model filled in the budget section with figures from last quarter',
   after: ', which we then checked against the ledger. Nothing else in this paragraph was touched.',

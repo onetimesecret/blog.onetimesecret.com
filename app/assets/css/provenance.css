@@ -39,3 +39,26 @@ html.dark {
 .prov-plain-face {
   font-family: 'Maryheather', Georgia, Cambria, 'Times New Roman', Times, serif;
 }
+
+/*
+ * Seam geometry for the demos. The vendored stylesheet paints the corner
+ * seams flush with the run's box, so the strokes cross the first and last
+ * glyph. The mockup kept them clear of the text, and this follows the mockup:
+ * in the quiet and loud tiers the run gets inline padding and the seams land
+ * in it, beside the glyphs. That is the stylesheet's open item ("reserve the
+ * 0.4em the mockup used and accept a reflow when the tier changes"): the
+ * latent tier has no padding, so stepping into quiet or loud shifts the text
+ * after the run by the padding. Reserving it in every tier would leave a gap
+ * before the comma in latent, which reads worse than the shift.
+ *
+ * The box is sliced so the padding applies once per run, not at every
+ * wrapped line end. The vertical padding mirrors the mockup's 0.08em so the
+ * loud tint sits a little proud of the glyphs; padding on an inline box never
+ * changes line height.
+ */
+:root:is([data-prov-tier="quiet"], [data-prov-tier="loud"]) .prov-plain-face :is(.prov-human, .prov-ai) {
+  --prov-seam-width: 0.3em;
+  padding: 0.08em 0.3em;
+  box-decoration-break: slice;
+  -webkit-box-decoration-break: slice;
+}
