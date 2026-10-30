@@ -1,18 +1,16 @@
 <script setup lang="ts">
 /**
- * Shared chrome for the provenance demos: a titled panel with the P+ switch in
- * its header. The switch state comes from useProvenanceFonts, so every panel on
- * the page flips together.
+ * Shared chrome for the provenance demos: a titled panel with the display
+ * tier control in its header. The tier comes from useProvenanceDisplay, so
+ * every panel on the page steps together.
  */
 interface Props {
   label?: string;
 }
 
 withDefaults(defineProps<Props>(), {
-  label: 'With Provenance',
+  label: 'Provenance display',
 });
-
-const { enabled } = useProvenanceFonts();
 </script>
 
 <template>
@@ -21,15 +19,17 @@ const { enabled } = useProvenanceFonts();
       <div class="font-brand text-lg font-medium text-midnight-900 dark:text-midnight-100">
         {{ label }}
       </div>
-      <USwitch
-        v-model="enabled"
-        :label="enabled ? 'On' : 'Off'"
-        color="primary"
-        size="lg"
-      />
+      <slot name="controls">
+        <ProvenanceTierControl />
+      </slot>
     </div>
 
-    <div class="space-y-3 px-4 py-4 text-base text-midnight-800 dark:text-midnight-200">
+    <!-- Exact display (the recorded ranges, not whole passages). The vendored
+         stylesheet looks for this attribute on an ancestor below the root. -->
+    <div
+      data-prov-display="exact"
+      class="space-y-3 px-4 py-4 text-base text-midnight-800 dark:text-midnight-200"
+    >
       <slot />
     </div>
   </div>

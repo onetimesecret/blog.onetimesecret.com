@@ -1,0 +1,41 @@
+/*
+ * Site palette for the TextProv display (app/vendor/textprov/textprov.css).
+ *
+ * The vendored stylesheet keys its dark palette on prefers-color-scheme, but
+ * this site switches themes with the .dark class, so both palettes are
+ * restated here. These rules are unlayered on purpose: they must win over the
+ * stylesheet's @layer textprov declarations whatever the selector weight.
+ *
+ * The AI source colour is the mockup's steel blue in dark mode and the site's
+ * midnight-400 in light mode. Human and mixed keep the upstream defaults.
+ */
+html {
+  --prov-ai-line: #2a577a;
+  --prov-ai-bg: rgba(42, 87, 122, 0.14);
+  --prov-human-line: #2ea043;
+  --prov-human-bg: rgba(46, 160, 67, 0.14);
+  --prov-mixed-line: #6e7781;
+  --prov-mixed-bg: rgba(110, 119, 129, 0.14);
+  --prov-glow-opacity: 27%;
+  --prov-ghost-color: #6e7781;
+}
+
+html.dark {
+  --prov-ai-line: #7fb3c8;
+  --prov-ai-bg: rgba(127, 179, 200, 0.16);
+  --prov-human-line: #3fb950;
+  --prov-human-bg: rgba(63, 185, 80, 0.16);
+  --prov-mixed-line: #a0a7b0;
+  --prov-mixed-bg: rgba(160, 167, 176, 0.16);
+  --prov-glow-opacity: 17.55%;
+  --prov-ghost-color: #6e7681;
+}
+
+/*
+ * Marked samples are set in the plain Maryheather face. The site's default
+ * body face is the P+ build, which still carries its own glyph for U+E0101;
+ * painting the stylesheet's marks on top of it would show both.
+ */
+.prov-plain-face {
+  font-family: 'Maryheather', Georgia, Cambria, 'Times New Roman', Times, serif;
+}

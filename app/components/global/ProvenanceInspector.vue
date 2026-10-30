@@ -1,9 +1,10 @@
 <script setup lang="ts">
 /**
- * The under-the-hood companion to ProvenanceToggle. Puts the same word side
+ * The under-the-hood companion to ProvenanceTiers. Puts the same word side
  * by side, once as typed and once with the AI-generated mark after each
- * character, and shows what is actually in each string. The switch never
- * changes the code points; it only changes whether the font draws the marks.
+ * character, and shows what is actually in each string. The tier control
+ * never changes the code points; it only changes how the stylesheet paints
+ * the span the decoder wraps around the marked run.
  *
  * Usage in markdown:
  *   ::ProvenanceInspector{sample="once."}
@@ -15,13 +16,12 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  label: 'With Provenance',
+  label: 'In the string',
   sample: 'once.',
 });
 
-const { enabled } = useProvenanceFonts();
+const { tier } = useProvenanceDisplay();
 
-const AI_MARK = '\u{E0101}';
 const WHITESPACE = /\s/;
 
 interface Unit {
@@ -49,9 +49,7 @@ function toUnits(text: string): Unit[] {
   return out;
 }
 
-const markedSample = computed(() =>
-  Array.from(props.sample).map(ch => WHITESPACE.test(ch) ? ch : ch + AI_MARK).join(''),
-);
+const markedSample = computed(() => markAi(props.sample));
 
 const encoder = new TextEncoder();
 
@@ -81,12 +79,16 @@ const columns = computed<Column[]>(() => [
   toColumn('Marked AI-generated', markedSample.value),
 ]);
 
-function drawn(col: Column) {
+const paints: Record<ProvenanceTier, string> = {
+  latent: 'a bar in the margin',
+  quiet: 'ghost text with corner seams',
+  loud: 'a tint, a glow and corner seams',
+};
+
+function painted(col: Column) {
   if (col.marks === 0)
     return 'nothing extra';
-  if (!enabled.value)
-    return 'nothing extra';
-  return `a sawtooth under ${col.marks} glyph${col.marks === 1 ? '' : 's'}`;
+  return paints[tier.value];
 }
 </script>
 
@@ -104,8 +106,10 @@ function drawn(col: Column) {
       <div class="col-span-2 mt-2 text-xs uppercase tracking-wide text-midnight-500 dark:text-midnight-400">
         Rendered
       </div>
-      <div v-for="col in columns" :key="col.heading" class="text-2xl">
-        {{ col.text }}
+      <div v-for="col in columns" :key="col.heading" class="pl-5">
+        <p class="prov-plain-face text-2xl text-midnight-900 dark:text-midnight-100">
+          <ProvenanceMarked :text="col.text" />
+        </p>
       </div>
 
       <div class="col-span-2 mt-2 text-xs uppercase tracking-wide text-midnight-500 dark:text-midnight-400">
@@ -122,10 +126,7 @@ function drawn(col: Column) {
             <span class="px-1 pb-0.5 leading-tight">{{ u.codePoint }}</span>
             <span
               v-if="u.mark"
-              class="border-t px-1 py-0.5 leading-tight transition"
-              :class="enabled
-                ? 'border-brand-300 bg-brand-50 text-brand-700 dark:border-brand-700 dark:bg-brand-950/50 dark:text-brand-300'
-                : 'border-dashed border-midnight-300 text-midnight-400 line-through dark:border-midnight-600 dark:text-midnight-500'"
+              class="border-t border-brand-300 bg-brand-50 px-1 py-0.5 leading-tight text-brand-700 dark:border-brand-700 dark:bg-brand-950/50 dark:text-brand-300"
             >{{ u.mark }}</span>
           </li>
         </ol>
@@ -135,27 +136,22 @@ function drawn(col: Column) {
       </div>
 
       <div class="col-span-2 mt-2 text-xs uppercase tracking-wide text-midnight-500 dark:text-midnight-400">
-        Font draws
+        Stylesheet paints
       </div>
       <div
         v-for="col in columns"
         :key="col.heading"
         class="text-sm"
-        :class="col.marks > 0 && enabled ? 'text-brand-700 dark:text-brand-300' : 'text-midnight-700 dark:text-midnight-300'"
+        :class="col.marks > 0 ? 'text-brand-700 dark:text-brand-300' : 'text-midnight-700 dark:text-midnight-300'"
       >
-        {{ drawn(col) }}
+        {{ painted(col) }}
       </div>
     </div>
 
     <p class="text-xs text-midnight-500 dark:text-midnight-400">
-      <template v-if="enabled">
-        The switch changes nothing in either string. The P+ face has a glyph for U+E0101,
-        so it draws a sawtooth wherever one follows a character.
-      </template>
-      <template v-else>
-        The switch changes nothing in either string. The plain face has no glyph for U+E0101,
-        so the marks take up no space and the two columns look the same.
-      </template>
+      The control changes nothing in either string. The decoder wraps the run that
+      carries U+E0101 in a span, and the stylesheet paints that span for the
+      selected tier. The plain string has no span to paint.
     </p>
   </ProvenancePanel>
 </template>
