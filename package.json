@@ -51,6 +51,7 @@
     "@iconify-json/vscode-icons": "^1.2.94",
     "@nuxt/test-utils": "^3.23.0",
     "eslint": "^9.39.5",
+    "spotnote": "^0.5.0",
     "vitest": "^3.2.7",
     "vue-tsc": "^2.2.12"
   }
