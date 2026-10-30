@@ -42,3 +42,5 @@ Dockerfile.*
 
 # Tools
 .lighthouseci
+
+*.txt

@@ -2,7 +2,7 @@
   "name": "onetimesecret-blog",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@10.28.2",
+  "packageManager": "pnpm@12.16.1",
   "scripts": {
     "pregenerate": "echo 'Pregenerate this'",
     "build": "NODE_OPTIONS='--max-old-space-size=2048' nuxt build",
@@ -53,14 +53,5 @@
     "eslint": "^9.39.5",
     "vitest": "^3.2.7",
     "vue-tsc": "^2.2.12"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "better-sqlite3",
-      "esbuild",
-      "sharp",
-      "unrs-resolver",
-      "vue-demi"
-    ]
   }
 }

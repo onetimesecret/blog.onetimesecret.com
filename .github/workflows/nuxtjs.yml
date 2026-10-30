@@ -28,10 +28,10 @@ jobs:
       NUXT_UI_PRO_LICENSE: ${{ secrets.NUXT_UI_PRO_LICENSE }}
     steps:
       - uses: actions/checkout@v4
-      - run: corepack enable
+      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
       - name: Replace environment variables
         run: |
           envsubst < nuxt.config.ts > nuxt.config.ts.tmp && mv nuxt.config.ts.tmp nuxt.config.ts
