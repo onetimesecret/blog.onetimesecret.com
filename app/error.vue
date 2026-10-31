@@ -19,7 +19,7 @@ useHead({
   },
 });
 
-const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('posts'), { default: () => [] });
+const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('posts').where('draft', '<>', true), { default: () => [] });
 
 provide('navigation', navigation);
 </script>

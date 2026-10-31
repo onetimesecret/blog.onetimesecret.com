@@ -31,7 +31,11 @@ It runs on plain Node (no build/license needed) and is enforced in CI via
 `.github/workflows/check-content.yml`. Errors (empty links, malformed URLs,
 relative asset paths, missing/invalid frontmatter) fail the build; warnings
 (filename/`date` drift, duplicate H1, leaked AI replies, missing local assets,
-unfiltered drafts) are reported for review. See `scripts/check-content.js`.
+legacy `_draft:` keys) are reported for review. Posts with `draft: true` are
+excluded from the posts collection itself (`scripts/drafts.js`), so they never
+reach the public SQL dump, the index, post routes, surround links or search.
+Restart the dev server after toggling `draft`.
+See `scripts/check-content.js`.
 
 ## Architecture
 
@@ -66,6 +70,31 @@ unfiltered drafts) are reported for review. See `scripts/check-content.js`.
 - `/app/components/` - Auto-imported Vue components
 - `/content/posts/` - Blog post markdown files
 - `/public/` - Static assets served directly
+
+## Blog Post Hero Images
+
+Each post gets an AI-generated SVG illustration, referenced from frontmatter as
+`image:\n  src: /img/blog/<year>/<yyyymmdd>-<slug>.svg`.
+
+- **Size: 800x400 (2:1 landscape).** The featured post on the index page uses
+  Nuxt UI Pro's horizontal `UBlogPost` card, which crops the image to a wide
+  aspect ratio. A square (400x400) image only shows its top half there. Keep
+  the whole composition inside the middle band and avoid anything essential
+  near the top or bottom edges.
+- **House style:** dark radial "void" background, a subtle stars pattern,
+  neon glow and bloom filters, gradient fills, a light `feTurbulence` warp,
+  and faint rotated monospace text fragments scattered in the background.
+  See `public/img/blog/2026/20260907-provenance-sawtooth.svg` and
+  `20260319-api-carumba.svg` as references.
+- **Fonts:** the SVG is served through `<img>`, so it cannot use the site's
+  self-hosted webfonts. Any `font-family` stack must end in a generic fallback
+  (Georgia, serif, monospace) and the design must still work with it.
+- **Preview locally** with `rsvg-convert -w 1200 file.svg -o preview.png`
+  before wiring it in. Validate with `pnpm check:content`, which errors on
+  relative asset paths and warns when the frontmatter image is missing.
+- **Disclose it.** Close the post with a
+  `::CollapsibleContent{summary="About this post"}` block that says the image
+  was made by Claude and describes the brief.
 
 ## Important Notes
 

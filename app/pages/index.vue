@@ -10,6 +10,7 @@ if (!page.value) {
 }
 
 const { data: posts } = await useAsyncData('posts', () => queryCollection('posts')
+  .where('draft', '<>', true)
   .order('date', 'DESC')
   .all());
 

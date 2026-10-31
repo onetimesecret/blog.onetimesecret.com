@@ -93,9 +93,10 @@ export default defineNuxtConfig({
   // Privacy: never contact third-party font providers (Google Fonts, Bunny,
   // Fontshare, Fontsource, Google icons). @nuxt/ui bundles @nuxt/fonts, which
   // would otherwise probe those at build time. Restricting to the `local`
-  // provider disables every remote provider. Our only custom font (Zilla Slab)
-  // is self-hosted via app/assets/css/font.css; everything else uses system
-  // font stacks, so nothing depends on a remote provider.
+  // provider disables every remote provider. Our custom fonts (Zilla Slab and
+  // Maryheather, both self-hosted via app/assets/css/font.css) are the only
+  // webfonts; everything else uses system font stacks, so nothing depends on a
+  // remote provider.
   fonts: {
     provider: 'local',
   },
@@ -116,6 +117,20 @@ export default defineNuxtConfig({
         ['UButton'].includes(c.pascalName),
       );
       globals.forEach(c => (c.global = true));
+    },
+    // Prerendered /_ipx/ SVGs are recorded as text/plain in the node-server
+    // asset manifest, and nuxt-security's nosniff then stops the browser
+    // rendering them. ipx hands SVG to srvx as a string with raw-array
+    // headers; unenv's mock ServerResponse.writeHead (used by nitro's
+    // prerender fetch) drops array headers, so the string body falls back to
+    // the WHATWG Response default. Binary formats carry no default type and
+    // are inferred from the extension, so only SVG is affected. This hook
+    // runs before nitro records the route's content type.
+    'nitro:init': (nitro) => {
+      nitro.hooks.hook('prerender:generate', (route) => {
+        if (route.route.startsWith('/_ipx/') && route.fileName?.endsWith('.svg') && route.contentType?.startsWith('text/plain'))
+          route.contentType = 'image/svg+xml';
+      });
     },
   },
 

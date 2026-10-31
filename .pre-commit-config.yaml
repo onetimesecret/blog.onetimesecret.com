@@ -64,8 +64,12 @@ repos:
     rev: v5.0.0
     hooks:
       # Formatting and basic sanitization
+      # Upstream OFL licence texts ship verbatim beside the derived webfonts
+      # (OFL 1.1 clause 2), so they are excluded from whitespace rewriting.
       - id: trailing-whitespace # Remove trailing whitespaces
+        exclude: '^app/assets/css/fonts/[^/]+/(LICENSE|OFL\.txt)$'
       - id: end-of-file-fixer # Ensure files end with newline
+        exclude: '^app/assets/css/fonts/[^/]+/(LICENSE|OFL\.txt)$'
       - id: check-merge-conflict # Detect unresolved merge conflicts
       - id: detect-private-key # Warn about committing private keys
       - id: check-added-large-files # Prevent committing oversized files

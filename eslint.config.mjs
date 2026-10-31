@@ -49,5 +49,7 @@ export default antfu({
   'ignores': [
     'content/**',
     'README.md',
+    // Upstream copies (see app/vendor/textprov/README.md); not house style.
+    'app/vendor/**',
   ],
 });

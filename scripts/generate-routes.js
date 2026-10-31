@@ -1,15 +1,14 @@
 // Create a file: scripts/generate-routes.js
-import fs from 'node:fs';
-import path from 'node:path';
+import { draftFiles, postFiles } from './drafts.js';
 
-// Get all content files
-const contentDir = path.resolve('./content/posts');
-const files = fs.readdirSync(contentDir);
+const MD_EXT_RE = /\.md$/;
 
-// Generate routes list, filtering out files that start with a dot
-export const routes = files
-  .filter(file => !file.startsWith('.')) // Exclude dot files
-  .map(file => `/posts/${file.replace('.md', '')}`);
+// Generate routes list, filtering out dot files and drafts. Drafts are also
+// excluded from the posts collection (see content.config.ts), so a route for
+// one would only prerender a 404.
+export const routes = postFiles
+  .filter(file => !draftFiles.includes(file))
+  .map(file => `/posts/${file.replace(MD_EXT_RE, '')}`);
 
 console.log('Routes:');
 console.log(JSON.stringify(routes, null, 2));
