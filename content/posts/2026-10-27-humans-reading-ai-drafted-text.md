@@ -48,7 +48,7 @@ The [docs site](https://docs.onetimesecret.com) is where this is already in use.
 
 ## Why it matters
 
-**When all writing was human writing -- even when it's awful -- there was an implicit guarantee that some amount of human energy went into making it.**
+*When all writing was human writing, even the crap required some amount of human energy.*
 
 Up until 2022, it was safe to assume that longform content was produced by a real human person. We didn't give it a second thought. Machine made text was templated, on the order of a few phrases or sentences, and for the most part was given away by the repetition. Fast-forward to today, past a certain level of quality, it's not so easy to tell the difference between human vs AI produced text (once the obvious tells are removed).
 
