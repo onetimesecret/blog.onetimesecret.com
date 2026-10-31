@@ -28,7 +28,9 @@ const PUBLIC_DIR = path.resolve('public');
 const ERROR = 'error';
 const WARN = 'warn';
 const SLUG_FILENAME_RE = /^[a-z0-9.-]+\.md$/;
-const TEXTPROV_RE = /^textprov:\s*true\b/;
+const TEXTPROV_RE = /^textprov:\s*(?:true|inline)\b/;
+const TEXTPROV_INLINE_RE = /^textprov:\s*inline\b/;
+const TEXTPROV_TOGGLE_RE = /^::TextProvToggle\b/;
 
 // Distinctive phrases that indicate an AI-assistant reply was pasted into the
 // authored prose by mistake. These are matched only in authored prose — outside
@@ -172,6 +174,7 @@ function checkFile(file) {
   // TextProv: marks outside code are decoded only for posts that opt in;
   // anywhere else the build stops rather than publish raw selectors.
   const enrolled = fmLines.some(l => TEXTPROV_RE.test(l));
+  const inlineToggle = fmLines.some(l => TEXTPROV_INLINE_RE.test(l));
   marked.slice(1, bodyStart).forEach((m, i) => {
     if (m)
       report(ERROR, file, i + 2, 'textprov', 'AI marks in frontmatter; titles, descriptions and alt text stay unmarked');
@@ -246,9 +249,11 @@ function checkFile(file) {
   }
 
   if (firstMarked && !enrolled)
-    report(ERROR, file, firstMarked, 'textprov', 'AI marks in a post without `textprov: true`; the build refuses to publish raw selectors');
+    report(ERROR, file, firstMarked, 'textprov', 'AI marks in a post without `textprov: true` or `inline`; the build refuses to publish raw selectors');
   if (enrolled && !firstMarked)
-    report(WARN, file, 1, 'textprov', '`textprov: true` but no AI marks outside code; the reader toggle has nothing to highlight');
+    report(WARN, file, 1, 'textprov', '`textprov` is set but there are no AI marks outside code; the reader toggle has nothing to highlight');
+  if (inlineToggle && !lines.slice(bodyStart).some(l => TEXTPROV_TOGGLE_RE.test(l)))
+    report(WARN, file, 1, 'textprov', '`textprov: inline` but the body has no `::TextProvToggle` block; readers get no switch');
 }
 
 // --- run --------------------------------------------------------------------

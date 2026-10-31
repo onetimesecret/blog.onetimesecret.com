@@ -1,6 +1,8 @@
 <script setup lang="ts">
 /**
- * Reader switch on posts with `textprov: true`. The build has already wrapped
+ * Reader switch on enrolled posts. With `textprov: true` the post page shows
+ * it in the header; with `textprov: inline` the post places it in the body as
+ * a `::TextProvToggle` block (hence app/components/global/). The build has already wrapped
  * each AI-written run in <span class="textprov-ai"> (scripts/textprov.js);
  * the switch only decides whether provenance.css paints those spans, through
  * data-textprov on the document root. Like the docs site's toggle, the choice
@@ -21,6 +23,17 @@ useHead({
     innerHTML: `try{document.documentElement.dataset.textprov=localStorage.getItem('${KEY}')==='shown'?'shown':'hidden'}catch(e){document.documentElement.dataset.textprov='hidden'}`,
   }],
 });
+
+// Nuxt UI paints the unchecked track with --ui-bg-accented and the thumb with
+// --ui-bg; with the midnight neutral those are two near-black blues in dark
+// mode, so the switch disappears. Fixed track and thumb colours keep the
+// control above 3:1 against the page and the thumb above 3:1 against the
+// track in both modes and both states.
+const switchUi = {
+  base: 'data-[state=unchecked]:bg-midnight-400 dark:data-[state=unchecked]:bg-midnight-300',
+  thumb: 'bg-white dark:bg-midnight-950',
+  label: 'text-highlighted',
+};
 
 const shown = ref(false);
 
@@ -47,11 +60,13 @@ function update(value: boolean) {
 </script>
 
 <template>
-  <USwitch
-    :model-value="shown"
-    class="textprov-toggle print:hidden"
-    label="Highlight AI-written text"
-    description="Shows the characters recorded as AI-written while this post was drafted. The words stay the same."
-    @update:model-value="update"
-  />
+  <div class="not-prose textprov-toggle print:hidden">
+    <USwitch
+      :model-value="shown"
+      :ui="switchUi"
+      label="Highlight AI-written text"
+      description="Shows the characters recorded as written by AI."
+      @update:model-value="update"
+    />
+  </div>
 </template>

@@ -1,9 +1,10 @@
 // TextProv marks in blog posts, decoded at build time.
 //
-// A post opts in with `textprov: true` in its frontmatter, and only posts
-// whose provenance was recorded while they were written should: the reader
-// toggle (app/components/TextProvToggle.vue) claims that the highlighted
-// characters are the ones an AI model wrote. In the markdown source each
+// A post opts in with `textprov: true` (toggle in the post header) or
+// `textprov: inline` (the post places `::TextProvToggle` itself), and only
+// posts whose provenance was recorded while they were written should: the
+// reader toggle (app/components/global/TextProvToggle.vue) claims that the
+// highlighted characters are the ones an AI model wrote. In the markdown source each
 // AI-written character is followed by U+E0101, the AI selector of the
 // experimental TextProv mapping (app/vendor/textprov/).
 //
@@ -68,14 +69,14 @@ export function decodePost(content, label) {
   const fail = (message) => {
     throw new Error(`TextProv: ${message} (${label})`);
   };
-  const enrolled = content.textprov === true;
+  const enrolled = content.textprov === true || content.textprov === 'inline';
   const ids = [];
 
   function text(node) {
     if (!MARK_RE.test(node))
       return [node];
     if (!enrolled)
-      fail(`AI marks in a post without \`textprov: true\`: "${excerpt(node)}"`);
+      fail(`AI marks in a post without \`textprov: true\` or \`inline\`: "${excerpt(node)}"`);
     const runs = aiRuns(node);
     if (runs.some(run => MARK_RE.test(run.text)))
       fail(`malformed AI mark: "${excerpt(node)}"`);

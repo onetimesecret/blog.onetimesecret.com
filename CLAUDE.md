@@ -80,12 +80,16 @@ claim about who wrote each character, not a guess.
 - In the source, each AI-written character is followed by U+E0101 (whitespace
   and markdown syntax stay bare). Frontmatter stays unmarked.
 - Set `textprov: true` in the frontmatter. The post page then shows
-  `TextProvToggle`, and the build decodes the marks into
+  `TextProvToggle` in the header, and the build decodes the marks into
   `<span class="textprov-ai">` (`scripts/textprov.js`, run from the
   `content:file:afterParse` hook in `nuxt.config.ts`). No raw selector is
   published.
+- `textprov: inline` enrolls the post the same way but omits the header
+  toggle; the post places it where it fits the text with a `::TextProvToggle`
+  block on its own line (the component lives in `app/components/global/`).
 - `pnpm check:content` errors on marks in a post without `textprov: true` or
-  in frontmatter, and warns on an enrolled post with no marks.
+  `inline`, or in frontmatter, warns on an enrolled post with no marks, and
+  warns on an `inline` post whose body has no `::TextProvToggle`.
 - Edits to an enrolled post must keep the existing selectors: new human text
   stays unmarked, AI text added later gets marked.
 
