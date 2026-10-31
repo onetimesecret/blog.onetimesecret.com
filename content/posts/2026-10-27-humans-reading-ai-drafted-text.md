@@ -19,9 +19,15 @@ readingTime: 3
 description: "AI helps me keep the documentation updated. The highlight toggle helps me sleep at night."
 ---
 
-****
+
+::note
+This post is part of our "Skunkworks" series, where we write about experimental projects we're working on.
+::
+
 
 ## Why I use AI to write
+
+*AI helps me keep the documentation up to date. The highlight toggle helps me sleep at night.*
 
 ::youtube-no-cookie{video-id="Fh9Ixvfyzf0" caption="Almost Honest from the album Cryptic Writings - Megadeth"}
 ::
