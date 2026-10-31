@@ -11,6 +11,7 @@ image:
   src: /img/blog/2026/20260907-provenance-sawtooth.svg
 badge:
   label: Experiments
+draft: true
 readingTime: 4
 description: "The blog now ships provenance (P+) builds of its webfonts. A control in this post steps marked text through TextProv's three display tiers."
 ---
