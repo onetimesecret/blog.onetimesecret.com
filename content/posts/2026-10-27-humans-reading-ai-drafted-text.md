@@ -29,19 +29,22 @@ Herein lies the dilemna I've been Sweating Bullets™ over: for myself, passing 
 
 ## Highlighting AI text content
 
-So I vibe coded a tool to label it as I'm working on it. It's not a perfect system because AI output can incldue verbatim content from the prompt and other places. But it does draw attention to the problem and can give at a glance a good idea how AI "processed" the text is.
+So I vibe coded a tool to label it as I'm working on it. It's not a perfect system: AI output can include verbatim content from my prompt and other sources, so a highlighted passage doesn't necessarily mean the AI originated every word or idea in it. But it can give readers an at-a-glance sense of where AI has been involved.
 
 
 ::TextProvToggle
 ::
 
+
 ## Why it matters
 
-When all writing was human writing -- even when it's awful -- there was an implicit guarantee that some amount of human energy went into making it.
+**When all writing was human writing -- even when it's awful -- there was an implicit guarantee that some amount of human energy went into making it.**
 
-There's an energy differential.
+Up until 2022, it was safe to assume that longform content was produced by a real human person. We didn't give it a second thought. Machine made text was templated, on the order of a few phrases or sentences, and for the most part was given away by the repetition. Fast-forward to today, past a certain level of quality, it's not so easy to tell the difference between human vs AI produced text (once the obvious tells are removed).
 
-Up until 2022, it was safe to assume that even poorly written content was produced by a real human person. We didn't give it a second thought. Machine made text was templated, on the order of a few phrases or sentences, and for the most part was given away by the repetition. Fast-forward to today, past a certain level of quality, it's not so easy to tell the difference between human vs AI produced text (once the obvious tells are removed).
+What changed is the energy differential. The imbalance between how little time a draft can take to generate and how much attention it still asks of a reader.
+
+## Other approaches
 
 Statistical watermarking is a great start and works well for what it's designed to do: identifying blocks of text. But it's not readily visible to the reader and doesn't scale down to individual words and phrases. C2PA goes further by attaching a signed manifest that docouments the origin and history. That works well for images, video, and audio but not so much for text and still describes the content as a whole.
 
