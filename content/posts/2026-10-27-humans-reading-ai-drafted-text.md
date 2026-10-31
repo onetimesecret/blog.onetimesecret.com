@@ -29,40 +29,22 @@ Herein lies the dilemna I've been Sweating Bullets™ over: for myself, passing 
 
 ## Highlighting AI text content
 
-So I label it. I say whether I've reviewed it or not, and I say that it was drafted with the help of AI. The label's job is to tell you how much human attention went into what you're about to read.
+So I vibe coded a tool to label it as I'm working on it. It's not a perfect system because AI output can incldue verbatim content from the prompt and other places. But it does draw attention to the problem and can give at a glance a good idea how AI "processed" the text is.
+
 
 ::TextProvToggle
 ::
 
+## Why it matters
 
+When all writing was human writing -- even when it's awful -- there was an implicit guarantee that some amount of human energy went into making it.
 
+There's an energy differential.
 
 Up until 2022, it was safe to assume that even poorly written content was produced by a real human person. We didn't give it a second thought. Machine made text was templated, on the order of a few phrases or sentences, and for the most part was given away by the repetition. Fast-forward to today, past a certain level of quality, it's not so easy to tell the difference between human vs AI produced text (once the obvious tells are removed).
 
 Statistical watermarking is a great start and works well for what it's designed to do: identifying blocks of text. But it's not readily visible to the reader and doesn't scale down to individual words and phrases. C2PA goes further by attaching a signed manifest that docouments the origin and history. That works well for images, video, and audio but not so much for text and still describes the content as a whole.
 
-
-
-When all writing was human writing -- even when it's awful -- there was an implicit guarantee that some amount of human energy went into making it.
-
-
-
-Fast-forward to today, past a certain level of quality it's not (at least once it's past a certain quality level that doesn't include the Claude and ChatGPT tropes). When all writing is human writing, even when it's awful there is still an amount of human energy that went into it.
-
-It expects readers to spend their time and energy without knowing how the text was made. Sure, people can produce crap too but it’s different because it’s bounded by the rote effort of human attention. Since you cannot reliably tell without spending the time to read/analyze/scan it, the appropriate and responsible thing to do is label it.
-
-
-
-
-(no one confused MadLibs or the conclusion to a game of Clue with )
-
-
-
-## Why it matters
-
-It matters for the same reason that we treat the words of a doctor as medical advice. It also matters in a similar way to how people make decisions about food. Is it organic, has it been treated respectfully, handled appropriately, were any animals involved in its production?
-
-We’re only beginning to understand the health impacts of working with AI, to toil alongside it playing Slop or Not all day. It’s possible that there’s moral and emotional injury involved, in a way that a runner might bruise their heel or like tennis people elbow. There’s a lot to say on the topic but the point I want to make here is that there’s an energy differential. The cost of a machine leading you on is —figuratively speaking— close to zero. The cost for a human realizing they have wasted a day is not insignificant. If burnout is high effort and low/no progress on a goal over time, whether it’s a shitty coworker or machine as the source of those machinations—that strife—doesn’t matter much.
 
 ---
 
