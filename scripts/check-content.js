@@ -26,6 +26,7 @@ const PUBLIC_DIR = path.resolve('public');
 
 const ERROR = 'error';
 const WARN = 'warn';
+const SLUG_FILENAME_RE = /^[a-z0-9.-]+\.md$/;
 
 // Distinctive phrases that indicate an AI-assistant reply was pasted into the
 // authored prose by mistake. These are matched only in authored prose — outside
@@ -119,6 +120,12 @@ function checkFile(file) {
   const raw = fs.readFileSync(path.join(POSTS_DIR, file), 'utf8');
   const lines = raw.split('\n');
   const { fmLines, bodyStart } = parseFrontmatter(lines);
+
+  // Filename must already be a URL slug. Nuxt Content slugifies the stored
+  // path (lowercase, spaces to dashes) but generate-routes.js derives the
+  // prerender route from the raw filename, so any mismatch prerenders a 404.
+  if (!SLUG_FILENAME_RE.test(file))
+    report(ERROR, file, 1, 'filename', 'filename must be a lowercase slug ([a-z0-9.-]) so the prerendered route matches the content path');
 
   // Frontmatter: required fields.
   const title = frontmatterField(fmLines, 'title');
