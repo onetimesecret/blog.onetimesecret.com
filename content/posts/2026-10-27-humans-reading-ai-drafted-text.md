@@ -20,7 +20,7 @@ description: "Why I label AI-drafted text, distinguish review from origin, and l
 
 ## Why I label AI-drafted text
 
-Publishing AI-drafted text as though a human wrote it is misleading. Actually it’s worse than that, it’s actively dishonest. It expects readers to spend their time and trust without knowing how the text was made. Sure, people can produce crap too but it’s different because it’s bounded by the rote effort of human attention. Since you cannot reliably tell without spending the time to read/analyze/scan it, the appropriate and responsible thing to do is label it.
+Passing off longform AI-drafted text as though a human wrote it is misleading. Actually it's actively dishonest. Up until the end of 2022, it was safe to assume that poorly written text was produced by a human person. It was so safe in fact, that we didn't give it a second though.  It expects readers to spend their time and energy without knowing how the text was made. Sure, people can produce crap too but it’s different because it’s bounded by the rote effort of human attention. Since you cannot reliably tell without spending the time to read/analyze/scan it, the appropriate and responsible thing to do is label it.
 
 I use AI because I write slowly. Without that help, some docs would stay out of date or never get written. But publishing sooner comes with a responsibility: make the text's origin visible and let readers decide what to do with that information.
 
