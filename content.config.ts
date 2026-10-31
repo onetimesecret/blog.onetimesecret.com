@@ -38,6 +38,11 @@ export default defineContentConfig({
         }).optional(),
         readingTime: z.number().optional(),
         headline: z.string().optional(),
+        // Drafts are excluded from the index, post pages, surround links,
+        // search payload and prerendered routes. Defaulting to false keeps the
+        // column non-null so `where("draft", "<>", true)` matches every
+        // published post.
+        draft: z.boolean().default(false),
         icon: z.string().optional(),
       }),
     }),

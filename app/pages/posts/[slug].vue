@@ -9,12 +9,12 @@ const route = useRoute();
 // between the prerendered key (/posts/slug) and client path (/posts/slug/).
 const path = route.path.replace(/\/+$/, '') || '/';
 
-const { data: post } = await useAsyncData(path, () => queryCollection('posts').path(path).first());
+const { data: post } = await useAsyncData(path, () => queryCollection('posts').path(path).where('draft', '<>', true).first());
 if (!post.value) {
   throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: true });
 }
 
-const { data: surround } = await useAsyncData(`${path}-surround`, () => queryCollectionItemSurroundings('posts', path), { default: () => [] });
+const { data: surround } = await useAsyncData(`${path}-surround`, () => queryCollectionItemSurroundings('posts', path).where('draft', '<>', true), { default: () => [] });
 
 const title = post.value.title;
 const description = post.value.description;

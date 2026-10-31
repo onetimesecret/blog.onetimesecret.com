@@ -138,13 +138,12 @@ function checkFile(file) {
     report(WARN, file, 1, 'date-drift', `filename date ${fileDate} != frontmatter date ${date.slice(0, 10)} (URL slug and displayed date disagree)`);
   }
 
-  // Draft posts still render — there is no draft filter in the posts query.
-  // Check both Nuxt Content's standard `draft:` field and the `_draft:` variant;
-  // they are different keys, so a draft using either should be flagged.
-  const draftLine = fmLines.find(l => /^_?draft:\s*true\b/.test(l));
-  if (draftLine) {
-    const field = draftLine.startsWith('_') ? '_draft' : 'draft';
-    report(WARN, file, 1, 'draft', `\`${field}: true\` is set but drafts are not filtered — this post will publish`);
+  // `draft: true` is honoured: the schema in content.config.ts declares the
+  // field, the index/post/search queries filter on it, and generate-routes.js
+  // skips the file. The legacy `_draft:` key is NOT read by any of those, so
+  // a post using it would still publish.
+  if (fmLines.some(l => /^_draft:\s*true\b/.test(l))) {
+    report(WARN, file, 1, 'draft', '`_draft: true` is not honoured — use `draft: true` to keep this post out of the build');
   }
 
   // Frontmatter image: relative path (missing leading slash) or missing file.

@@ -31,7 +31,9 @@ It runs on plain Node (no build/license needed) and is enforced in CI via
 `.github/workflows/check-content.yml`. Errors (empty links, malformed URLs,
 relative asset paths, missing/invalid frontmatter) fail the build; warnings
 (filename/`date` drift, duplicate H1, leaked AI replies, missing local assets,
-unfiltered drafts) are reported for review. See `scripts/check-content.js`.
+legacy `_draft:` keys) are reported for review. Posts with `draft: true` are
+excluded from the index, post routes, surround links and search payload.
+See `scripts/check-content.js`.
 
 ## Architecture
 
