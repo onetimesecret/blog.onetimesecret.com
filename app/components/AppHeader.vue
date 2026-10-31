@@ -22,17 +22,28 @@ const links = [
 <template>
   <UHeader
     :links="links"
+    title="Onetime Secret Blog"
     class="dark:bg-midnight-800"
   >
+    <!-- Same pill logos as docs.onetimesecret.com (its SiteTitle.astro): one
+         <img> per color mode, 2rem tall, with the site name kept for screen
+         readers. UHeader derives the link's aria-label from this slot's text. -->
     <template #title>
-      <OnetimeLogo class="dark:text-white rounded-md" />
-      <span class="font-brand dark:text-white">Onetime Secret</span>
-      <UBadge
-        label="Blog"
-        color="info"
-        variant="subtle"
-        class="mb-0.5 text-info-700 dark:bg-midnight-700 dark:text-midnight-300"
-      />
+      <img
+        src="/img/onetime-logo-v3-blog-pill-light.svg"
+        alt="Onetime Secret Blog"
+        width="3630"
+        height="1445"
+        class="h-8 w-auto rounded-lg dark:hidden"
+      >
+      <img
+        src="/img/onetime-logo-v3-blog-pill-dark.svg"
+        alt="Onetime Secret Blog"
+        width="3630"
+        height="1445"
+        class="hidden h-8 w-auto rounded-lg dark:block"
+      >
+      <span class="sr-only">Onetime Secret Blog</span>
     </template>
 
     <template #right>
