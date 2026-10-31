@@ -29,9 +29,6 @@ This post is part of our "Skunkworks" series, where we write about experimental 
 
 *AI helps me keep the documentation up to date. The highlight toggle helps me sleep at night.*
 
-::youtube-no-cookie{video-id="Fh9Ixvfyzf0" caption="Almost Honest from the album Cryptic Writings - Megadeth"}
-::
-
 I enjoy using AI tools when I write because I'm a slow writer and a habitually non-linear thinker. Without the help, a lot of what I have wanted to write has gone stale, stated the conclusion before the premise, and/or has never seen the light of day. With the help, I'm able to produce (mostly) decent quality drafts and get into a flow state more readily. But it comes with a cost: there's that much more content to review and edit! They just move the bottleneck from writing to reviewing. So in order to actually Get It Done™, I need to publish sooner, before the text is fully reviewed.
 
 Herein lies the dilemna I've been Sweating Bullets™ over: for myself, passing off longform AI-generated text as though a human wrote and/or reviewed it is misleading. Especially if I would be knowlingly publishing it early, it feels dishonest. I think it's important for readers to know what they're reading and decide for themselves how much stock they can put in it.
@@ -54,9 +51,14 @@ Up until 2022, it was safe to assume that longform content was produced by a rea
 
 What changed is the energy differential. The imbalance between how little time a draft can take to generate and how much attention it still asks of a reader.
 
-## Other approaches
 
-Statistical watermarking is a great start and works well for what it's designed to do: identifying blocks of text. But it's not readily visible to the reader and doesn't scale down to individual words and phrases. C2PA goes further by attaching a signed manifest that docouments the origin and history. That works well for images, video, and audio but not so much for text and still describes the content as a whole.
+## Conclusion
+
+I'm making an earnest effort here but it does feel like a losing battle. I don't want to mislead readers, but I also don't want to slow down the writing process. So I'm trying to be transparent about the use of AI in my writing, and I hope that readers will appreciate the effort.
+
+::youtube-no-cookie{video-id="Fh9Ixvfyzf0" caption="Almost Honest from the album Cryptic Writings - Megadeth"}
+::
+
 
 
 ---
