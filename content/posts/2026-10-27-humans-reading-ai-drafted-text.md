@@ -9,19 +9,22 @@ authors:
       src: /img/portrait-profile-pic-delano-2025-m.png
 image:
   src: /img/blog/2026/20261027-humans-reading-ai-drafted-text.svg
-  alt: "A reader's lens reveals glowing provenance marks beneath a line of text."
+  alt: "A reader's lens reveals glowing provenance marks beneath a line of text. -- GPT-6.1 Astra"
   width: 800
   height: 400
 badge:
-  label: Transparency
+  label: Skunkworks
 textprov: inline
 readingTime: 3
-description: "Why I think it's important to be transparent about AI-drafted text."
+description: "AI helps me keep the documentation updated. The highlight toggle helps me sleep at night."
 ---
 
-**A󠄁I󠄁 h󠄁e󠄁l󠄁p󠄁s󠄁 m󠄁e󠄁 p󠄁u󠄁b󠄁l󠄁i󠄁s󠄁h󠄁 d󠄁o󠄁c󠄁s󠄁 s󠄁o󠄁o󠄁n󠄁e󠄁r󠄁.󠄁 T󠄁h󠄁e󠄁 t󠄁o󠄁g󠄁g󠄁l󠄁e󠄁 helps me sleep at night.󠄁**
+****
 
 ## Why I use AI to write
+
+::youtube-no-cookie{video-id="Fh9Ixvfyzf0" caption="Almost Honest from the album Cryptic Writings - Megadeth"}
+::
 
 I enjoy using AI tools when I write because I'm a slow writer and a habitually non-linear thinker. Without the help, a lot of what I have wanted to write has gone stale, stated the conclusion before the premise, and/or has never seen the light of day. With the help, I'm able to produce (mostly) decent quality drafts and get into a flow state more readily. But it comes with a cost: there's that much more content to review and edit! They just move the bottleneck from writing to reviewing. So in order to actually Get It Done™, I need to publish sooner, before the text is fully reviewed.
 
