@@ -35,6 +35,7 @@ So I vibe coded a tool to label it as I'm working on it. It's not a perfect syst
 ::TextProvToggle
 ::
 
+The [docs site](https://docs.onetimesecret.com) is where this is already in use. The docs still took several months to reorganize and expand, but they actually got done, and the highlight toggle is live there so you can see it working in practice.
 
 ## Why it matters
 
