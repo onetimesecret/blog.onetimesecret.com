@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
   <title
-  >A reader's lens reveals a text run marked by opposing corner brackets and gradient mist</title>
+  >A reader's lens shows that the text after the cursor is autosuggested ghost text</title>
   <defs>
     <radialGradient id="void"><stop stop-color="#221735" /><stop
         offset="1"
@@ -39,7 +39,13 @@
     <mask id="outside-lens" maskUnits="userSpaceOnUse" x="0" y="0" width="800" height="400">
       <rect width="800" height="400" fill="white" />
       <circle cx="410" cy="197" r="87" fill="black" />
+      <rect width="368" height="400" fill="white" />
     </mask>
+    <filter id="caret-glow" filterUnits="userSpaceOnUse" x="352" y="166" width="32" height="86"><feGaussianBlur
+        stdDeviation="3"
+        result="blur"
+      /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+    <clipPath id="after-caret"><rect x="368" width="432" height="400" /></clipPath>
     <text
       id="phrase"
       x="400"
@@ -78,10 +84,13 @@
     </g>
   </g>
   <g clip-path="url(#lens-interior)">
-    <g filter="url(#warp)">
-      <use href="#phrase" fill="#cdd4e2" opacity="0.55" />
+    <g clip-path="url(#after-caret)">
+      <g filter="url(#warp)">
+        <use href="#phrase" fill="#c8cfdc" opacity="0.4" />
+      </g>
     </g>
   </g>
+  <rect x="366.75" y="180" width="2.5" height="58" fill="#fff6e0" filter="url(#caret-glow)" />
   <path
     d="M54 177 H40 V195 M746 238 H760 V220"
     fill="none"
