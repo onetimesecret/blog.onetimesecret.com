@@ -29,10 +29,10 @@ After making changes, always run both `pnpm lint` and `pnpm typecheck` to ensure
 When editing or adding blog posts in `/content/posts/`, also run `pnpm check:content`.
 It runs on plain Node (no build/license needed) and is enforced in CI via
 `.github/workflows/check-content.yml`. Errors (empty links, malformed URLs,
-relative asset paths, missing/invalid frontmatter) fail the build; warnings
-(filename/`date` drift, duplicate H1, leaked AI replies, missing local assets,
-legacy `_draft:` keys) are reported for review. Posts with `draft: true` are
-excluded from the posts collection itself (`scripts/drafts.js`), so they never
+relative asset paths, missing/invalid frontmatter, misplaced TextProv marks)
+fail the build; warnings (filename/`date` drift, duplicate H1, leaked AI
+replies, missing local assets, legacy `_draft:` keys) are reported for review.
+Posts with `draft: true` are excluded from the posts collection itself (`scripts/drafts.js`), so they never
 reach the public SQL dump, the index, post routes, surround links or search.
 Restart the dev server after toggling `draft`.
 See `scripts/check-content.js`.
@@ -70,6 +70,28 @@ See `scripts/check-content.js`.
 - `/app/components/` - Auto-imported Vue components
 - `/content/posts/` - Blog post markdown files
 - `/public/` - Static assets served directly
+
+## AI-Written Text (TextProv)
+
+A post can let readers highlight its AI-written characters. Only enroll a
+post whose provenance was recorded while it was written; the highlight is a
+claim about who wrote each character, not a guess.
+
+- In the source, each AI-written character is followed by U+E0101 (whitespace
+  and markdown syntax stay bare). Frontmatter stays unmarked.
+- Set `textprov: true` in the frontmatter. The post page then shows
+  `TextProvToggle` in the header, and the build decodes the marks into
+  `<span class="textprov-ai">` (`scripts/textprov.js`, run from the
+  `content:file:afterParse` hook in `nuxt.config.ts`). No raw selector is
+  published.
+- `textprov: inline` enrolls the post the same way but omits the header
+  toggle; the post places it where it fits the text with a `::TextProvToggle`
+  block on its own line (the component lives in `app/components/global/`).
+- `pnpm check:content` errors on marks in a post without `textprov: true` or
+  `inline`, or in frontmatter, warns on an enrolled post with no marks, and
+  warns on an `inline` post whose body has no `::TextProvToggle`.
+- Edits to an enrolled post must keep the existing selectors: new human text
+  stays unmarked, AI text added later gets marked.
 
 ## Blog Post Hero Images
 

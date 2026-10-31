@@ -112,6 +112,7 @@ else {
             {{ author.name }}
           </UButton>
         </div>
+        <TextProvToggle v-if="post.textprov === true" class="mt-6" />
       </header>
 
       <UPage class="relative">
