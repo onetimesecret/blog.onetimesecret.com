@@ -122,7 +122,8 @@ export default defineNuxtConfig({
     // TextProv: posts with `textprov: true` mark their AI-written characters
     // in the source. Decode them before the body is stored, so no raw
     // selector is published. See scripts/textprov.js. Nuxt Content caches
-    // parsed files by checksum: after changing the decoder, clear .data/.
+    // parsed files by checksum: after changing the decoder, clear
+    // .data/content/.
     'content:file:afterParse': (ctx) => {
       if (ctx.collection.name === 'posts')
         decodePost(ctx.content, ctx.file.id);
