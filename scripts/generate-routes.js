@@ -6,10 +6,13 @@ import path from 'node:path';
 const contentDir = path.resolve('./content/posts');
 const files = fs.readdirSync(contentDir);
 
+const MD_EXT_RE = /\.md$/;
+
 // Generate routes list, filtering out files that start with a dot
 export const routes = files
   .filter(file => !file.startsWith('.')) // Exclude dot files
-  .map(file => `/posts/${file.replace('.md', '')}`);
+  .filter(file => file.endsWith('.md'))
+  .map(file => `/posts/${file.replace(MD_EXT_RE, '')}`);
 
 console.log('Routes:');
 console.log(JSON.stringify(routes, null, 2));
