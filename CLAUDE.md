@@ -32,7 +32,9 @@ It runs on plain Node (no build/license needed) and is enforced in CI via
 relative asset paths, missing/invalid frontmatter) fail the build; warnings
 (filename/`date` drift, duplicate H1, leaked AI replies, missing local assets,
 legacy `_draft:` keys) are reported for review. Posts with `draft: true` are
-excluded from the index, post routes, surround links and search payload.
+excluded from the posts collection itself (`scripts/drafts.js`), so they never
+reach the public SQL dump, the index, post routes, surround links or search.
+Restart the dev server after toggling `draft`.
 See `scripts/check-content.js`.
 
 ## Architecture
