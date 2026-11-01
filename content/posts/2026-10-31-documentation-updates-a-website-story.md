@@ -8,7 +8,7 @@ authors:
     avatar:
       src: /img/portrait-profile-pic-delano-2025-m.png
 image:
-  src: /img/blog/2026/20261027-humans-reading-ai-drafted-text.svg
+  src: /img/blog/2026/2026-1027-documentation-updates-and-textprov.svg
   alt: "A reader's lens reveals glowing provenance marks beneath a line of text. -- GPT-6.1 Astra"
   width: 800
   height: 400
@@ -16,7 +16,7 @@ badge:
   label: Skunkworks
 textprov: inline
 readingTime: 3
-description: "AI helps me keep the documentation updated. The highlight toggle helps me sleep at night."
+description: "AI helps me keep the documentation site up to date. Highlighting the AI edits helps me sleep at night."
 ---
 
 
@@ -27,19 +27,23 @@ This post is part of our "Skunkworks" series, where we write about experimental 
 
 ## Why I use AI to write
 
-*AI helps me keep the documentation up to date. The highlight toggle helps me sleep at night.*
+*AI helps me keep the documentation site up to date. Highlighting the AI edits helps me sleep at night.*
 
-I enjoy using AI tools when I write because I'm a slow writer and a habitually non-linear thinker. Without the help, a lot of what I have wanted to write has gone stale, stated the conclusion before the premise, and/or has never seen the light of day. With the help, I'm able to produce (mostly) decent quality drafts and get into a flow state more readily. But it comes with a cost: there's that much more content to review and edit! They just move the bottleneck from writing to reviewing. So in order to actually Get It Done™, I need to publish sooner, before the text is fully reviewed.
+I enjoy using AI tools when I write because I'm a slow writer and a habitually non-linear thinker. Without the help, a lot of what I have wanted to write has gone stale, stated the conclusion before the premise, and/or has never seen the light of day. With the help, I'm able to produce (mostly) decent quality drafts and get into a flow state more readily. But it comes with a cost: there's that much more content to review and edit! The bottleneck just moved from writing to reviewing. So in order to actually Get Things Done™, I either need to get real specific about what "done" means or I need to publish sooner, before everything is fully reviewed.
 
-Herein lies the dilemna I've been Sweating Bullets™ over: for myself, passing off longform AI-generated text as though a human wrote and/or reviewed it is misleading. Especially if I would be knowlingly publishing it early, it feels dishonest. I think it's important for readers to know what they're reading and decide for themselves how much stock they can put in it.
+Herein lies the dilemna that has me Sweating Bullets™: passing off longform AI-generated text as human-made content is misleading. Especially if I'm knowlingly publishing it early. That would feel actively dishonest. So what do? What can has do?
 
-## Highlighting AI text content
+## Main screen, turn on
 
-So I vibe coded a tool to label it as I'm working on it. It's not a perfect system: AI output can include verbatim content from my prompt and other sources, so a highlighted passage doesn't necessarily mean the AI originated every word or idea in it. But it can give readers an at-a-glance sense of where AI has been involved.
+If I know it's "going to take a while" to review and edit, I can at least show ~my~ its work in the meantime.
 
+I came up with a quick and novel way to demonstrate the AI's involvement. I call it TextProv and it's like a local feedback system. I can see what changes an LLM agent made and keep track of those changes over time without using any special tools (the process would be a smoother with TextProv-aware tools though). while I get around to reviewing and editing,
 
 ::TextProvToggle
 ::
+
+version history within the text but it gives readers an at-a-glance sense of where AI has been involved. I can write out concepts and phrases that  AI output can include verbatim content from my prompt and other sources, so a highlighted passage doesn't necessarily mean the AI originated every word or idea in it. But it gives readers an at-a-glance sense of where AI has been involved.
+
 
 The [docs site](https://docs.onetimesecret.com) is where this is already in use. The docs still took several months to reorganize and expand, but they actually got done, and the highlight toggle is live there so you can see it working in practice.
 
@@ -52,9 +56,11 @@ Up until 2022, it was safe to assume that longform content was produced by a rea
 What changed is the energy differential. The imbalance between how little time a draft can take to generate and how much attention it still asks of a reader.
 
 
-## Conclusion
+## AI Team: I love it when a plan comes together
 
-I'm making an earnest effort here but it does feel like a losing battle. I don't want to mislead readers, but I also don't want to slow down the writing process. So I'm trying to be transparent about the use of AI in my writing, and I hope that readers will appreciate the effort.
+ I don't want to mislead readers, but I also don't want to slow down the writing process. So I'm trying to be transparent about the use of AI in my writing, and I hope that readers will appreciate the effort.
+
+It's important for readers to know about how the content sausage was made and decide for themselves how much stock to put in it. Kind of like qualitative food labelling. It's low in sugar. It's high in AI edits.
 
 ::youtube-no-cookie{video-id="Fh9Ixvfyzf0" caption="Almost Honest from the album Cryptic Writings - Megadeth"}
 ::
