@@ -1,5 +1,10 @@
+/* app/assets/css/main.css */
+
 @import "tailwindcss";
 @import "@nuxt/ui";
+
+/* Nuxt's app source scan does not include utility classes in Markdown. */
+@source "../../../content";
 
 @theme {
   /* Brand colors */
@@ -68,13 +73,13 @@
   --color-midnight-950: #000612;
 
   /* Font families (faces declared in font.css) */
-  --font-brand: 'Zilla Slab P+', 'Zilla Slab', Georgia, Cambria, 'Times New Roman', Times, serif;
-  --font-serif: 'Maryheather P+', Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-brand: "Zilla Slab P+", "Zilla Slab", Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-serif: "Maryheather P+", Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 @layer base {
   html {
-    font-family: var(--font-serif, ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif);
+    font-family: var(--font-serif, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif);
   }
 
   /* Override bare --ui-primary in light mode: brand-600 (5.21:1) instead of

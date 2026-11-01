@@ -1,3 +1,5 @@
+/* app/assets/css/provenance.css */
+
 /*
  * Site palette for the TextProv display (app/vendor/textprov/textprov.css),
  * shared by the demos in the provenance post and the reader highlight at the
@@ -39,7 +41,7 @@ html.dark {
  * painting the stylesheet's marks on top of it would show both.
  */
 .prov-plain-face {
-  font-family: 'Maryheather', Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-family: "Maryheather", Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 /*
@@ -58,7 +60,9 @@ html.dark {
  * loud tint sits a little proud of the glyphs; padding on an inline box never
  * changes line height.
  */
-:root:is([data-prov-tier="quiet"], [data-prov-tier="loud"]) .prov-plain-face :is(.prov-human, .prov-ai) {
+:root:is([data-prov-tier="quiet"], [data-prov-tier="loud"])
+  .prov-plain-face
+  :is(.prov-human, .prov-ai) {
   --prov-seam-width: 0.3em;
   padding: 0.08em 0.3em;
   box-decoration-break: slice;
@@ -104,7 +108,8 @@ html.dark {
         color-mix(in srgb, var(--prov-ai-line) 22.4%, transparent) 55%,
         color-mix(in srgb, var(--prov-ai-line) 8.4%, transparent)
       );
-      box-shadow: 0 0 11.2px 4px color-mix(in srgb, var(--prov-ai-line) var(--prov-glow-opacity), transparent);
+      box-shadow: 0 0 11.2px 4px
+        color-mix(in srgb, var(--prov-ai-line) var(--prov-glow-opacity), transparent);
       text-decoration-color: color-mix(in srgb, var(--prov-ai-line) 80%, transparent);
     }
   }
