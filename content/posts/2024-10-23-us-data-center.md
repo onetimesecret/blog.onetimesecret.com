@@ -20,9 +20,9 @@ We're jazzed to introduce our new US locality, enhancing our data privacy option
 
 <div class="flex justify-center items-center my-10">
   <a href="https://eu.onetimesecret.com/" class="text-center inline-block">
-    <span class="font-brand text-3xl sm:text-4xl md:text-5xl
+    <span class="font-brand font-bold text-3xl sm:text-4xl md:text-5xl
                  bg-clip-text text-transparent
-                 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500
+                 bg-gradient-to-r from-brand-500 to-brandcompdim-500
                  animate-flowing-colors
                  hover:animate-bounce
                  transition-all duration-300 ease-in-out
@@ -36,9 +36,9 @@ We're jazzed to introduce our new US locality, enhancing our data privacy option
 
 <div class="flex justify-center items-center my-10">
   <a href="https://us.onetimesecret.com/" class="text-center inline-block">
-    <span class="font-brand text-3xl sm:text-4xl md:text-5xl
+    <span class="font-brand font-bold text-3xl sm:text-4xl md:text-5xl
                  bg-clip-text text-transparent
-                 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500
+                 bg-gradient-to-r from-brand-500 to-brandcompdim-500
                  animate-flowing-colors
                  hover:animate-bounce
                  transition-all duration-300 ease-in-out

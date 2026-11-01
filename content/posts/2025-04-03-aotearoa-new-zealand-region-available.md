@@ -22,9 +22,9 @@ The Aotearoa New Zealand instance complements our existing EU, US, and Canada si
 
 <div class="flex justify-center items-center my-10">
   <a href="https://nz.onetimesecret.com/" class="text-center inline-block">
-    <span class="font-brand text-3xl sm:text-4xl md:text-5xl
+    <span class="font-brand font-bold text-3xl sm:text-4xl md:text-5xl
                  bg-clip-text text-transparent
-                 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500
+                 bg-gradient-to-r from-brand-500 to-brandcompdim-500
                  animate-flowing-colors
                  hover:animate-bounce
                  transition-all duration-300 ease-in-out
