@@ -19,6 +19,19 @@ const { data: surround } = await useAsyncData(`${path}-surround`, () => queryCol
 const title = post.value.title;
 const description = post.value.description;
 
+// UPage's default grid splits its width 8:2, and it used to sit inside the
+// 48rem article, which left the table of contents ~100px for headings. Give
+// the text its own column of up to 48rem and the table of contents a fixed
+// 14rem beside it. Below lg, UContentToc collapses into a bar above the text,
+// so one column is enough. The header uses the same columns so the title
+// lines up with the text.
+const hasToc = computed(() => Boolean(post.value?.body?.toc?.links?.length));
+const columns = 'lg:grid-cols-[minmax(0,48rem)_14rem] lg:justify-center lg:gap-12';
+const pageUi = computed(() => hasToc.value
+  ? { root: columns, center: 'lg:col-span-1', right: 'lg:col-span-1' }
+  : { root: 'max-w-3xl mx-auto' });
+const headerClass = computed(() => hasToc.value ? `lg:grid ${columns}` : 'max-w-3xl mx-auto');
+
 const formattedDate = computed(() => {
   if (!post.value?.date) {
     return 'No date';
@@ -66,56 +79,58 @@ else {
       </NuxtLink>
     </div>
 
-    <article class="max-w-3xl mx-auto prose dark:prose-invert">
-      <header class="mb-12">
-        <div v-if="post.image?.src" class="not-prose mb-6">
-          <NuxtImg
-            :src="post.image.src"
-            :alt="post.image.alt || post.title"
-            :width="post.image.width"
-            :height="post.image.height"
-            class="w-full h-auto rounded-lg shadow-sm"
-            loading="lazy"
-          />
-        </div>
-
-        <UBadge
-          v-if="post.badge"
-          :label="post.badge.label"
-          variant="subtle"
-          class="mb-4"
-        />
-        <h1 class="text-4xl sm:text-5xl font-bold text-midnight-900 dark:text-white mb-4">
-          {{ post.title }}
-        </h1>
-        <div class="flex items-center space-x-4 text-sm text-midnight-500 dark:text-midnight-400">
-          <time :datetime="post.date">{{ formattedDate }}</time>
-          <span>&middot;</span>
-          <span>{{ post.readingTime }} min read</span>
-        </div>
-        <div class="mt-6 flex flex-wrap items-center gap-4">
-          <UButton
-            v-for="(author, index) in post.authors"
-            :key="index"
-            :to="author.to"
-            color="neutral"
-            target="_blank"
-            size="sm"
-            class="inline-flex items-center px-3 py-1.5 rounded-full bg-midnight-100 dark:bg-midnight-800 text-midnight-700 dark:text-midnight-300 hover:bg-midnight-200 dark:hover:bg-midnight-700 transition"
-          >
-            <UAvatar
-              v-bind="author.avatar"
-              :alt="author.name"
-              size="xs"
-              class="mr-2"
+    <article class="prose dark:prose-invert max-w-none">
+      <header class="mb-12" :class="headerClass">
+        <div>
+          <div v-if="post.image?.src" class="not-prose mb-6">
+            <NuxtImg
+              :src="post.image.src"
+              :alt="post.image.alt || post.title"
+              :width="post.image.width"
+              :height="post.image.height"
+              class="w-full h-auto rounded-lg shadow-sm"
+              loading="lazy"
             />
-            {{ author.name }}
-          </UButton>
+          </div>
+
+          <UBadge
+            v-if="post.badge"
+            :label="post.badge.label"
+            variant="subtle"
+            class="mb-4"
+          />
+          <h1 class="text-4xl sm:text-5xl font-bold text-midnight-900 dark:text-white mb-4">
+            {{ post.title }}
+          </h1>
+          <div class="flex items-center space-x-4 text-sm text-midnight-500 dark:text-midnight-400">
+            <time :datetime="post.date">{{ formattedDate }}</time>
+            <span>&middot;</span>
+            <span>{{ post.readingTime }} min read</span>
+          </div>
+          <div class="mt-6 flex flex-wrap items-center gap-4">
+            <UButton
+              v-for="(author, index) in post.authors"
+              :key="index"
+              :to="author.to"
+              color="neutral"
+              target="_blank"
+              size="sm"
+              class="inline-flex items-center px-3 py-1.5 rounded-full bg-midnight-100 dark:bg-midnight-800 text-midnight-700 dark:text-midnight-300 hover:bg-midnight-200 dark:hover:bg-midnight-700 transition"
+            >
+              <UAvatar
+                v-bind="author.avatar"
+                :alt="author.name"
+                size="xs"
+                class="mr-2"
+              />
+              {{ author.name }}
+            </UButton>
+          </div>
         </div>
         <TextProvToggle v-if="post.textprov === true" class="mt-6" />
       </header>
 
-      <UPage class="relative">
+      <UPage class="relative" :ui="pageUi">
         <UPageBody class="max-w-none">
           <ContentRenderer
             v-if="post && post.body"
@@ -126,10 +141,11 @@ else {
           <UContentSurround :surround="(surround as any)" class="mt-6" />
         </UPageBody>
 
-        <template v-if="post.body?.toc?.links?.length" #right>
+        <template v-if="hasToc" #right>
           <UContentToc
             :links="post.body.toc.links"
-            class="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto text-sm text-midnight-600 dark:text-midnight-400"
+            :ui="{ linkText: 'whitespace-normal' }"
+            class="text-sm text-midnight-600 dark:text-midnight-400"
           />
         </template>
       </UPage>
