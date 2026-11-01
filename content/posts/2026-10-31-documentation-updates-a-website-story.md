@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Documentation Updates: A Website Story"
+title: "Updated Docs: A Website Story"
 date: 2026-10-31
 authors:
   - name: Delano
@@ -16,7 +16,7 @@ badge:
   label: Skunkworks
 textprov: inline
 readingTime: 3
-description: "AI helps me keep the documentation site up to date. Highlighting the AI edits helps me sleep at night."
+description: "AI helps me keep the documentation site up to date. Highlighting the changes it makes helps me sleep at night."
 ---
 
 
@@ -24,10 +24,35 @@ description: "AI helps me keep the documentation site up to date. Highlighting t
 This post is part of our "Skunkworks" series, where we write about experimental projects we're working on.
 ::
 
+---
+
+
+Our documentation website has been reorganized and expanded to include the features and functionalities we have added over the past 8-10 months, and beynod. The new content was written with the help of AI, and I want to talk a bit about why it's important to me to be transparent about that.
+
+
+<div class="flex justify-center items-center my-10">
+  <a href="https://docs.onetimesecret.com/" class="text-center inline-block">
+    <span class="font-brand font-bold text-3xl sm:text-4xl md:text-5xl
+                 bg-clip-text text-transparent
+                 bg-gradient-to-r from-brand-500 to-brandcompdim-500
+                 animate-flowing-colors
+                 hover:animate-bounce
+                 transition-all duration-300 ease-in-out
+                 transform hover:scale-105
+                 rounded-xl
+                 dark:border-brand-600">
+      docs.onetimesecret.com
+    </span>
+  </a>
+</div>
+
+
+Our documentation website has been reorganized and expanded to include the features and functionalities we have added over the past 8-10 months, and beynod. The new content was written with the help of AI, and I want to talk a bit about why it's important to me to be transparent about that.
+
 
 ## Why I use AI to write
 
-*AI helps me keep the documentation site up to date. Highlighting the AI edits helps me sleep at night.*
+*AI helps me keep the documentation site up to date. Highlighting the changes it makes helps me sleep at night.*
 
 I enjoy using AI tools when I write because I'm a slow writer and a habitually non-linear thinker. Without the help, a lot of what I have wanted to write has gone stale, stated the conclusion before the premise, and/or has never seen the light of day. With the help, I'm able to produce (mostly) decent quality drafts and get into a flow state more readily. But it comes with a cost: there's that much more content to review and edit! The bottleneck just moved from writing to reviewing. So in order to actually Get Things Done™, I either need to get real specific about what "done" means or I need to publish sooner, before everything is fully reviewed.
 
@@ -35,21 +60,25 @@ Herein lies the dilemna that has me Sweating Bullets™: passing off longform AI
 
 ## Main screen, turn on
 
-If I know it's "going to take a while" to review and edit, I can at least show ~my~ its work in the meantime.
+If I know it's "going to take a while" to review and edit all the new content on our [documentation website](https://docs.onetimesecret.com/), I can at least be really loud about AI's involvement in the meantime. This is all pretty new territory but there are a couple established ways of doing it (and some let's say "less established" ways which I mention at the end).
 
-I came up with a quick and novel way to demonstrate the AI's involvement. I call it TextProv and it's like a local feedback system. I can see what changes an LLM agent made and keep track of those changes over time without using any special tools (the process would be a smoother with TextProv-aware tools though). while I get around to reviewing and editing,
+1. Semantic watermarking is a by subtley altering word choices in a body of text to create a hidden signature that can be detected by a trained model. Watermarking is good at identifying which model generated all or sections of a piece of text.
+2. The Coalision of Content Provenance and Authenticity (C2PA) is both a mouthful and a standard for embedding a verifiable chain-of-custody in media. C2PA is good for establishing the origin and authenticity of a finished piece of art.
+
+Neither is meant to be used during the writing process so I came up with a quick way to show AI's involvement down to the character level. It's like a local feedback system. I can see what changes an LLM agent made and keep track of those changes over time without using any special tools. At the end of the process I can highlight those markings to draw attention to the parts where AI was involved.
+while I work through the backlog of reviewing all the new docs pages.
 
 ::TextProvToggle
 ::
 
-version history within the text but it gives readers an at-a-glance sense of where AI has been involved. I can write out concepts and phrases that  AI output can include verbatim content from my prompt and other sources, so a highlighted passage doesn't necessarily mean the AI originated every word or idea in it. But it gives readers an at-a-glance sense of where AI has been involved.
+It's not perfect: I can type out things I got from an AI earlier or an AI can repeat something it was fed in a prompt or other context. But highlighting works well in the sloppiest of cases like saying, "It's okay, it's not you. This really is awful, sloppy crap". It helps avoid the Slop or Not™ guessing game.
 
 
 The [docs site](https://docs.onetimesecret.com) is where this is already in use. The docs still took several months to reorganize and expand, but they actually got done, and the highlight toggle is live there so you can see it working in practice.
 
 ## Why it matters
 
-*When all writing was human writing, even the crap required some amount of human energy.*
+*When all writing was human writing, even the crappy stuff depended on some amount of human energy.*
 
 Up until 2022, it was safe to assume that longform content was produced by a real human person. We didn't give it a second thought. Machine made text was templated, on the order of a few phrases or sentences, and for the most part was given away by the repetition. Fast-forward to today, past a certain level of quality, it's not so easy to tell the difference between human vs AI produced text (once the obvious tells are removed).
 
@@ -66,6 +95,7 @@ It's important for readers to know about how the content sausage was made and de
 ::
 
 
+It's called TextProv but as I was hoping that by the end I'd have come up with a great [Jai alai](https://en.wikipedia.org/wiki/Jai_alai) ()
 
 ---
 
