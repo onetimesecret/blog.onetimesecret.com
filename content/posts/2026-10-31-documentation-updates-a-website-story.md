@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Humans Reading AI-Drafted Text"
-date: 2026-10-27
+title: "Documentation Updates: A Website Story"
+date: 2026-10-31
 authors:
   - name: Delano
     to: https://blog.onetimesecret.com/about
