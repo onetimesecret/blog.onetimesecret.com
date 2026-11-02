@@ -104,7 +104,7 @@ I mentioned at the top that there are other ways to show AI's involvement in con
 
 ## Where to go from here
 
-I'm going to keep working on this approach (which I'm calling [TextProv](https://textprov.org/) for now). We'll see how it goes with the docs site. I'm going to try it with new blog posts as well. Writing blog posts and writing product documentation a󠄁r󠄁e󠄁 very d󠄁i󠄁f󠄁f󠄁e󠄁r󠄁e󠄁n󠄁t󠄁,󠄁 so my hunch is that the highlights will be pretty sparse here. It's not really de rigueur to rewrite a post after the fact (󠄁l󠄁i󠄁k󠄁e󠄁 I'm doing with the d󠄁o󠄁c󠄁u󠄁m󠄁e󠄁n󠄁t󠄁a󠄁t󠄁i󠄁o󠄁n󠄁)󠄁,󠄁 but that might be something to focus TextProv on in the future.
+I'm going to keep working on this approach (which I'm calling [TextProv](https://textprov.org/) for now). We'll see how it goes with the docs site. I'm going to try it with new blog posts as well. Writing blog posts is very different from writing product documentation,󠄁 so my hunch is that the highlights will be pretty sparse here. Plus it's not really _de rigueur_ to rewrite a post after the fact (󠄁l󠄁i󠄁k󠄁e󠄁 I'm doing with the d󠄁o󠄁c󠄁u󠄁m󠄁e󠄁n󠄁t󠄁a󠄁t󠄁i󠄁o󠄁n󠄁)󠄁,󠄁 but that might be something to focus TextProv on in the future.
 
 
 
