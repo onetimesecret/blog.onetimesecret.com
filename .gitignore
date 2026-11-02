@@ -44,3 +44,7 @@ Dockerfile.*
 .lighthouseci
 
 *.txt
+.zed
+.vscode
+.ropeproject
+.remember

@@ -2,6 +2,7 @@
 
 // Get all content files directly in the config
 import { routes } from './scripts/generate-routes';
+import { decodePost } from './scripts/textprov';
 
 // Spotnote: optional, dev-only UI feedback for coding agents.
 //
@@ -117,6 +118,15 @@ export default defineNuxtConfig({
         ['UButton'].includes(c.pascalName),
       );
       globals.forEach(c => (c.global = true));
+    },
+    // TextProv: posts with `textprov: true` mark their AI-written characters
+    // in the source. Decode them before the body is stored, so no raw
+    // selector is published. See scripts/textprov.js. Nuxt Content caches
+    // parsed files by checksum: after changing the decoder, clear
+    // .data/content/.
+    'content:file:afterParse': (ctx) => {
+      if (ctx.collection.name === 'posts')
+        decodePost(ctx.content, ctx.file.id);
     },
     // Prerendered /_ipx/ SVGs are recorded as text/plain in the node-server
     // asset manifest, and nuxt-security's nosniff then stops the browser

@@ -3,8 +3,8 @@
 // Content linter for blog posts. It catches the classes of mistakes that have
 // slipped into published posts before: empty/broken links, malformed URLs,
 // relative asset paths, missing frontmatter, leaked AI-assistant replies,
-// duplicate page titles, broken local image references, and filename/`date`
-// drift.
+// duplicate page titles, broken local image references, filename/`date`
+// drift, and TextProv marks the build would not decode.
 //
 // It runs on plain Node with no dependencies and without a Nuxt build, so it is
 // fast and works in CI without installing the full toolchain or the Nuxt UI Pro
@@ -20,6 +20,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { AI_SELECTOR, MARK_RE } from './textprov.js';
 
 const POSTS_DIR = path.resolve('content/posts');
 const PUBLIC_DIR = path.resolve('public');
@@ -27,6 +28,9 @@ const PUBLIC_DIR = path.resolve('public');
 const ERROR = 'error';
 const WARN = 'warn';
 const SLUG_FILENAME_RE = /^[a-z0-9.-]+\.md$/;
+const TEXTPROV_RE = /^textprov:\s*(?:true|inline)\b/;
+const TEXTPROV_INLINE_RE = /^textprov:\s*inline\b/;
+const TEXTPROV_TOGGLE_RE = /^::TextProvToggle\b/;
 
 // Distinctive phrases that indicate an AI-assistant reply was pasted into the
 // authored prose by mistake. These are matched only in authored prose — outside
@@ -117,7 +121,12 @@ function assetExists(target) {
 // --- per-file checks --------------------------------------------------------
 
 function checkFile(file) {
-  const raw = fs.readFileSync(path.join(POSTS_DIR, file), 'utf8');
+  const source = fs.readFileSync(path.join(POSTS_DIR, file), 'utf8');
+  // TextProv marks are invisible selectors between the characters of
+  // AI-written text (see scripts/textprov.js). The checks below read words,
+  // so they see the text without them; `marked` keeps the lines that had one.
+  const raw = source.replaceAll(AI_SELECTOR, '');
+  const marked = source.split('\n').map(line => MARK_RE.test(line));
   const lines = raw.split('\n');
   const { fmLines, bodyStart } = parseFrontmatter(lines);
 
@@ -162,6 +171,16 @@ function checkFile(file) {
       report(WARN, file, 1, 'asset-missing', `frontmatter image not found in public/: "${fmImage}"`);
   }
 
+  // TextProv: marks outside code are decoded only for posts that opt in;
+  // anywhere else the build stops rather than publish raw selectors.
+  const enrolled = fmLines.some(l => TEXTPROV_RE.test(l));
+  const inlineToggle = fmLines.some(l => TEXTPROV_INLINE_RE.test(l));
+  marked.slice(1, bodyStart).forEach((m, i) => {
+    if (m)
+      report(ERROR, file, i + 2, 'textprov', 'AI marks in frontmatter; titles, descriptions and alt text stay unmarked');
+  });
+  let firstMarked = 0;
+
   // Body, line by line, tracking code fences / blockquotes / containers so the
   // intentional AI transcripts are not mistaken for authored prose.
   let inCode = false;
@@ -177,6 +196,9 @@ function checkFile(file) {
     }
     if (inCode)
       continue;
+
+    if (marked[i] && !firstMarked)
+      firstMarked = ln;
 
     // MDC container tracking (::Component … ::).
     const open = trimmed.match(/^::([A-Za-z][\w-]*)/);
@@ -225,6 +247,13 @@ function checkFile(file) {
         report(WARN, file, ln, 'dup-word', `repeated word: "${dup[1]} ${dup[1]}"`);
     }
   }
+
+  if (firstMarked && !enrolled)
+    report(ERROR, file, firstMarked, 'textprov', 'AI marks in a post without `textprov: true` or `inline`; the build refuses to publish raw selectors');
+  if (enrolled && !firstMarked)
+    report(WARN, file, 1, 'textprov', '`textprov` is set but there are no AI marks outside code; the reader toggle has nothing to highlight');
+  if (inlineToggle && !lines.slice(bodyStart).some(l => TEXTPROV_TOGGLE_RE.test(l)))
+    report(WARN, file, 1, 'textprov', '`textprov: inline` but the body has no `::TextProvToggle` block; readers get no switch');
 }
 
 // --- run --------------------------------------------------------------------

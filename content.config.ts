@@ -51,6 +51,12 @@ export default defineContentConfig({
         // false keeps the column non-null so that filter matches every
         // published post.
         draft: z.boolean().default(false),
+        // The post's AI-written characters are marked in the source and the
+        // reader can highlight them. Set it only on posts whose provenance
+        // was recorded while they were written. See scripts/textprov.js.
+        // `true` puts the toggle in the post header; `inline` leaves it to a
+        // `::TextProvToggle` block in the body.
+        textprov: z.union([z.boolean(), z.literal('inline')]).default(false),
         icon: z.string().optional(),
       }),
     }),
