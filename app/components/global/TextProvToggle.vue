@@ -4,6 +4,7 @@
  * it in the header; with `textprov: inline` the post places it in the body as
  * a `::TextProvToggle` block (hence app/components/global/). An optional `text`
  * prop displays an inline sample, e.g. `::TextProvToggle{text="Example AI text"}`.
+ * An optional `help` prop adds a small italic note beneath it (plain text).
  * The build has already wrapped
  * each AI-written run in <span class="textprov-ai"> (scripts/textprov.js);
  * the switch only decides whether provenance.css paints those spans, through
@@ -18,6 +19,7 @@ import '~/assets/css/provenance.css';
 
 defineProps<{
   text?: string;
+  help?: string;
 }>();
 
 const KEY = 'blog:textprov';
@@ -66,7 +68,7 @@ function update(value: boolean) {
 </script>
 
 <template>
-  <div class="not-prose textprov-toggle flex flex-wrap items-center gap-4 print:hidden">
+  <div class="not-prose textprov-toggle space-y-4 rounded-lg border border-default bg-muted p-4 font-sans text-sm text-default print:hidden">
     <USwitch
       :model-value="shown"
       :ui="switchUi"
@@ -74,6 +76,14 @@ function update(value: boolean) {
       description="Shows the characters recorded as written by AI."
       @update:model-value="update"
     />
-    <span v-if="text" class="textprov-ai">{{ text }}</span>
+    <div v-if="text" class="border-t border-default pt-3">
+      <p class="text-xs font-medium tracking-wide text-muted uppercase">
+        Highlight preview
+      </p>
+      <p class="mt-2 leading-relaxed">
+        <span class="textprov-ai">{{ text }}</span>
+      </p>
+    </div>
+    <small v-if="help" class="block text-xs leading-relaxed text-muted italic">{{ help }}</small>
   </div>
 </template>
