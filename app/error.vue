@@ -31,7 +31,7 @@ provide('navigation', navigation);
     <UMain>
       <UContainer>
         <UPage>
-          <UPageError :error="error" />
+          <UError as="div" :error="error" />
         </UPage>
       </UContainer>
     </UMain>
