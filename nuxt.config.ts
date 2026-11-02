@@ -146,6 +146,7 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/': { prerender: true },
+    '/about': { prerender: true },
     '/api/search.json': { prerender: true },
     '/docs': { redirect: '/docs/introduction', prerender: true },
   },
