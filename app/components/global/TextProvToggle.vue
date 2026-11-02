@@ -2,7 +2,9 @@
 /**
  * Reader switch on enrolled posts. With `textprov: true` the post page shows
  * it in the header; with `textprov: inline` the post places it in the body as
- * a `::TextProvToggle` block (hence app/components/global/). The build has already wrapped
+ * a `::TextProvToggle` block (hence app/components/global/). An optional `text`
+ * prop displays an inline sample, e.g. `::TextProvToggle{text="Example AI text"}`.
+ * The build has already wrapped
  * each AI-written run in <span class="textprov-ai"> (scripts/textprov.js);
  * the switch only decides whether provenance.css paints those spans, through
  * data-textprov on the document root. Like the docs site's toggle, the choice
@@ -13,6 +15,10 @@
  * would reset it to the prerendered value on hydration and flash.
  */
 import '~/assets/css/provenance.css';
+
+defineProps<{
+  text?: string;
+}>();
 
 const KEY = 'blog:textprov';
 
@@ -60,7 +66,7 @@ function update(value: boolean) {
 </script>
 
 <template>
-  <div class="not-prose textprov-toggle print:hidden">
+  <div class="not-prose textprov-toggle flex flex-wrap items-center gap-4 print:hidden">
     <USwitch
       :model-value="shown"
       :ui="switchUi"
@@ -68,5 +74,6 @@ function update(value: boolean) {
       description="Shows the characters recorded as written by AI."
       @update:model-value="update"
     />
+    <span v-if="text" class="textprov-ai">{{ text }}</span>
   </div>
 </template>

@@ -100,7 +100,24 @@
   }
 
   .dark {
+    /* The :root override above also matches in dark mode; restore Nuxt UI's
+       dark primary (brand-400, 7.7:1 on midnight-900; brand-600 is 3.8:1). */
+    --ui-primary: var(--ui-color-primary-400);
+
     --ui-text-muted: var(--color-midnight-300);
+
+    /* Nuxt UI's dark tokens assume an even neutral scale (500 mid-grey, 800
+       near the background). Midnight 500-800 are all within 1.22:1 of
+       midnight-900, so borders, rings, elevated surfaces (badges, outline
+       buttons) and dimmed text vanished. These mixes restore the default
+       steps: border ~1.3:1, accented ~1.6:1, dimmed text ~4.5:1. */
+    --ui-text-dimmed: color-mix(in srgb, var(--color-midnight-300) 60%, var(--color-midnight-400));
+    --ui-bg-muted: color-mix(in srgb, var(--color-midnight-400) 25%, var(--color-midnight-900));
+    --ui-bg-elevated: color-mix(in srgb, var(--color-midnight-400) 25%, var(--color-midnight-900));
+    --ui-bg-accented: color-mix(in srgb, var(--color-midnight-400) 60%, var(--color-midnight-900));
+    --ui-border: color-mix(in srgb, var(--color-midnight-400) 35%, var(--color-midnight-900));
+    --ui-border-muted: color-mix(in srgb, var(--color-midnight-400) 60%, var(--color-midnight-900));
+    --ui-border-accented: color-mix(in srgb, var(--color-midnight-400) 60%, var(--color-midnight-900));
 
     /* Prose typography dark mode overrides */
     --tw-prose-hr: var(--color-midnight-300);
