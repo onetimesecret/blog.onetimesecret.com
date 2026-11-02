@@ -9,13 +9,13 @@ authors:
       src: /img/portrait-profile-pic-delano-2025-m.png
 image:
   src: /img/blog/2026/2026-1027-documentation-updates-and-textprov.svg
-  alt: "A reader's lens reveals glowing provenance marks beneath a line of text. -- GPT-6.1 Astra"
+  alt: "A reader's lens reveals glowing provenance marks beneath a line of text. -- GPT-6 Astra"
   width: 800
   height: 400
 badge:
   label: Skunkworks
 textprov: inline
-readingTime: 3
+readingTime: 5
 description: "AI helps me keep the documentation site up to date. Highlighting the changes it makes helps me sleep at night."
 ---
 
@@ -96,7 +96,7 @@ I mentioned at the top that there are other ways to show AI's involvement in con
 * Reference content that no AI ever would. Like a version of Almost Honest by Megadeth, live at Woodstock 1999.
 * Make multiple references to the same band without explanation.
 * Show your working copies (or [git commits](https://github.com/onetimesecret/blog.onetimesecret.com/commits/d94c680ce312c52/content/posts/2026-10-31-documentation-updates-a-website-story.md), or a changelog, or a diff of the text). A maximalist might choose to include the full conversation history.
-* U󠄁s󠄁e󠄁 a󠄁 C󠄁R󠄁D󠄁T󠄁 document f󠄁o󠄁r󠄁m󠄁a󠄁t󠄁,󠄁 similar to how Google Docs works, to track each person and AI as a separate voice.
+* U󠄁s󠄁e󠄁 a󠄁 C󠄁R󠄁D󠄁T󠄁 document f󠄁o󠄁r󠄁m󠄁a󠄁t󠄁,󠄁 like Y󠄁j󠄁s󠄁 or A󠄁u󠄁t󠄁o󠄁m󠄁e󠄁r󠄁g󠄁e󠄁, to track each person and AI as a separate voice (kind of like how Google Docs works).
 * [Record it live](https://byronm.com/13sentences.html) like Paul Graham's [Startups in 13 Sentences](https://news.ycombinator.com/item?id=491196) experiment.
 
 ::youtube-no-cookie{video-id="nt9nJ3tkS4A" caption="Almost Honest (Cryptic Writings) - Megadeth"}
@@ -113,6 +113,6 @@ I'm going to keep working on this approach (which I'm calling [TextProv](https:/
 
 ::CollapsibleContent{summary="About this post"}
 
-**The image** was created by GPT-6-Astra. The brief was a reader's lens revealing character-level provenance marks beneath a line of text, with a dark star field and neon glow in the blog's illustration style.
+**The image** was created by GPT-6 Astra. The brief was a reader's lens revealing character-level provenance marks beneath a line of text, with a dark star field and neon glow in the blog's illustration style.
 
 ::
