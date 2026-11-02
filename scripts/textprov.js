@@ -33,7 +33,6 @@ export const MARK_RE = new RegExp(`[${codepoint(textprov.mapping.selectors.ai)}$
 
 const INVISIBLE_RE = /[\p{M}\p{C}]/u;
 const VERBATIM = new Set(['code', 'pre', 'script', 'style']);
-const LABELS = ['alt', 'title', 'ariaLabel', 'aria-label'];
 
 // Whitespace between two AI runs joins them, so a marked phrase is one span
 // and the highlight does not break at every space.
@@ -86,17 +85,24 @@ export function decodePost(content, label) {
   }
 
   function element([tag, props = {}, ...children], verbatim) {
-    for (const key of ['id', 'href', ...LABELS]) {
-      const value = props[key];
+    verbatim ||= VERBATIM.has(tag);
+    // Every string prop, not a fixed list: component props such as
+    // TextProvToggle's `help` reach the page as written. Code keeps its bytes,
+    // including the `code` prop on <pre>.
+    for (const [key, value] of Object.entries(props)) {
       if (typeof value !== 'string' || !MARK_RE.test(value))
         continue;
       if (key === 'href' && !value.startsWith('#'))
         fail(`AI marks in a link target: "${excerpt(value)}"`);
-      props[key] = key === 'id' ? plainId(value) : key === 'href' ? `#${plainId(value.slice(1))}` : plain(value);
+      if (key === 'id')
+        props[key] = plainId(value);
+      else if (key === 'href')
+        props[key] = `#${plainId(value.slice(1))}`;
+      else if (!verbatim)
+        props[key] = plain(value);
     }
     if (typeof props.id === 'string')
       ids.push(props.id);
-    verbatim ||= VERBATIM.has(tag);
     return [tag, props, ...children.flatMap(child => visit(child, verbatim))];
   }
 
