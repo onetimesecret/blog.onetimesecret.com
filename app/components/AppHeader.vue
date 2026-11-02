@@ -17,6 +17,12 @@ const links = [
     to: '/',
   },
 ];
+
+// Like docs.onetimesecret.com (its Header.astro): the blog homepage is where a
+// reader may have wanted the app instead, so it alone gets a way back to
+// onetimesecret.com beside the logo (which links to the blog home).
+const route = useRoute();
+const isHome = computed(() => route.path === '/');
 </script>
 
 <template>
@@ -26,24 +32,38 @@ const links = [
     class="dark:bg-midnight-800"
   >
     <!-- Same pill logos as docs.onetimesecret.com (its SiteTitle.astro): one
-         <img> per color mode, 2rem tall, with the site name kept for screen
-         readers. UHeader derives the link's aria-label from this slot's text. -->
-    <template #title>
-      <img
-        src="/img/onetime-logo-v3-blog-pill-light.svg"
-        alt="Onetime Secret Blog"
-        width="3630"
-        height="1445"
-        class="h-8 w-auto rounded-lg dark:hidden"
+         <img> per color mode, 2rem tall. #left replaces UHeader's title link so
+         the onetimesecret.com link can sit beside it. -->
+    <template #left>
+      <NuxtLink to="/" aria-label="Onetime Secret Blog" class="shrink-0 flex items-center">
+        <img
+          src="/img/onetime-logo-v3-blog-pill-light.svg"
+          alt=""
+          width="3630"
+          height="1445"
+          class="h-8 w-auto rounded-lg dark:hidden"
+        >
+        <img
+          src="/img/onetime-logo-v3-blog-pill-dark.svg"
+          alt=""
+          width="3630"
+          height="1445"
+          class="hidden h-8 w-auto rounded-lg dark:block"
+        >
+      </NuxtLink>
+      <!-- Hairline rule, then the host name. Small screens get the short
+           label; under 26rem only the icon, since the Sign up button needs the
+           room (the aria-label keeps the full name). -->
+      <a
+        v-if="isHome"
+        href="https://onetimesecret.com/"
+        aria-label="Go to onetimesecret.com"
+        class="ms-1 inline-flex items-center gap-1 ps-2.5 border-s border-default text-xs md:text-[0.8125rem] font-medium leading-5 whitespace-nowrap text-midnight-700 hover:text-midnight-950 dark:text-midnight-200 dark:hover:text-white transition-colors"
       >
-      <img
-        src="/img/onetime-logo-v3-blog-pill-dark.svg"
-        alt="Onetime Secret Blog"
-        width="3630"
-        height="1445"
-        class="hidden h-8 w-auto rounded-lg dark:block"
-      >
-      <span class="sr-only">Onetime Secret Blog</span>
+        <span class="hidden md:inline" aria-hidden="true">Go to onetimesecret.com</span>
+        <span class="md:hidden max-[26rem]:hidden" aria-hidden="true">onetimesecret.com</span>
+        <UIcon name="i-lucide-external-link" class="size-3.5" aria-hidden="true" />
+      </a>
     </template>
 
     <template #right>
