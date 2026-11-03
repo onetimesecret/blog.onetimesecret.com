@@ -69,7 +69,7 @@ export function decodePost(content, label) {
     throw new Error(`TextProv: ${message} (${label})`);
   };
   const enrolled = content.textprov === true || content.textprov === 'inline';
-  const ids = [];
+  const ids = new Set();
 
   function text(node) {
     if (!MARK_RE.test(node))
@@ -101,8 +101,11 @@ export function decodePost(content, label) {
       else if (!verbatim)
         props[key] = plain(value);
     }
-    if (typeof props.id === 'string')
-      ids.push(props.id);
+    if (typeof props.id === 'string') {
+      if (ids.has(props.id))
+        fail(`decoded id "${props.id}" is used twice; rename one of the elements`);
+      ids.add(props.id);
+    }
     return [tag, props, ...children.flatMap(child => visit(child, verbatim))];
   }
 
@@ -121,17 +124,13 @@ export function decodePost(content, label) {
   }
 
   for (const tree of [content.body, content.excerpt]) {
+    // The excerpt is a separate rendering of part of the body. IDs may
+    // repeat across these trees, but must stay unique within each tree.
+    ids.clear();
     if (tree?.type === 'minimark')
       tree.value = tree.value.flatMap(node => visit(node));
   }
   toc(content.body?.toc?.links);
-
-  const seen = new Set();
-  for (const id of ids) {
-    if (seen.has(id))
-      fail(`decoded id "${id}" is used twice; rename one of the headings`);
-    seen.add(id);
-  }
 
   // A title or description missing from the frontmatter is taken from the
   // body, marks and all. Everything else outside the body is frontmatter,

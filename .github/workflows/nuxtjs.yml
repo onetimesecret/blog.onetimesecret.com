@@ -39,6 +39,8 @@ jobs:
           NUXT_UI_PRO_LICENSE: ${{ secrets.NUXT_UI_PRO_LICENSE }}
       # Pick your own package manager and build script
       - run: pnpm install
+      - run: pnpm test
+      - run: pnpm check:content
       - run: npx nuxt build --preset github_pages
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4

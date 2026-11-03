@@ -12,6 +12,7 @@
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "typecheck": "nuxt typecheck",
+    "test": "vitest run scripts/*.test.js",
     "check:content": "node scripts/check-content.js",
     "check:links": "./bin/check-links.sh",
     "check:links:external": "./bin/check-links.sh --external",
@@ -50,7 +51,9 @@
     "@iconify-json/simple-icons": "^1.2.101",
     "@iconify-json/vscode-icons": "^1.2.94",
     "@nuxt/test-utils": "^3.23.0",
+    "@nuxtjs/mdc": "^0.23.2",
     "eslint": "^9.39.5",
+    "minimark": "^0.2.0",
     "spotnote": "^0.5.0",
     "vitest": "^3.2.7",
     "vue-tsc": "^2.2.12"

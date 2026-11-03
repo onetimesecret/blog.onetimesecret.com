@@ -1,6 +1,7 @@
 // nuxt.config.ts
 
 // Get all content files directly in the config
+import { assertPrerenderedPosts } from './scripts/check-prerender';
 import { routes } from './scripts/generate-routes';
 import { decodePost } from './scripts/textprov';
 
@@ -51,6 +52,8 @@ export default defineNuxtConfig({
     prerender: {
       concurrency: 250,
       interval: 250,
+      // Ancillary assets can fail; the prerender:done hook below requires
+      // successful HTML output for every published post.
       failOnError: false,
       crawlLinks: false,
       routes,
@@ -137,6 +140,9 @@ export default defineNuxtConfig({
     // are inferred from the extension, so only SVG is affected. This hook
     // runs before nitro records the route's content type.
     'nitro:init': (nitro) => {
+      nitro.hooks.hook('prerender:done', ({ prerenderedRoutes }) => {
+        assertPrerenderedPosts(routes, prerenderedRoutes);
+      });
       nitro.hooks.hook('prerender:generate', (route) => {
         if (route.route.startsWith('/_ipx/') && route.fileName?.endsWith('.svg') && route.contentType?.startsWith('text/plain'))
           route.contentType = 'image/svg+xml';
