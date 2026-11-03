@@ -26,6 +26,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Test content parsing and decoding
+        # Keep the parser/decoder regressions in PR checks as well as deploys.
+        run: pnpm test
+
       - name: Build blog site
         run: pnpm generate
         env:
